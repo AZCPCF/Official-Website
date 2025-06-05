@@ -1,10 +1,13 @@
+"use client";
+
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Code, Cpu, Globe, Github, Twitter, MessageSquare, Layers, Shield, Menu, X } from "lucide-react"
+import { Code, Cpu, Globe, Github, Twitter, MessageSquare, Layers, Shield, Send, Menu, X } from "lucide-react"
 import Link from "next/link"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Header from "@/components/header"
+import CodeBlock from "@/components/CodeBlock";
 
 export default function LandingPage() {
   return (
@@ -140,7 +143,7 @@ export default function LandingPage() {
                 <TabsContent value="hello" className="mt-6">
                   <div className="bg-zinc-950 text-zinc-50 rounded-lg p-6 overflow-x-auto">
                     <pre className="font-mono text-sm">
-                      <code>{`// Hello World in Cyrus Lang
+                    <CodeBlock language="typescript">{`// Hello World in Cyrus Lang
 func main() {
     println("Hello, World!")
 }
@@ -154,14 +157,14 @@ func greet(name: String) -> String {
 func example() {
     let message = greet("Developer")
     println(message)  // Outputs: Hello, Developer!
-}`}</code>
+}`}</CodeBlock>
                     </pre>
                   </div>
                 </TabsContent>
                 <TabsContent value="concurrency" className="mt-6">
                   <div className="bg-zinc-950 text-zinc-50 rounded-lg p-6 overflow-x-auto">
                     <pre className="font-mono text-sm">
-                      <code>{`// Concurrency in Cyrus Lang
+                    <CodeBlock language="typescript">{`// Concurrency in Cyrus Lang
 import async
 
 func fetchData(id: Int) async -> Data {
@@ -178,19 +181,19 @@ func main() {
             println("Fetched: \${data}")
         }
     }
-    
+
     // Wait for all tasks to complete
     await all(tasks)
-    
+
     println("All data fetched successfully!")
-}`}</code>
+}`}</CodeBlock>
                     </pre>
                   </div>
                 </TabsContent>
                 <TabsContent value="data" className="mt-6">
                   <div className="bg-zinc-950 text-zinc-50 rounded-lg p-6 overflow-x-auto">
                     <pre className="font-mono text-sm">
-                      <code>{`// Data Processing in Cyrus Lang
+                    <CodeBlock language="typescript">{`// Data Processing in Cyrus Lang
 struct User {
     id: Int
     name: String
@@ -204,15 +207,15 @@ func main() {
         User(id: 2, name: "Bob", email: "bob@example.com", active: false),
         User(id: 3, name: "Charlie", email: "charlie@example.com", active: true)
     ]
-    
+
     // Functional programming with pipelines
     let activeEmails = users
         .filter(user => user.active)
         .map(user => user.email)
         .join(", ")
-    
+
     println("Active user emails: \${activeEmails}")
-}`}</code>
+}`}</CodeBlock>
                     </pre>
                   </div>
                 </TabsContent>
@@ -307,16 +310,20 @@ func main() {
                 Cyrus Lang is open-source and community-driven. Get involved and help shape the future of the language.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
               <div className="bg-background rounded-lg p-6 shadow-sm border text-center hover:shadow-md transition-shadow">
                 <Github className="h-12 w-12 mx-auto mb-4 text-primary" />
                 <h3 className="text-xl font-bold mb-2">GitHub</h3>
                 <p className="text-muted-foreground mb-4">
                   Explore the source code, report issues, and contribute to the project.
                 </p>
-                <Button variant="outline" className="w-full">
-                  Visit Repository
-                </Button>
+                <Link href="https://github.com/cyrus-lang" passHref legacyBehavior>
+                  <Button variant="outline" className="w-full" asChild>
+                    <a target="_blank" rel="noopener noreferrer">
+                      Visit Repository
+                    </a>
+                  </Button>
+                </Link>
               </div>
               <div className="bg-background rounded-lg p-6 shadow-sm border text-center hover:shadow-md transition-shadow">
                 <MessageSquare className="h-12 w-12 mx-auto mb-4 text-primary" />
@@ -327,6 +334,20 @@ func main() {
                 <Button variant="outline" className="w-full">
                   Join Discord
                 </Button>
+              </div>
+              <div className="bg-background rounded-lg p-6 shadow-sm border text-center hover:shadow-md transition-shadow">
+                <Send className="h-12 w-12 mx-auto mb-4 text-primary" />
+                <h3 className="text-xl font-bold mb-2">Telegram</h3>
+                <p className="text-muted-foreground mb-4">
+                  Join our Telegram channel for announcements and discussions.
+                </p>
+                <Link href="https://t.me/cyrus_lang" passHref legacyBehavior>
+                  <Button variant="outline" className="w-full" asChild>
+                    <a target="_blank" rel="noopener noreferrer">
+                      Join Telegram
+                    </a>
+                  </Button>
+                </Link>
               </div>
               <div className="bg-background rounded-lg p-6 shadow-sm border text-center hover:shadow-md transition-shadow">
                 <Twitter className="h-12 w-12 mx-auto mb-4 text-primary" />
@@ -475,4 +496,3 @@ func main() {
     </div>
   )
 }
-
