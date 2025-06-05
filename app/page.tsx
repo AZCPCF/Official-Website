@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Code, Cpu, Globe, Github, Twitter, MessageSquare, Layers, Shield, Menu, X } from "lucide-react"
+import { Code, Cpu, Globe, Github, Twitter, MessageSquare, Layers, Shield, Send, Menu, X } from "lucide-react"
 import Link from "next/link"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
@@ -310,16 +310,20 @@ func main() {
                 Cyrus Lang is open-source and community-driven. Get involved and help shape the future of the language.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
               <div className="bg-background rounded-lg p-6 shadow-sm border text-center hover:shadow-md transition-shadow">
                 <Github className="h-12 w-12 mx-auto mb-4 text-primary" />
                 <h3 className="text-xl font-bold mb-2">GitHub</h3>
                 <p className="text-muted-foreground mb-4">
                   Explore the source code, report issues, and contribute to the project.
                 </p>
-                <Button variant="outline" className="w-full">
-                  Visit Repository
-                </Button>
+                <Link href="https://github.com/cyrus-lang" passHref legacyBehavior>
+                  <Button variant="outline" className="w-full" asChild>
+                    <a target="_blank" rel="noopener noreferrer">
+                      Visit Repository
+                    </a>
+                  </Button>
+                </Link>
               </div>
               <div className="bg-background rounded-lg p-6 shadow-sm border text-center hover:shadow-md transition-shadow">
                 <MessageSquare className="h-12 w-12 mx-auto mb-4 text-primary" />
@@ -330,6 +334,20 @@ func main() {
                 <Button variant="outline" className="w-full">
                   Join Discord
                 </Button>
+              </div>
+              <div className="bg-background rounded-lg p-6 shadow-sm border text-center hover:shadow-md transition-shadow">
+                <Send className="h-12 w-12 mx-auto mb-4 text-primary" />
+                <h3 className="text-xl font-bold mb-2">Telegram</h3>
+                <p className="text-muted-foreground mb-4">
+                  Join our Telegram channel for announcements and discussions.
+                </p>
+                <Link href="https://t.me/cyrus_lang" passHref legacyBehavior>
+                  <Button variant="outline" className="w-full" asChild>
+                    <a target="_blank" rel="noopener noreferrer">
+                      Join Telegram
+                    </a>
+                  </Button>
+                </Link>
               </div>
               <div className="bg-background rounded-lg p-6 shadow-sm border text-center hover:shadow-md transition-shadow">
                 <Twitter className="h-12 w-12 mx-auto mb-4 text-primary" />
