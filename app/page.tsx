@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Code, Cpu, Globe, Github, Twitter, MessageSquare, Layers, Shield, Menu, X } from "lucide-react"
@@ -5,6 +7,7 @@ import Link from "next/link"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Header from "@/components/header"
+import CodeBlock from "@/components/CodeBlock";
 
 export default function LandingPage() {
   return (
@@ -140,7 +143,7 @@ export default function LandingPage() {
                 <TabsContent value="hello" className="mt-6">
                   <div className="bg-zinc-950 text-zinc-50 rounded-lg p-6 overflow-x-auto">
                     <pre className="font-mono text-sm">
-                      <code>{`// Hello World in Cyrus Lang
+                    <CodeBlock language="typescript">{`// Hello World in Cyrus Lang
 func main() {
     println("Hello, World!")
 }
@@ -154,14 +157,14 @@ func greet(name: String) -> String {
 func example() {
     let message = greet("Developer")
     println(message)  // Outputs: Hello, Developer!
-}`}</code>
+}`}</CodeBlock>
                     </pre>
                   </div>
                 </TabsContent>
                 <TabsContent value="concurrency" className="mt-6">
                   <div className="bg-zinc-950 text-zinc-50 rounded-lg p-6 overflow-x-auto">
                     <pre className="font-mono text-sm">
-                      <code>{`// Concurrency in Cyrus Lang
+                    <CodeBlock language="typescript">{`// Concurrency in Cyrus Lang
 import async
 
 func fetchData(id: Int) async -> Data {
@@ -178,19 +181,19 @@ func main() {
             println("Fetched: \${data}")
         }
     }
-    
+
     // Wait for all tasks to complete
     await all(tasks)
-    
+
     println("All data fetched successfully!")
-}`}</code>
+}`}</CodeBlock>
                     </pre>
                   </div>
                 </TabsContent>
                 <TabsContent value="data" className="mt-6">
                   <div className="bg-zinc-950 text-zinc-50 rounded-lg p-6 overflow-x-auto">
                     <pre className="font-mono text-sm">
-                      <code>{`// Data Processing in Cyrus Lang
+                    <CodeBlock language="typescript">{`// Data Processing in Cyrus Lang
 struct User {
     id: Int
     name: String
@@ -204,15 +207,15 @@ func main() {
         User(id: 2, name: "Bob", email: "bob@example.com", active: false),
         User(id: 3, name: "Charlie", email: "charlie@example.com", active: true)
     ]
-    
+
     // Functional programming with pipelines
     let activeEmails = users
         .filter(user => user.active)
         .map(user => user.email)
         .join(", ")
-    
+
     println("Active user emails: \${activeEmails}")
-}`}</code>
+}`}</CodeBlock>
                     </pre>
                   </div>
                 </TabsContent>
@@ -475,4 +478,3 @@ func main() {
     </div>
   )
 }
-
