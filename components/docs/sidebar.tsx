@@ -1,9 +1,6 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sidebar as SidebarComponent,
   SidebarContent,
@@ -11,62 +8,16 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuItem,
   SidebarMenuButton,
-} from "@/components/ui/sidebar"
-
-const sidebarItems = [
-  {
-    title: "Getting Started",
-    items: [
-      {
-        title: "Introduction",
-        href: "/docs",
-      },
-      {
-        title: "Installation",
-        href: "/docs/installation",
-      },
-    ],
-  },
-  {
-    title: "Tutorial",
-    items: [
-      {
-        title: "Basic Syntax",
-        href: "/docs/tutorial/basic-syntax",
-      },
-      {
-        title: "Variables and Types",
-        href: "/docs/tutorial/variables-and-types",
-      },
-      {
-        title: "Control Flow",
-        href: "/docs/tutorial/control-flow",
-      },
-    ],
-  },
-  {
-    title: "Language Reference",
-    items: [
-      {
-        title: "Built-in Types",
-        href: "/docs/reference/built-in-types",
-      },
-      {
-        title: "Functions",
-        href: "/docs/reference/functions",
-      },
-      {
-        title: "Modules",
-        href: "/docs/reference/modules",
-      },
-    ],
-  },
-]
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { sidebarItems } from "./sidebarItems";
 
 export function Sidebar() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <SidebarComponent>
@@ -84,7 +35,9 @@ export function Sidebar() {
                           href={subItem.href}
                           className={cn(
                             "block w-full",
-                            pathname === subItem.href ? "text-primary font-medium" : "text-muted-foreground",
+                            pathname === subItem.href
+                              ? "text-primary font-medium"
+                              : "text-muted-foreground"
                           )}
                         >
                           {subItem.title}
@@ -99,6 +52,5 @@ export function Sidebar() {
         </ScrollArea>
       </SidebarContent>
     </SidebarComponent>
-  )
+  );
 }
-
