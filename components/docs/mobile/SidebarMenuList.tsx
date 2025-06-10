@@ -5,7 +5,7 @@ import { sidebarItems } from "../sidebarItems";
 
 export function SidebarMenuList({ onItemClick }: { onItemClick?: () => void }) {
   return (
-    <div className="p-4">
+    <div className="p-4 pt-0">
       {sidebarItems.map((group, i) => (
         <div key={i} className="mb-6">
           <div className="text-lg font-bold mb-2">{group.title}</div>

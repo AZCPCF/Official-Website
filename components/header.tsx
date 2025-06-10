@@ -84,9 +84,10 @@ export default function Header() {
                   <span className="sr-only">Toggle menu</span>
                 </Button>
               </SheetTrigger>
+
               <SheetContent
                 side="right"
-                className="w-full sm:w-[350px] fixed inset-0 ml-auto"
+                className="w-full fixed inset-0 ml-auto"
               >
                 <div className="flex flex-col h-full">
                   <div className="flex items-center justify-between mb-6">
@@ -101,6 +102,7 @@ export default function Header() {
                       </Button>
                     </SheetTrigger>
                   </div>
+                  
                   <nav className="flex flex-col gap-4">
                     <Link
                       href="#features"

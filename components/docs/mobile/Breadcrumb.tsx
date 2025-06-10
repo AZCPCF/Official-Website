@@ -40,7 +40,7 @@ export default function Breadcrumb() {
 
   return (
     <nav
-      className="flex items-center text-sm space-x-1 rtl:space-x-reverse my-3"
+      className="flex items-center text-sm space-x-1 rtl:space-x-reverse"
       aria-label="Breadcrumb"
     >
       {visibleCrumbs.map((crumb, idx) => (

@@ -25,7 +25,7 @@ export default function DocsLayout({
           <div className="w-full flex-none md:w-64">
             <Sidebar />
           </div>
-          <div className="flex-grow pt-2 md:pt-12 pb-6 px-6 md:px-12 md:overflow-y-auto">
+          <div className="flex-grow pt-24 md:pt-12 pb-6 px-6 md:px-12 md:overflow-y-auto">
             {children}
           </div>
         </div>

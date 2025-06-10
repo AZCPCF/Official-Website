@@ -192,22 +192,23 @@ fn example() {
           <div className="container">
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Cyrus Lang?</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">Ancient Wisdom, Modern Power</h2>
               </div>
               <div className="bg-background rounded-lg p-8 shadow-sm border">
                 <p className="text-lg mb-6">
-                  In a world of programming languages, Cyrus Lang stands out by offering a unique blend of simplicity
-                  and power. It's designed for developers who value both productivity and performance.
+                  Cyrus blends timeless principles of engineering with state-of-the-art compiler technology. 
+                  It's built to empower developers with a language that is both intuitive and powerful.
                 </p>
                 <p className="text-lg mb-6">
-                  Unlike other languages that force you to choose between development speed and runtime efficiency,
-                  Cyrus Lang delivers both. Its intuitive syntax reduces the learning curve, while its powerful compiler
-                  ensures your code runs as fast as possible.
+                  In a world crowded with programming languages, Cyrus stands apart by offering a unique balance of simplicity and strength.
+                  Designed for developers who care deeply about both productivity and performance, Cyrus Lang eliminates the need to compromise.
+                  Its clean, expressive syntax lowers the barrier to entry, while its advanced compiler infrastructure ensures your programs run with uncompromising speed.
                 </p>
                 <p className="text-lg">
-                  With first-class support for modern programming paradigms and a focus on developer experience,
-                  Cyrus Lang helps you write cleaner, safer, and more maintainable code—whether you're building a small
-                  script or a large-scale application.
+                  Unlike traditional languages that force a trade-off between rapid development and runtime efficiency, Cyrus delivers both.
+                  Whether you're prototyping a new idea or engineering a high-performance system, Cyrus gives you the confidence that your code will remain elegant, fast, and maintainable.
+
+                  With first-class support for modern programming paradigms, built-in safety features, and a focus on developer experience, Cyrus Lang is your companion for building everything from simple scripts to complex, large-scale software systems.
                 </p>
               </div>
             </div>
@@ -335,7 +336,7 @@ fn example() {
               <div className="text-center mb-8">
                 <h2 className="text-2xl md:text-3xl font-bold mb-2">Stay Updated</h2>
                 <p className="text-muted-foreground">
-                  Subscribe to our newsletter to receive updates, tutorials, and news about Cyrus Lang.
+                  Subscribe to our newsletter to receive updates, tutorials, and news about Cyrus.
                 </p>
               </div>
               <form className="flex flex-col sm:flex-row gap-4">
@@ -357,7 +358,7 @@ fn example() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Code className="h-6 w-6 text-primary" />
-                <span className="text-xl font-bold">Cyrus Lang</span>
+                <span className="text-xl font-bold">Cyrus</span>
               </div>
               <p className="text-sm text-muted-foreground">
                 A modern programming language designed for simplicity, performance, and developer happiness.
@@ -392,23 +393,18 @@ fn example() {
               <h3 className="font-bold mb-4">Community</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href={socialMedia.github} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     GitHub
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href={socialMedia.discord} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Discord
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Twitter
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Stack Overflow
+                  <Link href={socialMedia.telegram} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                    Telegram
                   </Link>
                 </li>
               </ul>
@@ -444,17 +440,9 @@ fn example() {
               &copy; {new Date().getFullYear()} All rights reserved.
             </p>
             <div className="flex gap-4">
-              <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link href={socialMedia.github} className="text-muted-foreground hover:text-foreground transition-colors">
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                <Twitter className="h-5 w-5" />
-                <span className="sr-only">Twitter</span>
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                <MessageSquare className="h-5 w-5" />
-                <span className="sr-only">Discord</span>
               </Link>
             </div>
           </div>

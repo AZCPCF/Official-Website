@@ -1,35 +1,42 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+function UnderDevelopmentComponent() {
+  return (
+    <div
+      className="mb-8 flex items-center rounded-md border border-border p-4 text-black dark:text-white"
+      role="alert"
+      aria-live="polite"
+    >
+      <svg
+        className="h-6 w-6 mr-3 flex-shrink-0 text-black dark:text-white"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M12 9v2m0 4h.01M21 12A9 9 0 1 1 3 12a9 9 0 0 1 18 0z"
+        />
+      </svg>
+      <span>
+        <strong>Notice:</strong> Consider that Cyrus is under heavy
+        development and is not stable yet.
+      </span>
+    </div>
+  );
+}
+
 export default function DocsPage() {
   return (
     <div className="max-w-4xl mx-auto">
-      <div
-        className="mb-8 flex items-center rounded-md border border-yellow-300 bg-yellow-50 p-4 text-primary"
-        role="alert"
-        aria-live="polite"
-      >
-        <svg
-          className="h-5 w-5 mr-3 flex-shrink-0 text-yellow-300"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 9v2m0 4h.01M21 12A9 9 0 1 1 3 12a9 9 0 0 1 18 0z"
-          />
-        </svg>
-        <span>
-          <strong>Notice:</strong> Consider that Cyrus is under heavy
-          development and is not stable yet.
-        </span>
-      </div>
-
       <h1 className="text-4xl font-bold mb-6">Documentation</h1>
+
+      <UnderDevelopmentComponent />
+
       <p className="text-xl mb-8">
         Welcome to the official documentation for Cyrus. Here you'll find
         everything you need to get started with our modern, expressive, and
