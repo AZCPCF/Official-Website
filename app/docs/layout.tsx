@@ -18,7 +18,7 @@ export default async function DocsLayout({
 
       <SidebarProvider>
         <div className="flex flex-col md:flex-row md:overflow-hidden flex-1">
-          <div className="w-full flex-none md:w-64">
+          <div className="w-full flex-none md:w-64 xl:w-80 border-r">
             <ClientSidebarWrapper navigationItems={navigationItems} />
           </div>
 

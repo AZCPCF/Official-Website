@@ -14,10 +14,9 @@ export default function ClientSidebarWrapper({ navigationItems }: ClientSideMobi
 
     return (
         <>
-            {/* Show MobileSidebar on /docs and all nested routes */}
             {pathname.startsWith("/docs") && <MobileSidebar navigationItems={navigationItems} />}
+
             <div className="w-full flex-none md:w-64">
-                {/* Pass navigationItems to Sidebar */}
                 <Sidebar navigationItems={navigationItems} />
             </div>
         </>

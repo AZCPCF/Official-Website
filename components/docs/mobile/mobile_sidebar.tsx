@@ -1,19 +1,14 @@
-// components/docs/mobile/MobileSidebar.tsx
 import { Logo } from "@/components/header";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import Breadcrumb from "./breadcrumb";
 import { Button } from "@/components/ui/button";
-import { Sidebar, SidebarProps } from "../sidebar"; // This import is correct, assuming 'sidebar.tsx' is in the parent directory
+import { Sidebar, SidebarProps } from "../sidebar"; 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function MobileSidebar({ navigationItems }: SidebarProps) {
   const [open, setOpen] = useState(false);
-
-  function handleClose() {
-    setOpen(false);
-  }
 
   return (
     <div className="fixed top-[64px] flex items-center w-full px-4 py-2 md:hidden bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 text-foreground border-b border-border transition-colors">
@@ -43,7 +38,6 @@ export default function MobileSidebar({ navigationItems }: SidebarProps) {
           </div>
 
           <div className="flex-1 overflow-y-auto">
-            {/* This is correct. The Sidebar component should now render */}
             <Sidebar navigationItems={navigationItems} />
           </div>
         </SheetContent>
