@@ -1,10 +1,10 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { DocsPage } from './index';
 import { CONTENT_BASE_PATH } from '../base_path';
 import { getMdxData } from '@/app/docs/mdx';
 import { useMDXComponents } from '../../../mdx-components';
+import { redirect } from 'next/navigation';
 
 function DocumentNotFoundComponent() {
   return (
@@ -52,7 +52,7 @@ export default async function ShowDocumentPage({ params }: {
 
   let filePath: string | null = null;
   if (slug.length === 0) {
-    return DocsPage();
+    redirect("/docs/introduction");
   } else {
     filePath = await lookupDocumentContent(slug);
   }
@@ -72,8 +72,8 @@ export default async function ShowDocumentPage({ params }: {
   }
 
   return (
-    <article className="prose lg:prose-xl container mx-auto py-5">
+    <div className="prose lg:prose-xl container mx-auto py-5 pt-8 text-xl">
       <MDXRemote source={mdxSource} components={useMDXComponents({})} />
-    </article>
+    </div>
   );
 }

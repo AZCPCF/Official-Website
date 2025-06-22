@@ -44,8 +44,6 @@ const CollapsibleNavItem = ({ item, pathname, renderChildren }: CollapsibleNavIt
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
-  const isActive = pathname === itemHref || pathname.startsWith(`${itemHref}/`);
-
   return (
     <div className="mb-3"> {/* Mimics SidebarGroup */}
       <div className="text-xs font-semibold uppercase text-muted-foreground">
