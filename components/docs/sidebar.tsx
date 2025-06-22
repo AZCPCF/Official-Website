@@ -48,13 +48,13 @@ const CollapsibleNavItem = ({ item, pathname, renderChildren }: CollapsibleNavIt
 
   return (
     <div className="mb-3"> {/* Mimics SidebarGroup */}
-      <div className="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 mb-2">
-        <div className="flex items-center justify-between w-full cursor-pointer"> {/* Removed onClick here */}
+      <div className="text-xs font-semibold uppercase text-muted-foreground">
+        <div className="flex items-center justify-between w-full cursor-pointer"> 
           {/* Link for directory title */}
           <Link
             href={itemHref}
             className={cn(
-              "text-muted-foreground flex-grow py-1 rounded-md px-2 dark:text-white",
+              "text-muted-foreground flex-grow py-2 rounded-md px-2",
             )}
             onClick={() => {
               setIsOpen(prev => !prev);
