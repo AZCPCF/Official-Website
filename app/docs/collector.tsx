@@ -1,9 +1,9 @@
 // collector.ts (or docs.ts)
 import path from 'path';
 import fs from 'fs/promises';
-import matter from 'gray-matter';
 import { CONTENT_BASE_PATH } from './base_path';
 import { DocNavItem } from '@/app/types/doc_nav_item';
+import { getMdxData } from '@/app/docs/mdx';
 
 /**
  * Normalizes a file or directory name into a human-readable title.
@@ -18,22 +18,6 @@ function slugToTitle(slug: string): string {
         .split(' ')
         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' ');
-}
-
-/**
- * Reads frontmatter from an MDX file.
- * @param filePath The full path to the MDX file.
- * @returns An object containing the frontmatter data.
- */
-async function getMdxFrontmatter(filePath: string): Promise<{ [key: string]: any }> {
-    try {
-        const fileContent = await fs.readFile(filePath, 'utf-8');
-        const { data: frontmatter } = matter(fileContent);
-        return frontmatter;
-    } catch (error) {
-        console.error(`Error reading frontmatter from ${filePath}:`, error);
-        return {};
-    }
 }
 
 /**
@@ -69,7 +53,7 @@ export async function getDocsNavigation(
     }
 
     // --- 1. Determine the "main" file for the current directory (index.mdx or [dirName].mdx) ---
-    const dirName = path.basename(currentPath); // Get the current directory's actual name
+    const dirName = path.basename(currentPath);
     const dirNamedMdxFile = `${dirName}.mdx`;
 
     let mainMdxFileName: string | undefined;
@@ -82,32 +66,31 @@ export async function getDocsNavigation(
         mainMdxFileName = dirNamedMdxFile;
     }
 
-    let mainFileItem: DocNavItem | undefined;
     let fileToExcludeFromChildren: string | undefined; // To prevent duplication
 
     if (mainMdxFileName) {
         const filePath = path.join(currentPath, mainMdxFileName);
-        const frontmatter = await getMdxFrontmatter(filePath);
+        const { frontmatter, content } = await getMdxData(filePath); // Use getMdxData to get content
 
         const itemSlug = currentSlug; // The slug for the directory's main page is the directory's slug itself
 
         const title = frontmatter.title || slugToTitle(currentSlug);
         const weight = frontmatter.weight || 9999;
 
-        mainFileItem = {
+        items.push({
             title: title,
             slug: itemSlug,
             path: filePath,
-            type: 'file', // Treat this as a 'file' type in the items array for direct access
+            type: 'file',
             weight: weight,
-        };
-        items.push(mainFileItem);
+            content: content, // Now the DocNavItem includes the clean content
+        });
         fileToExcludeFromChildren = mainMdxFileName;
     }
 
     // --- 2. Process subdirectories ---
     // Sort directories alphabetically by name first for consistent order before recursion
-    for (const dirNameEntry of directories.sort()) { // Renamed dirName to dirNameEntry to avoid clash
+    for (const dirNameEntry of directories.sort()) {
         const dirPath = path.join(currentPath, dirNameEntry);
         const newSlug = currentSlug ? `${currentSlug}/${dirNameEntry}` : dirNameEntry;
 
@@ -116,7 +99,7 @@ export async function getDocsNavigation(
 
         // Find the main file item (index.mdx or [dirName].mdx) of the *child directory*
         const childMainDoc = children.find(child => child.slug === newSlug && child.type === 'file');
-        
+
         if (children.length > 0) {
             items.push({
                 title: childMainDoc?.title || slugToTitle(dirNameEntry), // Use main doc title if available, else derive
@@ -136,7 +119,7 @@ export async function getDocsNavigation(
         if (fileName === fileToExcludeFromChildren) continue; // Skip the main file if it was processed
 
         const filePath = path.join(currentPath, fileName);
-        const frontmatter = await getMdxFrontmatter(filePath); // Use the helper
+        const { frontmatter } = await getMdxData(filePath);
 
         const fileSlug = fileName.replace(/\.mdx$/, '');
         const fullItemSlug = currentSlug ? `${currentSlug}/${fileSlug}` : fileSlug;
@@ -162,20 +145,12 @@ export async function getDocsNavigation(
             }
         }
 
-        // Fallback: directories before files (this might be less relevant if main files for dirs are handled as 'file' types at their level)
-        // Re-evaluating this order for (items, directory) pairs:
-        // A common pattern is that the directory's main page (the 'file' item for the directory's slug)
-        // should appear first, followed by child directories, then by other individual files.
-        // Let's refine this to place the "main" file (if exists and matches directory slug) first
-        // among files, and directories before other files.
-
         // If 'a' is the main file for the current directory's slug, it should come first.
-        // This implicitly assumes the main file's slug matches the current directory's slug.
         const aIsMainFile = a.type === 'file' && a.slug === currentSlug;
         const bIsMainFile = b.type === 'file' && b.slug === currentSlug;
 
-        if (aIsMainFile && !bIsMainFile) return -1; // 'a' comes first
-        if (!aIsMainFile && bIsMainFile) return 1;  // 'b' comes first
+        if (aIsMainFile && !bIsMainFile) return -1;
+        if (!aIsMainFile && bIsMainFile) return 1;
 
         // Then, directories before other files
         if (a.type === 'directory' && b.type === 'file') return -1;

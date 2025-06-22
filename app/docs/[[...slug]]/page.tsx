@@ -3,6 +3,8 @@ import path from 'path';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { DocsPage } from './index';
 import { CONTENT_BASE_PATH } from '../base_path';
+import { getMdxData } from '@/app/docs/mdx';
+import { useMDXComponents } from '../../../mdx-components';
 
 function DocumentNotFoundComponent() {
   return (
@@ -60,9 +62,10 @@ export default async function ShowDocumentPage({ params }: {
   }
 
   let mdxSource;
+
   try {
-    const fileContent = await fs.readFile(filePath, 'utf8');
-    mdxSource = fileContent; // Just the content, MDXRemote will parse it
+    const { content } = await getMdxData(filePath);
+    mdxSource = content;
   } catch (error) {
     console.error(`Failed to read MDX file at ${filePath}:`, error);
     return DocumentNotFoundComponent();
@@ -70,7 +73,7 @@ export default async function ShowDocumentPage({ params }: {
 
   return (
     <article className="prose lg:prose-xl mx-auto py-8">
-      <MDXRemote source={mdxSource} />
+      <MDXRemote source={mdxSource} components={useMDXComponents({})} />
     </article>
   );
 }

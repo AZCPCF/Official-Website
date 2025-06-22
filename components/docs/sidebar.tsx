@@ -1,14 +1,12 @@
-// components/docs/sidebar.tsx
 "use client";
 
 import { useState } from "react";
-import { DocNavItem } from '@/app/types/doc_nav_item'; // Adjust path if necessary
-import { ScrollArea } from "@/components/ui/scroll-area"; // Keep ScrollArea if it's a generic utility
+import { DocNavItem } from '@/app/types/doc_nav_item';
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// Define the props for the main Sidebar component
 export interface SidebarProps {
   navigationItems: DocNavItem[];
 }
@@ -32,16 +30,14 @@ const CaretIcon = ({ isOpen }: { isOpen: boolean }) => (
   </svg>
 );
 
-// Minimal component for collapsible navigation items (directories)
 interface CollapsibleNavItemProps {
   item: DocNavItem;
-  currentBasePath: string;
   pathname: string;
-  renderChildren: (items: DocNavItem[], basePath: string) => JSX.Element[];
+  renderChildren: (items: DocNavItem[]) => JSX.Element[];
 }
 
-const CollapsibleNavItem = ({ item, currentBasePath, pathname, renderChildren }: CollapsibleNavItemProps) => {
-  const itemHref = item.slug === '' ? currentBasePath : `${currentBasePath}/${item.slug}`;
+const CollapsibleNavItem = ({ item, pathname, renderChildren }: CollapsibleNavItemProps) => {
+  const itemHref = item.slug === '' ? '/docs' : `/docs/${item.slug}`;
 
   const initialOpenState = pathname.startsWith(itemHref);
   const [isOpen, setIsOpen] = useState(initialOpenState);
@@ -53,19 +49,15 @@ const CollapsibleNavItem = ({ item, currentBasePath, pathname, renderChildren }:
   return (
     <div className="mb-3"> {/* Mimics SidebarGroup */}
       <div className="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 mb-2">
-        <div className="flex items-center justify-between w-full cursor-pointer" onClick={toggleOpen}>
+        <div className="flex items-center justify-between w-full cursor-pointer"> {/* Removed onClick here */}
           {/* Link for directory title */}
           <Link
             href={itemHref}
             className={cn(
-              "text-foreground flex-grow py-1 rounded-md px-2",
-              // Prevent default click on link to allow button to handle toggle, but only if not navigating
-              { 'pointer-events-none': !isActive && item.children && item.children.length > 0 } // Disable link if it's a parent with children and not active
+              "text-muted-foreground flex-grow py-1 rounded-md px-2 dark:text-white",
             )}
-            onClick={(e) => {
-              if (item.type === 'directory' && pathname !== itemHref) {
-                e.preventDefault();
-              }
+            onClick={() => {
+              setIsOpen(prev => !prev);
             }}
           >
             {item.title}
@@ -74,7 +66,7 @@ const CollapsibleNavItem = ({ item, currentBasePath, pathname, renderChildren }:
           {/* Toggle Button for Dropdown */}
           {item.children && item.children.length > 0 && ( // Only show caret if there are children
             <button
-              onClick={toggleOpen}
+              onClick={toggleOpen} // Only the button toggles
               className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-border dark:focus:bg-border ml-2"
               aria-expanded={isOpen}
               aria-controls={`sidebar-group-content-${item.slug}`}
@@ -89,7 +81,7 @@ const CollapsibleNavItem = ({ item, currentBasePath, pathname, renderChildren }:
       {isOpen && item.children && item.children.length > 0 && (
         <div id={`sidebar-group-content-${item.slug}`} className="ml-2"> {/* Mimics SidebarGroupContent */}
           <ul className="space-y-1"> {/* Mimics SidebarMenu */}
-            {renderChildren(item.children, currentBasePath)}
+            {renderChildren(item.children)} {/* Call renderChildren with only the items */}
           </ul>
         </div>
       )}
@@ -102,29 +94,32 @@ export function Sidebar({ navigationItems }: SidebarProps) {
   const pathname = usePathname(); // Get current pathname once
 
   // Helper function to render nested navigation items
-  const renderNavItems = (items: DocNavItem[], currentBasePath: string = '/docs') => {
+  const renderNavItems = (items: DocNavItem[]) => { // Removed currentBasePath parameter
     return items.map((item) => {
-      // Construct the full href based on the current item's slug
-      const itemHref = item.slug === '' ? currentBasePath : `${currentBasePath}/${item.slug}`;
+      // Construct the full href for any item (file or directory's main page)
+      // item.slug already contains the full path from /docs/
+      const itemHref = item.slug === '' ? '/docs' : `/docs/${item.slug}`;
 
       if (item.type === 'directory') {
         return (
           <CollapsibleNavItem
             key={item.slug}
             item={item}
-            currentBasePath={itemHref}
+            // currentBasePath is technically not used within CollapsibleNavItem's itemHref logic anymore
+            // but keeping it as a prop for now for type compatibility if you have other uses for it.
+            // If not, you can remove it from CollapsibleNavItemProps and here.
             pathname={pathname}
-            renderChildren={renderNavItems}
+            renderChildren={renderNavItems} // Pass the helper itself for recursion
           />
         );
       } else { // type === 'file'
         return (
           <li key={item.slug} className="mb-1 list-none">
             <Link
-              href={itemHref}
+              href={itemHref} // Use the correctly calculated itemHref
               className={cn(
                 "block w-full py-1 px-2 rounded-md text-md",
-                pathname === itemHref
+                pathname === itemHref || (item.slug === '' && pathname === '/docs') // Handle root active state
                   ? "text-white font-medium bg-primary" // Active state background
                   : "text-muted-foreground hover:bg-gray-100 dark:hover:bg-muted"
               )}
@@ -142,7 +137,7 @@ export function Sidebar({ navigationItems }: SidebarProps) {
       <div className="flex flex-col h-full overflow-hidden">
         <ScrollArea className="h-[calc(100vh-3.5rem)] md:h-full">
           <nav className="px-2">
-            {renderNavItems(navigationItems)}
+            {renderNavItems(navigationItems)} {/* Initial call to render top-level items */}
           </nav>
         </ScrollArea>
       </div>

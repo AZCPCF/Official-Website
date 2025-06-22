@@ -3,6 +3,7 @@ export interface DocNavItem {
     slug: string;                   // The relative slug for the link (e.g., 'tutorial/introduction')
     path: string;                   // The full file system path (internal use)
     type: 'file' | 'directory';
-    children?: DocNavItem[];         // For nested directories
-    weight?: number
+    children?: DocNavItem[];        // For nested directories
+    weight?: number,                // Used for sorting
+    content?: string;               // Holds the markdown without frontmatter
 }
