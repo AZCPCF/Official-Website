@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Box from "./box";
-import { MOCK_Participants } from "@/content/contributors";
+import contributors  from "@/content/contributors.json";
 
 export default function ContributorsPage() {
   return (
@@ -10,7 +10,7 @@ export default function ContributorsPage() {
         <div className="text-lg">Meet the people behind Cyrus</div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        {MOCK_Participants.map((participant) => (
+        {contributors .map((participant) => (
           <div key={participant.id} className="border rounded-2xl pt-5 px-3">
             <Box participant={participant} />
           </div>
