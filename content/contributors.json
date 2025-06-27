@@ -2,8 +2,8 @@
   {
     "id": 1,
     "name": "Taha Dostifam",
-    "title": "Co Founder",
-    "picture": "/Participants/tahadostifam.jpeg",
+    "title": "Creator",
+    "picture": "https://avatars.githubusercontent.com/tahadostifam",
     "github": "https://github.com/tahadostifam",
     "mastodon": "https://mastodon.social/@tahadostifam",
     "daramet": "https://daramet.com/tahadostifam",
@@ -11,32 +11,20 @@
   },
   {
     "id": 2,
-    "name": "Mohammad Kolagar",
-    "title": "Software Architecture",
-    "picture": "/Participants/ctirouzh.png",
-    "github": "https://github.com/ctirouzh",
-    "mastodon": "",
-    "daramet": "",
-    "telegram": "https://t.me/ctirouzh"
+    "name": "Reza TG",
+    "title": "Compiler Contributor",
+    "picture": "https://avatars.githubusercontent.com/rezatg",
+    "github": "https://github.com/rezatg",
+    "telegram": "https://t.me/dll_as"
   },
   {
     "id": 3,
-    "name": "Amir Rafati",
-    "title": "Back-End Developer",
-    "picture": "/Participants/AssassinRobot.jpeg",
-    "github": "https://github.com/AssassinRobot.jpeg",
-    "mastodon": "https://mastodon.social/@tahadostifam",
-    "daramet": "https://daramet.com/tahadostifam",
-    "telegram": "https://t.me/tahadostifam"
-  },
-  {
-    "id": 4,
-    "name": "Reza TG",
-    "title": "Back-End Developer",
-    "picture": "/Participants/rezatg.jpeg",
-    "github": "https://github.com/rezatg",
-    "mastodon": "",
-    "daramet": "",
-    "telegram": "https://t.me/dll_as"
+    "name": "Mahdi Rahmani",
+    "title": "Front-End Developer Of Official Website",
+    "picture": "https://avatars.githubusercontent.com/u/110809899?v=4",
+    "github": "https://github.com/MahdiRahmany",
+    "linkedin": "https://www.linkedin.com/in/mahdirahmany",
+    "email": "mahdirahmani.cm@gmail.com",
+    "telegram": "https://t.me/Mahdy_l"
   }
 ]

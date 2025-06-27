@@ -42,13 +42,6 @@ export default function Header() {
 
             <nav className="hidden xl:flex gap-6 pt-1">
               <Link
-                href="/#examples"
-                className="text-sm font-medium hover:text-primary transition-colors"
-              >
-                Examples
-              </Link>
-
-              <Link
                 href="/docs"
                 className="text-sm font-medium hover:text-primary transition-colors"
               >
@@ -126,13 +119,6 @@ export default function Header() {
                   </div>
 
                   <nav className="flex flex-col gap-4">
-                    <Link
-                      href="/#examples"
-                      className="text-lg font-medium hover:text-primary transition-colors"
-                    >
-                      Examples
-                    </Link>
-
                     <Link
                       href="/docs"
                       className="text-lg font-medium hover:text-primary transition-colors"
