@@ -12,15 +12,25 @@
   {
     "id": 2,
     "name": "Reza TG",
-    "title": "Compiler Contributor",
+    "title": "Contributor",
     "picture": "https://avatars.githubusercontent.com/rezatg",
     "github": "https://github.com/rezatg",
     "telegram": "https://t.me/dll_as"
   },
   {
     "id": 3,
+    "name": "Contributor",
+    "title": "Creator",
+    "picture": "https://avatars.githubusercontent.com/meshya",
+    "github": "https://github.com/meshya",
+    "mastodon": "https://mas.to/@meshya",
+    "daramet": "https://daramet.com/meshya",
+    "telegram": "https://t.me/meshyah"
+  },
+  {
+    "id": 4,
     "name": "Mahdi Rahmani",
-    "title": "Front-End Developer Of Official Website",
+    "title": "Contributor",
     "picture": "https://avatars.githubusercontent.com/u/110809899?v=4",
     "github": "https://github.com/MahdiRahmany",
     "linkedin": "https://www.linkedin.com/in/mahdirahmany",
