@@ -13,10 +13,14 @@ module.exports = {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1200px", 
+        "2xl": "1200px",
       },
     },
     extend: {
+      fontFamily: {
+        'fa': ['Vazirmatn', 'Inter', 'sans-serif'],
+        'persian': ['Vazirmatn', 'Inter', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

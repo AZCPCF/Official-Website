@@ -2,6 +2,7 @@
   {
     "id": 1,
     "name": "Taha Dostifam",
+    "nameFa": "طاها دوستی‌فام",
     "title": "Creator",
     "picture": "https://avatars.githubusercontent.com/tahadostifam",
     "github": "https://github.com/tahadostifam",
@@ -12,6 +13,7 @@
   {
     "id": 2,
     "name": "Reza TG",
+    "nameFa": "رضا تی‌جی",
     "title": "Contributor",
     "picture": "https://avatars.githubusercontent.com/rezatg",
     "github": "https://github.com/rezatg",
@@ -19,7 +21,8 @@
   },
   {
     "id": 3,
-    "name": "Contributor",
+    "name": "meshya",
+    "nameFa": "مشیا",
     "title": "Contributor",
     "picture": "https://avatars.githubusercontent.com/meshya",
     "github": "https://github.com/meshya",
@@ -30,6 +33,7 @@
   {
     "id": 4,
     "name": "Mahdi Rahmani",
+    "nameFa": "مهدی رحمانی",
     "title": "Contributor",
     "picture": "https://avatars.githubusercontent.com/u/110809899?v=4",
     "github": "https://github.com/MahdiRahmany",

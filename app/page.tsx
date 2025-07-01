@@ -1,18 +1,29 @@
 "use client";
 
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Code, Cpu, Globe, Github, MessageSquare, Layers, Shield, Send,} from "lucide-react"
-import Link from "next/link"
-import Header from "@/components/header"
-import Footer from "@/components/footer"
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Code,
+  Cpu,
+  Globe,
+  Github,
+  MessageSquare,
+  Layers,
+  Shield,
+  Send,
+} from "lucide-react";
+import Link from "next/link";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 import CodeBlock from "@/components/CodeBlock";
-import socialMedia from "@/content/social_media.json"
+import socialMedia from "@/content/social_media.json";
+import { useTranslations } from "next-intl";
+
 export default function LandingPage() {
+  const t = useTranslations("HomePage");
 
   return (
     <div className="min-h-screen flex flex-col">
-
       <Header />
 
       <main className="flex-1">
@@ -23,20 +34,24 @@ export default function LandingPage() {
           <div className="container relative z-10">
             <div className="max-w-4xl mx-auto text-center space-y-8">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">
-                <span className="text-primary">Cyrus Programming Language</span>
+                <span className="text-primary">{t("hero.title")}</span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                A programming language designed for simplicity, performance, and developer happiness.
+                {t("hero.subtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/docs">
                   <Button size="lg" className="w-full sm:w-auto">
-                    Get Started
+                    {t("hero.getStarted")}
                   </Button>
                 </Link>
                 <Link href="/#examples">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                    See Examples
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="w-full sm:w-auto"
+                  >
+                    {t("hero.seeExamples")}
                   </Button>
                 </Link>
               </div>
@@ -48,10 +63,11 @@ export default function LandingPage() {
         <section id="features" className="py-20 bg-muted/50">
           <div className="container">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Key Features</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                {t("features.title")}
+              </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Cyrus Lang combines the best aspects of modern programming languages with innovative features designed
-                for today's development challenges.
+                {t("features.subtitle")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -60,9 +76,11 @@ export default function LandingPage() {
                 <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <Code className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Clean and Readable Syntax</h3>
+                <h3 className="text-xl font-bold mb-2">
+                  {t("features.cleanSyntax.title")}
+                </h3>
                 <p className="text-muted-foreground">
-                  Designed with readability in mind, Cyrus Lang's syntax is intuitive and reduces cognitive load.
+                  {t("features.cleanSyntax.description")}
                 </p>
               </div>
 
@@ -71,9 +89,11 @@ export default function LandingPage() {
                 <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <Shield className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Strong Type System</h3>
+                <h3 className="text-xl font-bold mb-2">
+                  {t("features.typeSystem.title")}
+                </h3>
                 <p className="text-muted-foreground">
-                  Catch errors at compile time with a powerful type system that provides safety without verbosity.
+                  {t("features.typeSystem.description")}
                 </p>
               </div>
 
@@ -82,9 +102,11 @@ export default function LandingPage() {
                 <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <Globe className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Cross-platform Compatibility</h3>
+                <h3 className="text-xl font-bold mb-2">
+                  {t("features.crossPlatform.title")}
+                </h3>
                 <p className="text-muted-foreground">
-                  Write once, run anywhere. Cyrus Lang works seamlessly across all major operating systems.
+                  {t("features.crossPlatform.description")}
                 </p>
               </div>
 
@@ -93,9 +115,11 @@ export default function LandingPage() {
                 <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <Cpu className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Built-in Concurrency</h3>
+                <h3 className="text-xl font-bold mb-2">
+                  {t("features.concurrency.title")}
+                </h3>
                 <p className="text-muted-foreground">
-                  First-class support for concurrent and parallel programming with intuitive primitives.
+                  {t("features.concurrency.description")}
                 </p>
               </div>
 
@@ -104,9 +128,11 @@ export default function LandingPage() {
                 <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <Layers className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Extensive Standard Library</h3>
+                <h3 className="text-xl font-bold mb-2">
+                  {t("features.standardLibrary.title")}
+                </h3>
                 <p className="text-muted-foreground">
-                  A rich, well-documented standard library that covers most common programming needs.
+                  {t("features.standardLibrary.description")}
                 </p>
               </div>
 
@@ -115,9 +141,11 @@ export default function LandingPage() {
                 <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <Github className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Open-source & Community-driven</h3>
+                <h3 className="text-xl font-bold mb-2">
+                  {t("features.openSource.title")}
+                </h3>
                 <p className="text-muted-foreground">
-                  Developed in the open with contributions from developers around the world.
+                  {t("features.openSource.description")}
                 </p>
               </div>
             </div>
@@ -128,17 +156,25 @@ export default function LandingPage() {
         <section id="examples" className="py-20">
           <div className="container">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Elegant by Design</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                {t("examples.title")}
+              </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Cyrus's syntax is designed to be intuitive, expressive, and easy to read.
+                {t("examples.subtitle")}
               </p>
             </div>
             <div className="max-w-4xl mx-auto">
               <Tabs defaultValue="hello" className="w-full">
                 <TabsList className="grid w-full grid-cols-3">
-                  <TabsTrigger value="hello">Hello World</TabsTrigger>
-                  <TabsTrigger value="concurrency">Concurrency</TabsTrigger>
-                  <TabsTrigger value="data">Http Server</TabsTrigger>
+                  <TabsTrigger value="hello">
+                    {t("examples.tabs.helloWorld")}
+                  </TabsTrigger>
+                  <TabsTrigger value="concurrency">
+                    {t("examples.tabs.concurrency")}
+                  </TabsTrigger>
+                  <TabsTrigger value="data">
+                    {t("examples.tabs.httpServer")}
+                  </TabsTrigger>
                 </TabsList>
                 <TabsContent value="hello" className="mt-6">
                   <div className="bg-zinc-950 text-zinc-50 rounded-lg p-6 overflow-x-auto">
@@ -165,14 +201,18 @@ fn example() {
                 <TabsContent value="concurrency" className="mt-6">
                   <div className="bg-zinc-950 text-zinc-50 rounded-lg p-6 overflow-x-auto">
                     <pre className="font-mono text-sm">
-                      <CodeBlock language="typescript">{`// Coming soon`}</CodeBlock>
+                      <CodeBlock language="typescript">
+                        {t("examples.comingSoon")}
+                      </CodeBlock>
                     </pre>
                   </div>
                 </TabsContent>
                 <TabsContent value="data" className="mt-6">
                   <div className="bg-zinc-950 text-zinc-50 rounded-lg p-6 overflow-x-auto">
                     <pre className="font-mono text-sm">
-                      <CodeBlock language="typescript">{`// Coming soon`}</CodeBlock>
+                      <CodeBlock language="typescript">
+                        {t("examples.comingSoon")}
+                      </CodeBlock>
                     </pre>
                   </div>
                 </TabsContent>
@@ -186,24 +226,14 @@ fn example() {
           <div className="container">
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Ancient Wisdom, Modern Power</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  {t("why.title")}
+                </h2>
               </div>
               <div className="bg-background rounded-lg p-8 shadow-sm border">
-                <p className="text-lg mb-6">
-                  Cyrus blends timeless principles of engineering with state-of-the-art compiler technology. 
-                  It's built to empower developers with a language that is both intuitive and powerful.
-                </p>
-                <p className="text-lg mb-6">
-                  In a world crowded with programming languages, Cyrus stands apart by offering a unique balance of simplicity and strength.
-                  Designed for developers who care deeply about both productivity and performance, Cyrus Lang eliminates the need to compromise.
-                  Its clean, expressive syntax lowers the barrier to entry, while its advanced compiler infrastructure ensures your programs run with uncompromising speed.
-                </p>
-                <p className="text-lg">
-                  Unlike traditional languages that force a trade-off between rapid development and runtime efficiency, Cyrus delivers both.
-                  Whether you're prototyping a new idea or engineering a high-performance system, Cyrus gives you the confidence that your code will remain elegant, fast, and maintainable.
-
-                  With first-class support for modern programming paradigms, built-in safety features, and a focus on developer experience, Cyrus Lang is your companion for building everything from simple scripts to complex, large-scale software systems.
-                </p>
+                <p className="text-lg mb-6">{t("why.paragraph1")}</p>
+                <p className="text-lg mb-6">{t("why.paragraph2")}</p>
+                <p className="text-lg">{t("why.paragraph3")}</p>
               </div>
             </div>
           </div>
@@ -213,10 +243,11 @@ fn example() {
         <section id="get-started" className="py-20">
           <div className="container">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Get Started with Cyrus Programming Language</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                {t("getStarted.title")}
+              </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Start building with Cyrus in minutes. It's easy to install and comes with comprehensive
-                documentation.
+                {t("getStarted.subtitle")}
               </p>
             </div>
             <div className="max-w-3xl mx-auto">
@@ -226,33 +257,43 @@ fn example() {
                     <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                       <span className="font-bold text-primary">1</span>
                     </div>
-                    <h3 className="font-bold mb-2">Download</h3>
+                    <h3 className="font-bold mb-2">
+                      {t("getStarted.steps.download.title")}
+                    </h3>
                     <p className="text-sm text-muted-foreground">
-                      Get the latest version of Cyrus Lang for your platform.
+                      {t("getStarted.steps.download.description")}
                     </p>
                   </div>
                   <div className="text-center">
                     <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                       <span className="font-bold text-primary">2</span>
                     </div>
-                    <h3 className="font-bold mb-2">Install</h3>
+                    <h3 className="font-bold mb-2">
+                      {t("getStarted.steps.install.title")}
+                    </h3>
                     <p className="text-sm text-muted-foreground">
-                      Follow the simple installation instructions for your system.
+                      {t("getStarted.steps.install.description")}
                     </p>
                   </div>
                   <div className="text-center">
                     <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                       <span className="font-bold text-primary">3</span>
                     </div>
-                    <h3 className="font-bold mb-2">Code</h3>
-                    <p className="text-sm text-muted-foreground">Start writing your first Cyrus Lang program.</p>
+                    <h3 className="font-bold mb-2">
+                      {t("getStarted.steps.code.title")}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {t("getStarted.steps.code.description")}
+                    </p>
                   </div>
                 </div>
                 <div className="mt-8 text-center">
                   <Button size="lg" className="w-full sm:w-auto">
-                    Install Cyrus Lang
+                    {t("getStarted.installButton")}
                   </Button>
-                  <p className="mt-4 text-sm text-muted-foreground">Available on Windows, macOS, and Linux</p>
+                  <p className="mt-4 text-sm text-muted-foreground">
+                    {t("getStarted.availability")}
+                  </p>
                 </div>
               </div>
             </div>
@@ -263,62 +304,62 @@ fn example() {
         <section id="community" className="py-20 bg-muted/50">
           <div className="container">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Join the Community</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                {t("community.title")}
+              </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Cyrus Lang is open-source and community-driven. Get involved and help shape the future of the language.
+                {t("community.subtitle")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <div className="bg-background rounded-lg p-6 shadow-sm border text-center hover:shadow-md transition-shadow">
                 <Github className="h-12 w-12 mx-auto mb-4 text-primary" />
-                <h3 className="text-xl font-bold mb-2">GitHub</h3>
+                <h3 className="text-xl font-bold mb-2">
+                  {t("community.github.title")}
+                </h3>
                 <p className="text-muted-foreground mb-4">
-                  Explore the source code, report issues, and contribute to the project.
+                  {t("community.github.description")}
                 </p>
                 <Link href={socialMedia.github} passHref legacyBehavior>
                   <Button variant="outline" className="w-full" asChild>
                     <a target="_blank" rel="noopener noreferrer">
-                      Visit Repository
+                      {t("community.github.button")}
                     </a>
                   </Button>
                 </Link>
               </div>
               <div className="bg-background rounded-lg p-6 shadow-sm border text-center hover:shadow-md transition-shadow">
                 <MessageSquare className="h-12 w-12 mx-auto mb-4 text-primary" />
-                <h3 className="text-xl font-bold mb-2">Discord</h3>
+                <h3 className="text-xl font-bold mb-2">
+                  {t("community.discord.title")}
+                </h3>
                 <p className="text-muted-foreground mb-4">
-                  Join our Discord server to chat with other developers and get help.
+                  {t("community.discord.description")}
                 </p>
                 <Link href={socialMedia.discord} passHref legacyBehavior>
                   <Button variant="outline" className="w-full" asChild>
                     <a target="_blank" rel="noopener noreferrer">
-                    Join Discord
+                      {t("community.discord.button")}
                     </a>
                   </Button>
                 </Link>
               </div>
               <div className="bg-background rounded-lg p-6 shadow-sm border text-center hover:shadow-md transition-shadow">
                 <Send className="h-12 w-12 mx-auto mb-4 text-primary" />
-                <h3 className="text-xl font-bold mb-2">Telegram</h3>
+                <h3 className="text-xl font-bold mb-2">
+                  {t("community.telegram.title")}
+                </h3>
                 <p className="text-muted-foreground mb-4">
-                  Join our Telegram channel for announcements and discussions.
+                  {t("community.telegram.description")}
                 </p>
                 <Link href="https://t.me/cyrus_lang" passHref legacyBehavior>
                   <Button variant="outline" className="w-full" asChild>
                     <a target="_blank" rel="noopener noreferrer">
-                      Join Telegram
+                      {t("community.telegram.button")}
                     </a>
                   </Button>
                 </Link>
               </div>
-              {/* <div className="bg-background rounded-lg p-6 shadow-sm border text-center hover:shadow-md transition-shadow">
-                <Twitter className="h-12 w-12 mx-auto mb-4 text-primary" />
-                <h3 className="text-xl font-bold mb-2">Twitter</h3>
-                <p className="text-muted-foreground mb-4">Follow us on Twitter for the latest news and updates.</p>
-                <Button variant="outline" className="w-full">
-                  Follow @CyrusLang
-                </Button>
-              </div> */}
             </div>
           </div>
         </section>
@@ -328,18 +369,20 @@ fn example() {
           <div className="container">
             <div className="max-w-3xl mx-auto bg-primary/5 rounded-lg p-8 border border-primary/20">
               <div className="text-center mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold mb-2">Stay Updated</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-2">
+                  {t("newsletter.title")}
+                </h2>
                 <p className="text-muted-foreground">
-                  Subscribe to our newsletter to receive updates, tutorials, and news about Cyrus.
+                  {t("newsletter.subtitle")}
                 </p>
               </div>
               <form className="flex flex-col sm:flex-row gap-4">
                 <input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder={t("newsletter.placeholder")}
                   className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
                 />
-                <Button className="sm:w-auto">Subscribe</Button>
+                <Button className="sm:w-auto">{t("newsletter.button")}</Button>
               </form>
             </div>
           </div>
@@ -348,5 +391,5 @@ fn example() {
 
       <Footer />
     </div>
-  )
+  );
 }

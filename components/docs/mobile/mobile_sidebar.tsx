@@ -4,26 +4,30 @@ import Link from "next/link";
 import { useState } from "react";
 import Breadcrumb from "./breadcrumb";
 import { Button } from "@/components/ui/button";
-import { Sidebar, SidebarProps } from "../sidebar"; 
+import { Sidebar, SidebarProps } from "../sidebar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useTranslations } from "next-intl";
 
 export default function MobileSidebar({ navigationItems }: SidebarProps) {
   const [open, setOpen] = useState(false);
+  const t = useTranslations("Docs");
 
   return (
     <div className="fixed top-[64px] flex items-center w-full px-4 py-2 md:hidden bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 text-foreground border-b border-border transition-colors">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <Button variant="outline" aria-label="Open menu" size="icon" className="xl:hidden">
+          <Button
+            variant="outline"
+            aria-label={t("mobile.openMenu")}
+            size="icon"
+            className="xl:hidden"
+          >
             <Menu className="h-6 w-6" />
-            <span className="sr-only">Toggle menu</span>
+            <span className="sr-only">{t("mobile.toggleMenu")}</span>
           </Button>
         </SheetTrigger>
 
-        <SheetContent
-          side="left"
-          className="p-0 w-full h-full flex flex-col"
-        >
+        <SheetContent side="left" className="p-0 w-full h-full flex flex-col">
           <div className="flex items-center justify-between mb-0 p-4">
             <Link href="/" className="flex items-center gap-2">
               <Logo />
@@ -32,7 +36,7 @@ export default function MobileSidebar({ navigationItems }: SidebarProps) {
             <SheetTrigger asChild>
               <Button variant="outline" size="icon">
                 <X className="h-6 w-6" />
-                <span className="sr-only">Close menu</span>
+                <span className="sr-only">{t("mobile.closeMenu")}</span>
               </Button>
             </SheetTrigger>
           </div>

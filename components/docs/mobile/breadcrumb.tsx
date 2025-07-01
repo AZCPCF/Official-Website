@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 // function getSectionTitle(pathname: string) {
 //   const group = sidebarItems.find(
@@ -19,6 +20,7 @@ import { usePathname } from "next/navigation";
 
 export default function Breadcrumb() {
   const pathname = usePathname();
+  const t = useTranslations("Docs");
   const parts = pathname.split("/").filter(Boolean);
   const hrefs = parts.map((_, idx) => "/" + parts.slice(0, idx + 1).join("/"));
 
@@ -40,7 +42,7 @@ export default function Breadcrumb() {
   return (
     <nav
       className="flex items-center text-sm space-x-1 rtl:space-x-reverse"
-      aria-label="Breadcrumb"
+      aria-label={t("mobile.breadcrumb")}
     >
       {visibleCrumbs.map((crumb, idx) => (
         <span key={idx} className="flex items-center">

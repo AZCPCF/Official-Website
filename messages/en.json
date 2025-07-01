@@ -1,7 +1,102 @@
 {
     "HomePage": {
         "title": "Hello world!",
-        "about": "Go to the about page"
+        "about": "Go to the about page",
+        "hero": {
+            "title": "Cyrus Programming Language",
+            "subtitle": "A programming language designed for simplicity, performance, and developer happiness.",
+            "getStarted": "Get Started",
+            "seeExamples": "See Examples"
+        },
+        "features": {
+            "title": "Key Features",
+            "subtitle": "Cyrus Lang combines the best aspects of modern programming languages with innovative features designed for today's development challenges.",
+            "cleanSyntax": {
+                "title": "Clean and Readable Syntax",
+                "description": "Designed with readability in mind, Cyrus Lang's syntax is intuitive and reduces cognitive load."
+            },
+            "typeSystem": {
+                "title": "Strong Type System",
+                "description": "Catch errors at compile time with a powerful type system that provides safety without verbosity."
+            },
+            "crossPlatform": {
+                "title": "Cross-platform Compatibility",
+                "description": "Write once, run anywhere. Cyrus Lang works seamlessly across all major operating systems."
+            },
+            "concurrency": {
+                "title": "Built-in Concurrency",
+                "description": "First-class support for concurrent and parallel programming with intuitive primitives."
+            },
+            "standardLibrary": {
+                "title": "Extensive Standard Library",
+                "description": "A rich, well-documented standard library that covers most common programming needs."
+            },
+            "openSource": {
+                "title": "Open-source & Community-driven",
+                "description": "Developed in the open with contributions from developers around the world."
+            }
+        },
+        "examples": {
+            "title": "Elegant by Design",
+            "subtitle": "Cyrus's syntax is designed to be intuitive, expressive, and easy to read.",
+            "tabs": {
+                "helloWorld": "Hello World",
+                "concurrency": "Concurrency",
+                "httpServer": "Http Server"
+            },
+            "comingSoon": "Coming soon"
+        },
+        "why": {
+            "title": "Ancient Wisdom, Modern Power",
+            "paragraph1": "Cyrus blends timeless principles of engineering with state-of-the-art compiler technology. It's built to empower developers with a language that is both intuitive and powerful.",
+            "paragraph2": "In a world crowded with programming languages, Cyrus stands apart by offering a unique balance of simplicity and strength. Designed for developers who care deeply about both productivity and performance, Cyrus Lang eliminates the need to compromise. Its clean, expressive syntax lowers the barrier to entry, while its advanced compiler infrastructure ensures your programs run with uncompromising speed.",
+            "paragraph3": "Unlike traditional languages that force a trade-off between rapid development and runtime efficiency, Cyrus delivers both. Whether you're prototyping a new idea or engineering a high-performance system, Cyrus gives you the confidence that your code will remain elegant, fast, and maintainable. With first-class support for modern programming paradigms, built-in safety features, and a focus on developer experience, Cyrus Lang is your companion for building everything from simple scripts to complex, large-scale software systems."
+        },
+        "getStarted": {
+            "title": "Get Started with Cyrus Programming Language",
+            "subtitle": "Start building with Cyrus in minutes. It's easy to install and comes with comprehensive documentation.",
+            "steps": {
+                "download": {
+                    "title": "Download",
+                    "description": "Get the latest version of Cyrus Lang for your platform."
+                },
+                "install": {
+                    "title": "Install",
+                    "description": "Follow the simple installation instructions for your system."
+                },
+                "code": {
+                    "title": "Code",
+                    "description": "Start writing your first Cyrus Lang program."
+                }
+            },
+            "installButton": "Install Cyrus Lang",
+            "availability": "Available on Windows, macOS, and Linux"
+        },
+        "community": {
+            "title": "Join the Community",
+            "subtitle": "Cyrus Lang is open-source and community-driven. Get involved and help shape the future of the language.",
+            "github": {
+                "title": "GitHub",
+                "description": "Explore the source code, report issues, and contribute to the project.",
+                "button": "Visit Repository"
+            },
+            "discord": {
+                "title": "Discord",
+                "description": "Join our Discord server to chat with other developers and get help.",
+                "button": "Join Discord"
+            },
+            "telegram": {
+                "title": "Telegram",
+                "description": "Join our Telegram channel for announcements and discussions.",
+                "button": "Join Telegram"
+            }
+        },
+        "newsletter": {
+            "title": "Stay Updated",
+            "subtitle": "Subscribe to our newsletter to receive updates, tutorials, and news about Cyrus.",
+            "placeholder": "Enter your email",
+            "button": "Subscribe"
+        }
     },
     "Header": {
         "logo": {
@@ -23,5 +118,142 @@
             "toggleMenu": "Toggle menu",
             "closeMenu": "Close menu"
         }
+    },
+    "Footer": {
+        "brand": "Cyrus",
+        "description": "A modern programming language designed for simplicity, performance, and developer happiness.",
+        "sections": {
+            "resources": {
+                "title": "Resources",
+                "links": {
+                    "documentation": "Documentation",
+                    "tutorials": "Tutorials",
+                    "examples": "Examples",
+                    "blog": "Blog"
+                }
+            },
+            "community": {
+                "title": "Community",
+                "links": {
+                    "github": "GitHub",
+                    "discord": "Discord",
+                    "telegram": "Telegram"
+                }
+            },
+            "legal": {
+                "title": "Legal",
+                "links": {
+                    "privacyPolicy": "Privacy Policy",
+                    "termsOfService": "Terms of Service",
+                    "license": "License",
+                    "contact": "Contact"
+                }
+            }
+        },
+        "copyright": "All rights reserved.",
+        "github": "GitHub"
+    },
+    "Docs": {
+        "mobile": {
+            "openMenu": "Open menu",
+            "toggleMenu": "Toggle menu",
+            "closeMenu": "Close menu",
+            "breadcrumb": "Breadcrumb"
+        },
+        "sidebar": {
+            "navigation": "Navigation"
+        }
+    },
+    "DocsContent": {
+        "introduction": {
+            "title": "Introduction",
+            "documentation": "Documentation",
+            "welcome": "Welcome to the official documentation for Cyrus. Here you'll find everything you need to get started with our modern, expressive, and efficient programming language.",
+            "errorAlert": {
+                "title": "Under Development",
+                "content": "Consider that Cyrus is under heavy development and is not stable yet. Therefore, it is not recommended for production environments or critical applications where stability and long-term support are paramount. Users should anticipate frequent updates, breaking changes, and potential bugs as the project evolves."
+            },
+            "cards": {
+                "newcomers": {
+                    "title": "For Newcomers",
+                    "description": "If you're new to Cyrus, start with our comprehensive tutorial to learn the basics and get up to speed quickly.",
+                    "button": "Get Started"
+                },
+                "reference": {
+                    "title": "Language Reference",
+                    "description": "For a detailed overview of Cyrus's built-in types, functions, and modules, check out our language reference.",
+                    "button": "Explore Reference"
+                }
+            }
+        },
+        "tutorial": {
+            "basicSyntax": {
+                "title": "Basic Syntax",
+                "description": "This guide will help you set up."
+            },
+            "installation": {
+                "title": "Installation",
+                "description": "Tutorial intro"
+            },
+            "tutorial": {
+                "title": "Tutorial"
+            }
+        }
+    },
+    "DocsError": {
+        "notFound": {
+            "title": "Document Not Found",
+            "description": "The document you are looking for does not exist."
+        }
+    },
+    "SupportUs": {
+        "title": "Support Us",
+        "subtitle": "Your support helps us continue our work and make a positive impact. Every contribution, no matter the size, makes a difference.",
+        "contact": {
+            "title": "Get in Touch",
+            "description": "Have questions or want to learn more about our mission?",
+            "content": "We'd love to hear from you! Reach out to us for more information about our work or how you can get involved.",
+            "emailLabel": "Email us at:",
+            "email": "mr.tahadostifam@gmail.com"
+        },
+        "donation": {
+            "title": "Make a Donation",
+            "description": "Support our cause through these trusted platforms",
+            "content": "Choose your preferred donation platform to make a secure contribution.",
+            "paypal": "Donate via PayPal",
+            "kofi": "Buy us a Coffee"
+        },
+        "whySupport": {
+            "title": "Why Your Support Matters",
+            "communityImpact": {
+                "title": "Community Impact",
+                "description": "Your donations help us reach more people and create lasting positive change in our community."
+            },
+            "transparentUse": {
+                "title": "Transparent Use",
+                "description": "We ensure every dollar is used effectively and provide regular updates on how funds are utilized."
+            },
+            "stayConnected": {
+                "title": "Stay Connected",
+                "description": "Get updates on our progress and see the direct impact of your generous contributions."
+            }
+        },
+        "footer": "Thank you for considering supporting our mission. Together, we can make a difference!"
+    },
+    "Contributors": {
+        "title": "Team",
+        "subtitle": "Meet the people behind Cyrus",
+        "roles": {
+            "creator": "Creator",
+            "contributor": "Contributor"
+        }
+    },
+    "DocsNavigation": {
+        "documentationHome": "Documentation Home",
+        "introduction": "Introduction",
+        "tutorial": "Tutorial",
+        "basicSyntax": "Basic Syntax",
+        "installation": "Installation",
+        "tutorial copy": "tutorial copy"
     }
 }

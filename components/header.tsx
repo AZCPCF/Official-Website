@@ -1,5 +1,6 @@
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
+import { LanguageToggle } from "./language-toggle";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import Link from "next/link";
@@ -7,6 +8,7 @@ import Image from "next/image";
 import LogoDark from "@/app/assets/logo-dark.png";
 import LogoLight from "@/app/assets/logo-light.png";
 import { useTranslations } from "next-intl";
+import { useLocaleInfo } from "@/hooks/use-locale";
 
 export const HEADER_HEIGHT = "64px";
 
@@ -31,10 +33,13 @@ export function Logo() {
 
 export default function Header() {
   const t = useTranslations("Header");
+  const { isPersian, fontFamily } = useLocaleInfo();
 
   return (
     <>
-      <header className="select-none border-b sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header
+        className={`select-none border-b sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 header-fa ${fontFamily}`}
+      >
         <div
           className="px-4 flex items-center justify-between"
           style={{ height: HEADER_HEIGHT }}
@@ -42,7 +47,7 @@ export default function Header() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-2 pl-1 pr-8">
               <Logo />
-              <span className="text-md font-bold">{t("brand")}</span>
+              <span className="text-md font-bold  brand-text text-black dark:text-white">{t("brand")}</span>
             </Link>
 
             <nav className="hidden xl:flex gap-6 pt-1">
@@ -90,6 +95,7 @@ export default function Header() {
           </div>
 
           <div className="flex items-center gap-4">
+            <LanguageToggle />
             <ThemeToggle />
             <Link href="/docs" className="hidden xl:inline-flex">
               <Button variant="outline">{t("buttons.documentation")}</Button>
@@ -113,7 +119,9 @@ export default function Header() {
                   <div className="flex items-center justify-between mb-6">
                     <Link href="/" className="flex items-center gap-2">
                       <Logo />
-                      <span className="text-xl font-bold">{t("brand")}</span>
+                      <span className="text-xl font-bold brand-text">
+                        {t("brand")}
+                      </span>
                     </Link>
                     <SheetTrigger asChild>
                       <Button variant="outline" size="icon">
@@ -125,7 +133,7 @@ export default function Header() {
                     </SheetTrigger>
                   </div>
 
-                  <nav className="flex flex-col gap-4">
+                  <nav className="flex flex-col gap-4 mobile-nav">
                     <Link
                       href="/docs"
                       className="text-lg font-medium hover:text-primary transition-colors"
@@ -168,6 +176,10 @@ export default function Header() {
                     </Link>
                   </nav>
                   <div className="mt-auto flex flex-col gap-2">
+                    <div className="flex gap-2 mb-4">
+                      <LanguageToggle />
+                      <ThemeToggle />
+                    </div>
                     <Link href="/docs" className="w-full">
                       <Button className="w-full">
                         {t("buttons.getStarted")}

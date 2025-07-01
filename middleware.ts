@@ -1,11 +1,17 @@
-import createMiddleware from 'next-intl/middleware';
-import {routing} from './i18n/routing';
- 
-export default createMiddleware(routing);
- 
+import { NextRequest, NextResponse } from 'next/server';
+
+export function middleware(request: NextRequest) {
+  // بررسی کوکی زبان
+  const locale = request.cookies.get('CYRUS_NEXT_LOCALE')?.value || 'en';
+  
+  // تنظیم header برای next-intl
+  const response = NextResponse.next();
+  response.headers.set('x-next-locale', locale);
+  
+  return response;
+}
+
 export const config = {
-  // Match all pathnames except for
-  // - … if they start with `/api`, `/trpc`, `/_next` or `/_vercel`
-  // - … the ones containing a dot (e.g. `favicon.ico`)
-  matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)'
-};
+  // مسیرهایی که middleware روی آنها اعمال می‌شود
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
+}; 

@@ -1,16 +1,19 @@
-import fs from 'fs/promises';
-import path from 'path';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import { CONTENT_BASE_PATH } from '../base_path';
-import { getMdxData } from '@/app/docs/mdx';
-import { useMDXComponents } from '../../../mdx-components';
-import { redirect } from 'next/navigation';
+import fs from "fs/promises";
+import path from "path";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { CONTENT_BASE_PATH } from "../base_path";
+import { getMdxData } from "@/app/docs/mdx";
+import { useMDXComponents } from "../../../mdx-components";
+import { redirect } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 
-function DocumentNotFoundComponent() {
+async function DocumentNotFoundComponent() {
+  const t = await getTranslations("DocsError.notFound");
+
   return (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
-      <h1>Document Not Found</h1>
-      <p>The document you are looking for does not exist.</p>
+    <div style={{ padding: "2rem", textAlign: "center" }}>
+      <h1>{t("title")}</h1>
+      <p>{t("description")}</p>
     </div>
   );
 }
@@ -21,7 +24,9 @@ function DocumentNotFoundComponent() {
  * @param slugArray An array of path segments (e.g., ['tutorial', 'introduction'])
  * @returns The full path to the MDX file or null if not found.
  */
-async function lookupDocumentContent(slugArray: string[]): Promise<string | null> {
+async function lookupDocumentContent(
+  slugArray: string[]
+): Promise<string | null> {
   const joinedSlug = slugArray.join(path.sep); // Use path.sep for cross-platform compatibility
 
   // 1. Check for a direct MDX file (e.g., docs/tutorial/introduction.mdx)
@@ -34,7 +39,7 @@ async function lookupDocumentContent(slugArray: string[]): Promise<string | null
   }
 
   // 2. Check for an index.mdx within a directory (e.g., docs/tutorial/introduction/index.mdx)
-  const indexPath = path.join(CONTENT_BASE_PATH, joinedSlug, 'index.mdx');
+  const indexPath = path.join(CONTENT_BASE_PATH, joinedSlug, "index.mdx");
   try {
     await fs.access(indexPath);
     return indexPath;
@@ -45,8 +50,10 @@ async function lookupDocumentContent(slugArray: string[]): Promise<string | null
   return null; // Document not found
 }
 
-export default async function ShowDocumentPage({ params }: {
-  params: { slug?: string[] }
+export default async function ShowDocumentPage({
+  params,
+}: {
+  params: { slug?: string[] };
 }) {
   const slug = params.slug || [];
 
