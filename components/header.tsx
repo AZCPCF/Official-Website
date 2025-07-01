@@ -80,13 +80,14 @@ export default function Header() {
               </Link>
 
               <Link
-                href="/support_us"
+                href="/contributors"
                 className="text-sm font-medium hover:text-primary transition-colors"
               >
                 {t("navigation.supportUs")}
               </Link>
+
               <Link
-                href="/contributors"
+                href="/support_us"
                 className="text-sm font-medium hover:text-primary transition-colors"
               >
                 {t("navigation.contributors")}
@@ -163,13 +164,14 @@ export default function Header() {
                     </Link>
 
                     <Link
-                      href="/support_us"
+                      href="/contributors"
                       className="text-lg font-medium hover:text-primary transition-colors"
                     >
                       {t("navigation.supportUs")}
                     </Link>
+
                     <Link
-                      href="/contributors"
+                      href="/support_us"
                       className="text-lg font-medium hover:text-primary transition-colors"
                     >
                       {t("navigation.contributors")}

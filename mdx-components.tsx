@@ -30,10 +30,9 @@ export function ErrorAlert({
   console.log("ErrorAlert - translatedContent:", translatedContent);
 
   return (
-    <div
-      className="bg-red-50 border-s-4 border-red-500 p-4 dark:bg-red-800/20 mb-4"
-      role="alert"
-    >
+    <div className="bg-red-50 border-t-4 border-red-500 p-4 dark:bg-red-800/20 mb-4 rounded-md" role="alert">
+
+
       <div className="flex">
         <div className="shrink-0">
           <span className="inline-flex justify-center items-center size-8 rounded-full border-4 border-red-100 bg-red-200 text-red-800 dark:border-red-950 dark:bg-red-800 dark:text-red-100">
