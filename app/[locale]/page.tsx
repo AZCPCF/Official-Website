@@ -8,10 +8,11 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import CodeBlock from "@/components/CodeBlock";
 import socialMedia from "@/content/social_media.json"
-
 export default function LandingPage() {
+
   return (
     <div className="min-h-screen flex flex-col">
+
       <Header />
 
       <main className="flex-1">

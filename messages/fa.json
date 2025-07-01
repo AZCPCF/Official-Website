@@ -1,0 +1,27 @@
+{
+    "HomePage": {
+        "title": "Hello world!",
+        "about": "Go to the about page"
+    },
+    "Header": {
+        "logo": {
+            "alt": "لوگوی تیره زبان برنامه‌نویسی سایروس",
+            "altLight": "لوگوی روشن زبان برنامه‌نویسی سایروس"
+        },
+        "brand": "سایروس",
+        "navigation": {
+            "documentation": "مستندات",
+            "blog": "وبلاگ",
+            "forum": "انجمن",
+            "packages": "بسته‌ها",
+            "supportUs": "حمایت از ما",
+            "contributors": "مشارکت‌کنندگان"
+        },
+        "buttons": {
+            "getStarted": "شروع کنید",
+            "documentation": "مستندات",
+            "toggleMenu": "تغییر منو",
+            "closeMenu": "بستن منو"
+        }
+    }
+}

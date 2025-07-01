@@ -1,4 +1,5 @@
 import createMDX from "@next/mdx";
+import createNextIntlPlugin from "next-intl/plugin";
 
 let userConfig = undefined;
 try {
@@ -7,8 +8,7 @@ try {
   // ignore error
 }
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const baseNextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   eslint: {
     ignoreDuringBuilds: true,
@@ -26,30 +26,35 @@ const nextConfig = {
   },
 };
 
-mergeConfig(nextConfig, userConfig);
+function mergeConfig(baseConfig, userConfig) {
+  if (!userConfig) return baseConfig;
 
-function mergeConfig(nextConfig, userConfig) {
-  if (!userConfig) {
-    return;
-  }
+  const mergedConfig = { ...baseConfig };
 
   for (const key in userConfig) {
     if (
-      typeof nextConfig[key] === "object" &&
-      !Array.isArray(nextConfig[key])
+      typeof mergedConfig[key] === "object" &&
+      !Array.isArray(mergedConfig[key])
     ) {
-      nextConfig[key] = {
-        ...nextConfig[key],
+      mergedConfig[key] = {
+        ...mergedConfig[key],
         ...userConfig[key],
       };
     } else {
-      nextConfig[key] = userConfig[key];
+      mergedConfig[key] = userConfig[key];
     }
   }
+
+  return mergedConfig;
 }
 
+const nextConfig = mergeConfig(baseNextConfig, userConfig);
+
+const withNextIntl = createNextIntlPlugin();
 const withMDX = createMDX({
   extension: /\.(md|mdx)$/,
 });
 
-export default withMDX(nextConfig);
+const finalConfig = withNextIntl(withMDX(nextConfig));
+
+export default finalConfig;

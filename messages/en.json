@@ -1,0 +1,27 @@
+{
+    "HomePage": {
+        "title": "Hello world!",
+        "about": "Go to the about page"
+    },
+    "Header": {
+        "logo": {
+            "alt": "Cyrus Programming Language Dark Logo",
+            "altLight": "Cyrus Programming Language Light Logo"
+        },
+        "brand": "Cyrus",
+        "navigation": {
+            "documentation": "Documentation",
+            "blog": "Blog",
+            "forum": "Forum",
+            "packages": "Packages",
+            "supportUs": "Support Us",
+            "contributors": "Contributors"
+        },
+        "buttons": {
+            "getStarted": "Get Started",
+            "documentation": "Documentation",
+            "toggleMenu": "Toggle menu",
+            "closeMenu": "Close menu"
+        }
+    }
+}
