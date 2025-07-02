@@ -1,9 +1,10 @@
+
 import fs from "fs/promises";
 import path from "path";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { CONTENT_BASE_PATH } from "../base_path";
-import { getMdxData } from "@/app/docs/mdx";
-import { useMDXComponents } from "../../../mdx-components";
+import { getMdxData } from "../mdx";
+import { useMDXComponents } from "../../../../mdx-components";
 import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 

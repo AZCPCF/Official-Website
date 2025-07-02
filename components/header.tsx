@@ -7,8 +7,9 @@ import Link from "next/link";
 import Image from "next/image";
 import LogoDark from "@/app/assets/logo-dark.png";
 import LogoLight from "@/app/assets/logo-light.png";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { useLocaleInfo } from "@/hooks/use-locale";
+import {useTranslations} from 'next-intl';
 
 export const HEADER_HEIGHT = "64px";
 
@@ -47,7 +48,9 @@ export default function Header() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-2 pl-1 pr-8">
               <Logo />
-              <span className="text-md font-bold  brand-text text-black dark:text-white">{t("brand")}</span>
+              <span className="text-md font-bold  brand-text text-black dark:text-white">
+                {t("brand")}
+              </span>
             </Link>
 
             <nav className="hidden xl:flex gap-6 pt-1">

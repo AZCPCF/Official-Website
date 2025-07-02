@@ -1,4 +1,3 @@
-"use client";
 
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -17,10 +16,10 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import CodeBlock from "@/components/CodeBlock";
 import socialMedia from "@/content/social_media.json";
-import { useTranslations } from "next-intl";
+import {getTranslations} from 'next-intl/server';
 
-export default function LandingPage() {
-  const t = useTranslations("HomePage");
+export default async function LandingPage() {
+  const t = await getTranslations("HomePage");
 
   return (
     <div className="min-h-screen flex flex-col">

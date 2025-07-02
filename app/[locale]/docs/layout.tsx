@@ -3,7 +3,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import type React from "react";
 import { getDocsNavigation } from "./collector";
 import { DocNavItem } from "@/app/types/doc_nav_item";
-import ClientSidebarWrapper from "../../components/docs/client_sidebar_wrapper";
+import ClientSidebarWrapper from "@/components/docs/client_sidebar_wrapper";
 import { HEADER_HEIGHT } from "@/components/header";
 import { getTranslations, getLocale } from "next-intl/server";
 

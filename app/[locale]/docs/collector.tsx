@@ -3,7 +3,7 @@ import path from "path";
 import fs from "fs/promises";
 import { CONTENT_BASE_PATH } from "./base_path";
 import { DocNavItem } from "@/app/types/doc_nav_item";
-import { getMdxData } from "@/app/docs/mdx";
+import { getMdxData } from "./mdx";
 import { getTranslations } from "next-intl/server";
 
 /**
@@ -240,5 +240,3 @@ export async function getDocsNavigation(
 
   return items;
 }
-
-
