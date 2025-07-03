@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { DocNavItem } from '@/app/types/doc_nav_item';
+import { DocNavItem } from "@/app/types/doc_nav_item";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
 
 export interface SidebarProps {
   navigationItems: DocNavItem[];
@@ -18,8 +19,8 @@ const CaretIcon = ({ isOpen }: { isOpen: boolean }) => (
     viewBox="0 0 24 24"
     fill="currentColor"
     className={cn("w-4 h-4 transition-transform duration-200", {
-      "rotate-0": isOpen,   // Down when open
-      "-rotate-90": !isOpen // Rotated left when closed
+      "rotate-0": isOpen, // Down when open
+      "-rotate-90": !isOpen, // Rotated left when closed
     })}
   >
     <path
@@ -33,11 +34,18 @@ const CaretIcon = ({ isOpen }: { isOpen: boolean }) => (
 interface CollapsibleNavItemProps {
   item: DocNavItem;
   pathname: string;
+  locale: string;
   renderChildren: (items: DocNavItem[]) => JSX.Element[];
 }
 
-const CollapsibleNavItem = ({ item, pathname, renderChildren }: CollapsibleNavItemProps) => {
-  const itemHref = item.slug === '' ? '/docs' : `/docs/${item.slug}`;
+const CollapsibleNavItem = ({
+  item,
+  pathname,
+  locale,
+  renderChildren,
+}: CollapsibleNavItemProps) => {
+  const itemHref =
+    item.slug === "" ? `/${locale}/docs` : `/${locale}/docs/${item.slug}`;
 
   // Set initial state to true to make it open by default
   const [isOpen, setIsOpen] = useState(true);
@@ -45,40 +53,47 @@ const CollapsibleNavItem = ({ item, pathname, renderChildren }: CollapsibleNavIt
   const toggleOpen = () => setIsOpen(!isOpen);
 
   return (
-    <div className="mb-3"> {/* Mimics SidebarGroup */}
+    <div className="mb-3">
+      {" "}
+      {/* Mimics SidebarGroup */}
       <div className="text-xs font-semibold uppercase text-muted-foreground">
-        <div className="flex items-center justify-between w-full cursor-pointer"> 
+        <div className="flex items-center justify-between w-full cursor-pointer">
           {/* Link for directory title */}
           <a
             className={cn(
-              "text-muted-foreground flex-grow py-2 rounded-md px-2 my-1",
+              "text-muted-foreground flex-grow py-2 rounded-md px-2 my-1"
             )}
             onClick={() => {
-              setIsOpen(prev => !prev);
+              setIsOpen((prev) => !prev);
             }}
           >
             {item.title}
           </a>
 
           {/* Toggle Button for Dropdown */}
-          {item.children && item.children.length > 0 && ( // Only show caret if there are children
-            <button
-              onClick={toggleOpen} // Only the button toggles
-              className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-border dark:focus:bg-border ml-2"
-              aria-expanded={isOpen}
-              aria-controls={`sidebar-group-content-${item.slug}`}
-            >
-              <CaretIcon isOpen={isOpen} />
-            </button>
-          )}
+          {item.children &&
+            item.children.length > 0 && ( // Only show caret if there are children
+              <button
+                onClick={toggleOpen} // Only the button toggles
+                className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-border dark:focus:bg-border ml-2"
+                aria-expanded={isOpen}
+                aria-controls={`sidebar-group-content-${item.slug}`}
+              >
+                <CaretIcon isOpen={isOpen} />
+              </button>
+            )}
         </div>
       </div>
-
       {/* Render children only if open and children exist */}
       {isOpen && item.children && item.children.length > 0 && (
-        <div id={`sidebar-group-content-${item.slug}`} className="ml-2"> {/* Mimics SidebarGroupContent */}
-          <ul className="space-y-1"> {/* Mimics SidebarMenu */}
-            {renderChildren(item.children)} {/* Call renderChildren with only the items */}
+        <div id={`sidebar-group-content-${item.slug}`} className="ml-2">
+          {" "}
+          {/* Mimics SidebarGroupContent */}
+          <ul className="space-y-1">
+            {" "}
+            {/* Mimics SidebarMenu */}
+            {renderChildren(item.children)}{" "}
+            {/* Call renderChildren with only the items */}
           </ul>
         </div>
       )}
@@ -89,15 +104,19 @@ const CollapsibleNavItem = ({ item, pathname, renderChildren }: CollapsibleNavIt
 // Main Sidebar component
 export function Sidebar({ navigationItems }: SidebarProps) {
   const pathname = usePathname(); // Get current pathname once
+  const t = useTranslations("Docs");
+  const locale = useLocale();
 
   // Helper function to render nested navigation items
-  const renderNavItems = (items: DocNavItem[]) => { // Removed currentBasePath parameter
+  const renderNavItems = (items: DocNavItem[]) => {
+    // Removed currentBasePath parameter
     return items.map((item) => {
       // Construct the full href for any item (file or directory's main page)
       // item.slug already contains the full path from /docs/
-      const itemHref = item.slug === '' ? '/docs' : `/docs/${item.slug}`;
+      const itemHref =
+        item.slug === "" ? `/${locale}/docs` : `/${locale}/docs/${item.slug}`;
 
-      if (item.type === 'directory') {
+      if (item.type === "directory") {
         return (
           <CollapsibleNavItem
             key={item.slug}
@@ -106,17 +125,20 @@ export function Sidebar({ navigationItems }: SidebarProps) {
             // but keeping it as a prop for now for type compatibility if you have other uses for it.
             // If not, you can remove it from CollapsibleNavItemProps and here.
             pathname={pathname}
+            locale={locale}
             renderChildren={renderNavItems} // Pass the helper itself for recursion
           />
         );
-      } else { // type === 'file'
+      } else {
+        // type === 'file'
         return (
           <li key={item.slug} className="mb-1 list-none">
             <Link
               href={itemHref} // Use the correctly calculated itemHref
               className={cn(
                 "block w-full py-1 px-2 rounded-md text-md",
-                pathname === itemHref || (item.slug === '' && pathname === '/docs') // Handle root active state
+                pathname === itemHref ||
+                  (item.slug === "" && pathname === `/${locale}/docs`) // Handle root active state
                   ? "text-white font-medium bg-primary" // Active state background
                   : "text-muted-foreground hover:bg-gray-100 dark:hover:bg-muted"
               )}
@@ -133,8 +155,9 @@ export function Sidebar({ navigationItems }: SidebarProps) {
     <div className="h-full bg-background md:bg-inherit dark:bg-background md:dark:bg-inherit py-4 px-2">
       <div className="flex flex-col h-full overflow-hidden">
         <ScrollArea className="h-[calc(100vh-3.5rem)] md:h-full">
-          <nav className="px-2">
-            {renderNavItems(navigationItems)} {/* Initial call to render top-level items */}
+          <nav className="px-2" aria-label={t("sidebar.navigation")}>
+            {renderNavItems(navigationItems)}{" "}
+            {/* Initial call to render top-level items */}
           </nav>
         </ScrollArea>
       </div>

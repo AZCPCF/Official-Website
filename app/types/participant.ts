@@ -1,6 +1,7 @@
 export interface Participant {
     id: number,
     name: string,
+    nameFa?: string,
     title: string,
     picture: string,
     github: string,

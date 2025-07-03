@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: IranNastaliq;
+  src: url("/fonts/IranNastaliq.ttf");
+}
+@font-face {
+  font-family: IRANYekanWebBold;
+  src: url("/fonts/IRANYekanWebBold.ttf");
+}
+
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -49,12 +59,23 @@
   }
 }
 
+
+
 @layer base {
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+
+  html[lang="fa"] body {
+    font-family: "IRANYekanWebBold" , "" , "Inter", sans-serif;
+    direction:rtl;
   }
+
+  html[lang="fa"]  .brand-text {
+    margin-left: 20px;
+    font-family: "IranNastaliq";
+    font-size: 1.2em;
+
+  }
+
 }
