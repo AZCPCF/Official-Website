@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
+import { useLocaleInfo } from "@/hooks/use-locale";
 
 export interface SidebarProps {
   navigationItems: DocNavItem[];
@@ -49,6 +50,7 @@ const CollapsibleNavItem = ({
 
   // Set initial state to true to make it open by default
   const [isOpen, setIsOpen] = useState(true);
+  const { isRTL } = useLocaleInfo();
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
@@ -56,8 +58,13 @@ const CollapsibleNavItem = ({
     <div className="mb-3">
       {" "}
       {/* Mimics SidebarGroup */}
-      <div className="text-xs font-semibold uppercase text-muted-foreground">
-        <div className="flex items-center justify-between w-full cursor-pointer">
+      <div className="text-xs font-semibold uppercase text-muted-foreground ">
+        <div
+          className={cn(
+            "flex items-center justify-between w-full cursor-pointer",
+            isRTL ? "flex-row-reverse text-right" : ""
+          )}
+        >
           {/* Link for directory title */}
           <a
             className={cn(
@@ -75,7 +82,7 @@ const CollapsibleNavItem = ({
             item.children.length > 0 && ( // Only show caret if there are children
               <button
                 onClick={toggleOpen} // Only the button toggles
-                className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-border dark:focus:bg-border ml-2"
+                className="p-1  rounded-md hover:bg-gray-200  dark:hover:bg-border dark:focus:bg-border ml-2"
                 aria-expanded={isOpen}
                 aria-controls={`sidebar-group-content-${item.slug}`}
               >
@@ -89,7 +96,7 @@ const CollapsibleNavItem = ({
         <div id={`sidebar-group-content-${item.slug}`} className="ml-2">
           {" "}
           {/* Mimics SidebarGroupContent */}
-          <ul className="space-y-1">
+          <ul className={cn("space-y-1", isRTL ? "text-right mr-5" : "text-left ml-5")}>
             {" "}
             {/* Mimics SidebarMenu */}
             {renderChildren(item.children)}{" "}
@@ -152,10 +159,10 @@ export function Sidebar({ navigationItems }: SidebarProps) {
   };
 
   return (
-    <div className="h-full bg-background md:bg-inherit dark:bg-background md:dark:bg-inherit py-4 px-2">
+    <div className=" bg-background md:bg-inherit dark:bg-background md:dark:bg-inherit py-4 px-2">
       <div className="flex flex-col h-full overflow-hidden">
         <ScrollArea className="h-[calc(100vh-3.5rem)] md:h-full">
-          <nav className="px-2" aria-label={t("sidebar.navigation")}>
+          <nav className="px-2 " aria-label={t("sidebar.navigation")}>
             {renderNavItems(navigationItems)}{" "}
             {/* Initial call to render top-level items */}
           </nav>
