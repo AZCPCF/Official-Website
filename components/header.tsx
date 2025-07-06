@@ -46,14 +46,14 @@ export default function Header() {
           style={{ height: HEADER_HEIGHT }}
         >
           <div className="flex items-center">
-            <Link href="/" className="flex items-center gap-2 pl-1 pr-8">
+            <Link href="/" className="flex items-center gap-2">
               <Logo />
-              <span className="text-md font-bold  brand-text text-black dark:text-white">
+              <span className="text-md font-bold brand-text text-black dark:text-white">
                 {t("brand")}
               </span>
             </Link>
 
-            <nav className="hidden xl:flex gap-6 pt-1">
+            <nav className="hidden xl:flex gap-6 pt-1 ms-3">
               <Link
                 href="/docs"
                 className="text-sm font-medium hover:text-primary transition-colors"

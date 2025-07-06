@@ -6,9 +6,15 @@
   font-family: IranNastaliq;
   src: url("/fonts/IranNastaliq.ttf");
 }
+
 @font-face {
-  font-family: IRANYekanWebBold;
-  src: url("/fonts/IRANYekanWebBold.ttf");
+  font-family: Vazir;
+  src: url("/fonts/Vazir.ttf");
+}
+
+@font-face {
+  font-family: VazirMedium;
+  src: url("/fonts/Vazir-Medium.ttf");
 }
 
 @layer base {
@@ -64,13 +70,14 @@
   }
 
   html[lang="fa"] body {
-    font-family: "IRANYekanWebBold", "", "Inter", sans-serif;
+    font-family: "Vazir", "Inter", sans-serif;
     direction: rtl;
   }
 
   html[lang="fa"] .brand-text {
     margin-left: 20px;
     font-family: "IranNastaliq";
-    font-size: 1.2em;
+    font-size: 1.4em;
+    padding-top: 4px;
   }
 }

@@ -19,7 +19,6 @@ module.exports = {
     extend: {
       fontFamily: {
         'fa': ['Vazirmatn', 'Inter', 'sans-serif'],
-        'persian': ['Vazirmatn', 'Inter', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
