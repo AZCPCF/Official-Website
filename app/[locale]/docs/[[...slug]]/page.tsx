@@ -8,6 +8,8 @@ import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { getLocale } from "next-intl/server";
 
+const DOCS_DEFAULT_PAGE = "/docs/getting-started/introduction";
+
 async function DocumentNotFoundComponent() {
   const t = await getTranslations("DocsError.notFound");
 
@@ -64,7 +66,7 @@ export default async function ShowDocumentPage({
 
   let filePath: string | null = null;
   if (slug.length === 0) {
-    redirect(`/${locale}/docs/introduction`);
+    redirect(`/${locale}${DOCS_DEFAULT_PAGE}`);
   } else {
     filePath = await lookupDocumentContent(slug, locale);
   }
