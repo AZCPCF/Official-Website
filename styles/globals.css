@@ -1,4 +1,91 @@
-@tailwind base;
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: IranNastaliq;
+  src: url("/fonts/IranNastaliq.ttf");
+}
+
+@font-face {
+  font-family: Vazir;
+  src: url("/fonts/Vazir.ttf");
+}
+
+@font-face {
+  font-family: VazirMedium;
+  src: url("/fonts/Vazir-Medium.ttf");
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 20 43% 39%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 252 59% 48%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 20 43% 45%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 252 59% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html[lang="fa"] body {
+    font-family: "Vazir", "Inter", sans-serif;
+    direction: rtl;
+  }
+
+  html[lang="fa"] .brand-text {
+    margin-left: 20px;
+    font-family: "IranNastaliq";
+    font-size: 1.4em;
+    padding-top: 4px;
+  }
+}
+
+.docs-layout {
+  background-color: red;
+} */
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -91,4 +178,4 @@ body {
   body {
     @apply bg-background text-foreground;
   }
-}
+} */
