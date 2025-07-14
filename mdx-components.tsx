@@ -67,6 +67,11 @@ export function ErrorAlert({
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
+    hr: () => {
+      return (
+        <hr className="my-8" />
+      )
+    },
     h1: ({ children }) => {
       const t = useTranslations("DocsContent.introduction");
       const tTutorial = useTranslations("DocsContent.tutorial");
@@ -107,6 +112,20 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
       return <p className="text-base md:text-lg my-2">{translatedText}</p>;
     },
+    ul: ({ children }) => (
+      // Added margin-bottom for spacing after the list and space-y-2 for spacing between list items
+      <ul className="list-disc list-inside mb-4 space-y-2">
+        {children}
+      </ul>
+    ),
+    li: ({ children }) => (
+      <li className="text-base md:text-lg">{children}</li>
+    ),
+    a: ({ children, href }) => ( // Added 'a' component
+      <a href={href} className="text-primary hover:underline">
+        {children}
+      </a>
+    ),
     img: (props) => (
       <Image
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"

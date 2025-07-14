@@ -3,4 +3,90 @@ title: Design Goals
 weight: 2
 ---
 
-Coming soon...
+# Cyrus Programming Language
+
+> _Simple like C. Modern like Rust. Without the Headache._
+
+Cyrus is a low-level, imperative programming language designed for developers who want modern power without modern complexity.
+
+It is built with performance and clarity in mind, featuring a lightweight memory model, zero runtime dependency, and a clean, expressive syntax designed from scratch. If you are familiar with C, Go, you’ll feel right at home — and probably happier.
+
+---
+
+## ✨ Key Philosophy
+
+Cyrus was born out of frustration with the unnecessary complexity of modern languages. While languages like Rust and Go offer great features, they also come with learning curves, runtimes, or abstractions that many system programmers neither need nor want.
+
+Cyrus makes a different bet: that **simplicity, explicitness, and elegance** can coexist without sacrificing performance.
+
+---
+
+## 🚀 Features
+
+### 🧠 Syntax-First Simplicity
+
+- Designed from scratch for **maximum readability and minimal cognitive load**.
+- Not a C clone, but friendly to C-style minds.
+- No "magic," no hidden transformations, no obscure rules.
+
+### ⚙️ Memory Management
+
+- **No Garbage Collector**.
+- Uses **custom allocator objects** and **lifetime zones** for memory grouping and release.
+- Allows deterministic control without the steep complexity of ownership models like Rust.
+- Designed for **compile-time safety**, with minimal runtime involvement.
+
+### 🔩 Low-Level Control
+
+- Full control over system memory and stack.
+- Optional inline assembly support.
+- Safe by default, but `unsafe` blocks allow full access when necessary.
+
+### 📦 Module System
+
+- Clean, expressive module system.
+- No build tool hell — just readable imports and clean dependency handling.
+
+### 🛠 Built on LLVM
+
+- High-performance LLVM backend.
+- Compiles to efficient native code.
+- Supports cross-compilation and future toolchain integration.
+
+### 🔄 Concurrency Support (We still thinking about the idea...)
+
+- Language-level support for concurrency — without needing a runtime.
+- Based on allocators and resource ownership patterns that work well in parallel contexts.
+
+---
+
+## 👤 Who is Cyrus for?
+
+Cyrus is ideal for:
+
+- System developers who love **C**, but want a modern evolution without garbage collection.
+- Developers frustrated by the **learning curve of Rust**, but who still want safe and performant code.
+- Embedded and OS-level developers needing **low runtime overhead and full control**.
+- Anyone looking for a beautiful, expressive, **low-level language that respects your brain**.
+
+Not recommended (yet) for:
+
+- Absolute beginners with no background in system languages.
+- Developers who want automatic memory management and runtime safety without learning allocator logic.
+
+---
+
+## 🧪 Current Status
+
+Cyrus is in active development and rapidly evolving.
+
+For a detailed overview of our planned features and development timeline, please refer to our public roadmap listed in the [GitHub project](https://github.com/orgs/cyrus-lang/projects/1).
+
+---
+
+## 📚 Philosophy
+
+- **Simplicity is a feature.**
+- **Readability is performance.**
+- **Performance is non-negotiable.**
+- **You, the developer, are in control.**
