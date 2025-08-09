@@ -110,7 +110,8 @@
             "forum": "Forum",
             "packages": "Packages",
             "supportUs": "Support Us",
-            "contributors": "Contributors"
+            "contributors": "Contributors",
+            "playground": "Playground"
         },
         "buttons": {
             "getStarted": "Get Started",
@@ -265,6 +266,28 @@
         "roles": {
             "creator": "Creator",
             "contributor": "Contributor"
+        }
+    },
+    "Playground": {
+        "title": "Cyrus Playground",
+        "subtitle": "Write, run, and experiment with Cyrus code in your browser.",
+        "codeEditor": {
+            "title": "Code Editor",
+            "placeholder": "Write your Cyrus code here...",
+            "runButton": "Run Code",
+            "shortcuts": {
+                "title": "Keyboard Shortcuts",
+                "run": "Run Code: Ctrl + Enter",
+                "clear": "Clear Editor: Ctrl + Shift + C"
+            }
+        },
+        "versionSelector": {
+            "title": "Select Version",
+            "placeholder": "Select a version"
+        },
+        "output": {
+            "title": "Output",
+            "placeholder": "Output will appear here after running the code..."
         }
     }
 }
