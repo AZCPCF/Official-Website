@@ -3,4 +3,51 @@ title: Install compiler binary
 weight: 4
 ---
 
-Coming soon...
+# Install compiler binary 
+
+Cyrus provides prebuilt binaries for major platforms, available on our GitHub releases page.
+
+<br />
+
+## 1. Download the Latest Release
+
+Head over to the releases page and grab the archive for your platform:
+
+- Linux (x86_64 / ARM64)
+- Windows (x86_64)
+- MacOS (Intel / Apple Silicon)
+
+<br />
+
+## 2. Extract the Zip file
+
+After downloading the release archive from GitHub releases, you need to extract it.
+
+So you can run Cyrus from anywhere, move the binary to a directory in your PATH:
+
+```bash
+sudo mv cyrus /usr/local/bin
+```
+
+On macOS with zsh, you can also add it to your shell config:
+
+```bash
+echo 'export PATH="$HOME/cyrus/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+<br />
+
+## 4. Verify the Installation
+
+Check the compiler works:
+
+```cyrus
+cyrus --version
+```
+
+Expected output: 
+
+```cyrus
+Cyrus vX.Y.Z
+```
