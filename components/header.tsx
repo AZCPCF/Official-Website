@@ -87,6 +87,13 @@ export default function Header({ className, navigationItems }: { className?: str
               </Link>
 
               <Link
+                href="/playground"
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                {t("navigation.playground")}
+              </Link>
+
+              <Link
                 href="/contributors"
                 className="text-sm font-medium hover:text-primary transition-colors"
               >
@@ -168,6 +175,13 @@ export default function Header({ className, navigationItems }: { className?: str
                       className="text-lg font-medium hover:text-primary transition-colors"
                     >
                       {t("navigation.packages")}
+                    </Link>
+
+                    <Link
+                      href="/playground"
+                      className="text-sm font-medium hover:text-primary transition-colors"
+                    >
+                      {t("navigation.playground")}
                     </Link>
 
                     <Link

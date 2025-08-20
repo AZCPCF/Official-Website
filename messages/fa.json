@@ -110,7 +110,8 @@
             "forum": "انجمن",
             "packages": "بسته‌ها",
             "supportUs": "حمایت از ما",
-            "contributors": "مشارکت‌کنندگان"
+            "contributors": "مشارکت‌کنندگان",
+            "playground": "اجرای آنلاین"
         },
         "buttons": {
             "getStarted": "شروع کنید",
@@ -265,6 +266,28 @@
         "roles": {
             "creator": "خالق",
             "contributor": "مشارکت‌کننده"
+        }
+    },
+    "Playground": {
+        "title": "اجرای آنلاین سایروس",
+        "subtitle": "کد سایروس خود را در مرورگر بنویسید، اجرا کنید و آزمایش کنید.",
+        "codeEditor": {
+            "title": "ویرایشگر کد",
+            "placeholder": "کد سایروس خود را اینجا بنویسید...",
+            "runButton": "اجرای کد",
+            "shortcuts": {
+                "title": "میانبرهای صفحه‌کلید",
+                "run": "اجرای کد: Ctrl + Enter",
+                "clear": "پاک کردن ویرایشگر: Ctrl + Shift + C"
+            }
+        },
+        "versionSelector": {
+            "title": "انتخاب نسخه",
+            "placeholder": "یک نسخه انتخاب کنید"
+        },
+        "output": {
+            "title": "خروجی",
+            "placeholder": "خروجی پس از اجرای کد اینجا نمایش داده می‌شود..."
         }
     }
 }
