@@ -3,4 +3,28 @@ title: Hello World!
 weight: 6
 ---
 
-Coming soon...
+# Hello World =)
+
+Let's start with the traditional first program, Hello World in Cyrus:
+
+```cyrus 
+import std::io;
+
+func main() {
+    io::printfn("Hello, World\n");
+}
+```
+
+<br />
+
+## Compiling the program
+
+Let’s take the above program and put it in a file called **hello_world.cyrus**.
+
+We can then run it with:
+
+```bash
+cyrus run hello_world.cyr
+```
+
+It should print Hello, World! and return back to the command line prompt.
