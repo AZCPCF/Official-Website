@@ -12,6 +12,17 @@ import { CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import CodeBlock from "@/components/CodeBlock";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+} from "@/components/ui/table";
+
 
 export function ErrorAlert({
   title,
@@ -177,6 +188,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     CardTitle,
     Link,
     CodeBlock,
+    Table,
+    TableHeader,
+    TableBody,
+    TableFooter,
+    TableHead,
+    TableRow,
+    TableCell,
+    TableCaption,
     ...components,
   };
 }

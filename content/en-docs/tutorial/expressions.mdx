@@ -3,4 +3,216 @@ title: Expressions
 weight: 3
 ---
 
-Coming soon...
+# Operators
+
+Operators in Cyrus work similarly to those in C. They are categorized by their functionality and precedence.
+Operators are evaluated based on their precedence (priority) and associativity (left-to-right or right-to-left).
+
+<br />
+
+## Arithmetic Operators
+
+Arithmetic operators perform mathematical calculations between numeric operands.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead className="w-[100px]">Operator</TableHead>
+      <TableHead>Meaning</TableHead>
+      <TableHead>Example</TableHead>
+      <TableHead className="text-right">Result</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">+</TableCell>
+      <TableCell>Addition</TableCell>
+      <TableCell>5 + 2</TableCell>
+      <TableCell className="text-right">7</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">-</TableCell>
+      <TableCell>Subtraction</TableCell>
+      <TableCell>5 - 2</TableCell>
+      <TableCell className="text-right">3</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">*</TableCell>
+      <TableCell>Multiplication</TableCell>
+      <TableCell>5 * 2</TableCell>
+      <TableCell className="text-right">10</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">/</TableCell>
+      <TableCell>Division</TableCell>
+      <TableCell>5 / 2</TableCell>
+      <TableCell className="text-right">2</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">%</TableCell>
+      <TableCell>Modulo (remainder)</TableCell>
+      <TableCell>5 % 2</TableCell>
+      <TableCell className="text-right">1</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+<br />
+
+## Comparison Operators
+
+Comparison operators evaluate the relationship between two operands and return a **bool** result (true or false).
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead className="w-[100px]">Operator</TableHead>
+      <TableHead>Meaning</TableHead>
+      <TableHead>Example</TableHead>
+      <TableHead className="text-right">Result</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">==</TableCell>
+      <TableCell>Equal to</TableCell>
+      <TableCell>5 == 5</TableCell>
+      <TableCell className="text-right">true</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">!=</TableCell>
+      <TableCell>Not equal to</TableCell>
+      <TableCell>5 != 3</TableCell>
+      <TableCell className="text-right">true</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">&lt;</TableCell>
+      <TableCell>Less than</TableCell>
+      <TableCell>3 &lt; 5</TableCell>
+      <TableCell className="text-right">true</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">&gt;</TableCell>
+      <TableCell>Greater than</TableCell>
+      <TableCell>7 &gt; 2</TableCell>
+      <TableCell className="text-right">true</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">&lt;=</TableCell>
+      <TableCell>Less than or equal to</TableCell>
+      <TableCell>3 &lt;= 3</TableCell>
+      <TableCell className="text-right">true</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">&gt;=</TableCell>
+      <TableCell>Greater than or equal to</TableCell>
+      <TableCell>5 &gt;= 2</TableCell>
+      <TableCell className="text-right">true</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+<br />
+
+## Logical Operators
+
+Logical operators are used to combine or invert boolean values. They always operate on true and false values and return a boolean result.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead className="w-[100px]">Operator</TableHead>
+      <TableHead>Meaning</TableHead>
+      <TableHead>Example</TableHead>
+      <TableHead className="text-right">Result</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">&amp;&amp;</TableCell>
+      <TableCell>Logical AND</TableCell>
+      <TableCell>true &amp;&amp; false</TableCell>
+      <TableCell className="text-right">false</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">||</TableCell>
+      <TableCell>Logical OR</TableCell>
+      <TableCell>true || false</TableCell>
+      <TableCell className="text-right">true</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">!</TableCell>
+      <TableCell>Logical NOT</TableCell>
+      <TableCell>!true</TableCell>
+      <TableCell className="text-right">false</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+<br />
+
+## Assignment Operators
+
+Assignment operators are used to assign values to variables.
+The simplest form is **=**, but there are also compound assignments that perform an operation and assignment in one step.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead className="w-[100px]">Operator</TableHead>
+      <TableHead>Meaning</TableHead>
+      <TableHead>Example</TableHead>
+      <TableHead className="text-right">Result</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">=</TableCell>
+      <TableCell>Assignment</TableCell>
+      <TableCell>a = 10</TableCell>
+      <TableCell className="text-right">a = 10</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">+=</TableCell>
+      <TableCell>Add and assign</TableCell>
+      <TableCell>a += 5</TableCell>
+      <TableCell className="text-right">a = a + 5</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">-=</TableCell>
+      <TableCell>Subtract and assign</TableCell>
+      <TableCell>a -= 5</TableCell>
+      <TableCell className="text-right">a = a - 5</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">*=</TableCell>
+      <TableCell>Multiply and assign</TableCell>
+      <TableCell>a *= 5</TableCell>
+      <TableCell className="text-right">a = a * 5</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">/=</TableCell>
+      <TableCell>Divide and assign</TableCell>
+      <TableCell>a /= 5</TableCell>
+      <TableCell className="text-right">a = a / 5</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+<br />
+
+## Null-Coalescing Operator
+
+The null-coalescing operator (||) is used with pointers to select the first non-null value from a chain of operands.    
+It evaluates operands from left to right and returns the first pointer that is not null.    
+If all operands are null, the result is null.   
+
+```cyrus
+#p1: int* = null;
+#p2: int* = &x;
+#p3: int* = &y;
+
+#result1 = p1 || p2;        // returns p2
+#result2 = p1 || null;      // returns null
+#result3 = p1 || p2 || p3;  // returns p2 (first non-null)
+```
