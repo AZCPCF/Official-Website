@@ -179,20 +179,20 @@ export default function Header({ className, navigationItems }: { className?: str
 
                     <Link
                       href="/playground"
-                      className="text-sm font-medium hover:text-primary transition-colors"
+                      className="text-lg font-medium hover:text-primary transition-colors"
                     >
                       {t("navigation.playground")}
                     </Link>
 
                     <Link
-                      href="/contributors"
+                      href="/support_us"
                       className="text-lg font-medium hover:text-primary transition-colors"
                     >
                       {t("navigation.supportUs")}
                     </Link>
 
                     <Link
-                      href="/support_us"
+                      href="/contributors"
                       className="text-lg font-medium hover:text-primary transition-colors"
                     >
                       {t("navigation.contributors")}
