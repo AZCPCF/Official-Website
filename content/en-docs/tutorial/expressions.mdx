@@ -50,9 +50,47 @@ Arithmetic operators perform mathematical calculations between numeric operands.
     </TableRow>
     <TableRow>
       <TableCell className="font-medium">%</TableCell>
-      <TableCell>Modulo (remainder)</TableCell>
+      <TableCell>Modulo (Truncated)</TableCell>
       <TableCell>5 % 2</TableCell>
       <TableCell className="text-right">1</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">|</TableCell>
+      <TableCell>Bitwise OR (integers)</TableCell>
+      <TableCell>6 | 3</TableCell>
+      <TableCell className="text-right">7</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">~</TableCell>
+      <TableCell>Bitwise XOR (integers)</TableCell>
+      <TableCell>6 ~ 3</TableCell>
+      <TableCell className="text-right">5</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">&</TableCell>
+      <TableCell>Bitwise AND (integers)</TableCell>
+      <TableCell>6 & 3</TableCell>
+      <TableCell className="text-right">2</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">
+        <code>&~</code>
+      </TableCell>
+      <TableCell>Bitwise AND-NOT (integers)</TableCell>
+      <TableCell>6 &~ 3</TableCell>
+      <TableCell className="text-right">4</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">&lt;&lt;</TableCell>
+      <TableCell>Left Shift (integer &lt;&lt; non-negative integer)</TableCell>
+      <TableCell>3 &lt;&lt; 2</TableCell>
+      <TableCell className="text-right">12</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">&gt;&gt;</TableCell>
+      <TableCell>Right Shift (integer &gt;&gt; non-negative integer)</TableCell>
+      <TableCell>12 &gt;&gt; 2</TableCell>
+      <TableCell className="text-right">3</TableCell>
     </TableRow>
   </TableBody>
 </Table>
@@ -203,9 +241,9 @@ The simplest form is **=**, but there are also compound assignments that perform
 
 ## Null-Coalescing Operator
 
-The null-coalescing operator (||) is used with pointers to select the first non-null value from a chain of operands.    
-It evaluates operands from left to right and returns the first pointer that is not null.    
-If all operands are null, the result is null.   
+The null-coalescing operator (||) is used with pointers to select the first non-null value from a chain of operands.  
+It evaluates operands from left to right and returns the first pointer that is not null.  
+If all operands are null, the result is null.
 
 ```cyrus
 #p1: int* = null;

@@ -203,17 +203,15 @@ Example:
 Arrays in Cyrus are fixed-size sequences of elements. Their size must be known at compile time, similar to C arrays.
 
 ```cyrus
-#name: Type[capacity] = {element1, element2, ..., elementN};
+#name = Type[capacity]{element1, element2, ..., elementN};
 ```
 
 Example:
 
 ```cyrus
 #a = int[3]{1, 2, 3};
-#b = float64[4]{3.14, 2.71, 1.618, 0.577};
+#b = const float64[4]{3.14, 2.71, 1.618, 0.577};
 ```
-
-#### Notes
 
 - The array size cannot change at runtime.
 - Access elements using indexing, starting from 0.
