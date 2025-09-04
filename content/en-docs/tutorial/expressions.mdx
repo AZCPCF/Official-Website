@@ -234,6 +234,42 @@ The simplest form is **=**, but there are also compound assignments that perform
       <TableCell>a /= 5</TableCell>
       <TableCell className="text-right">a = a / 5</TableCell>
     </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">%=</TableCell>
+      <TableCell>Modulo and assign</TableCell>
+      <TableCell>a %= 5</TableCell>
+      <TableCell className="text-right">a = a % 5</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">&=</TableCell>
+      <TableCell>Bitwise AND and assign</TableCell>
+      <TableCell>a &= 5</TableCell>
+      <TableCell className="text-right">a = a & 5</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">~=</TableCell>
+      <TableCell>Bitwise XOR and assign</TableCell>
+      <TableCell>a ~= 5</TableCell>
+      <TableCell className="text-right">a = a ~ 5</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">{"&~="}</TableCell>
+      <TableCell>Bitwise AND NOT and assign</TableCell>
+      <TableCell>{"a &~= 5"}</TableCell>
+      <TableCell className="text-right">a = a &~ 5</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">{"<<="}</TableCell>
+      <TableCell>Left shift and assign</TableCell>
+      <TableCell>{"a <<= 2"}</TableCell>
+      <TableCell className="text-right">{"a = a << 2"}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">>>=</TableCell>
+      <TableCell>Right shift and assign</TableCell>
+      <TableCell>a >>= 2</TableCell>
+      <TableCell className="text-right">a = a >> 2</TableCell>
+    </TableRow>
   </TableBody>
 </Table>
 
@@ -248,6 +284,7 @@ Unary operators operate on a single operand and modify its value by **1**.
 <Table>
 
 {" "}
+
 <TableHeader>
   <TableRow>
     <TableHead className="w-[140px]">Operator</TableHead>
@@ -258,6 +295,7 @@ Unary operators operate on a single operand and modify its value by **1**.
 </TableHeader>
 
 {" "}
+
 <TableBody>
   <TableRow>
     <TableCell className="font-medium">i++</TableCell>

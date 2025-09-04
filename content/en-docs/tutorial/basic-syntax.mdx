@@ -96,12 +96,6 @@ Cyrus supports Unicode characters directly in string and character literals. You
 
 <br />
 
-## Base64 & Hex Data Literals
-
-Coming soon...
-
-<br />
-
 ## Integer Constants
 
 Numeric constants in Cyrus can be written in **decimal**, **hexadecimal**, **octal**, or **binary** formats:
@@ -124,7 +118,7 @@ Numeric constants in Cyrus can be written in **decimal**, **hexadecimal**, **oct
 #b = 0x42EDAA02;
 ```
 
-Numeric literals may include underscores **_** between digits for readability; these are ignored by the compiler:
+Numeric literals may include underscores **\_** between digits for readability; these are ignored by the compiler:
 
 ```cyrus
 #million = 1_000_000;
@@ -174,6 +168,14 @@ Example:
 
 <br />
 
+### Default Type of Literals
+
+If you don't specify a type suffix, Cyrus assigns **int** as the default type for integer literals, and **float64** as the default type for floating-point literals.
+
+Type suffixes can be used to explicitly control the size and signedness of an integer literal, or to select a different floating-point precision.
+
+<br />
+
 ## Arrays
 
 Arrays in Cyrus are fixed-size sequences of elements. Their size must be known at compile time, similar to C arrays.
@@ -196,6 +198,8 @@ Example:
 printf("%d\n", a[0]);
 ```
 
+<br />
+
 ## Pointers
 
 Pointers in Cyrus behave like C pointers. They store the memory address of another variable.
@@ -204,7 +208,7 @@ Pointers in Cyrus behave like C pointers. They store the memory address of anoth
 #ptr: Type* = &variable;
 ```
 
-- Type* - pointer to a value of Type
+- Type\* - pointer to a value of Type
 - &variable - takes the address of a variable
 
 Example:
