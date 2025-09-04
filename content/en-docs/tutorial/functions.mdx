@@ -133,3 +133,19 @@ func main() {
 ## Anonumous Functions
 
 Coming soon...
+
+## Function ABI Name 
+
+Cyrus allows you to specify a **different ABI-level (linker) name** for a function than its Cyrus name. This is done using the `as` keyword after the declaration.  
+
+```cyrus
+extern func printf(fmt: string, ...) int as my_printf;
+
+func main() {
+    my_printf("Hello, %s!\n", "Cyrus");
+}
+```
+
+- The function is **declared as `printf`** at the ABI level, so it links against the real `printf` symbol in the C standard library.
+- Inside Cyrus, however, the function is referred to as **`my_printf`**.
+- This allows you to avoid naming conflicts or to wrap existing library functions under more descriptive names.
