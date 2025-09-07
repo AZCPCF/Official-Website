@@ -1,0 +1,198 @@
+---
+title: Control Flow
+weight: 4
+---
+
+## Conditional Statements
+
+Conditional statements let you execute different blocks of code depending on whether a condition evaluates to true or false. Conditions must evaluate to a bool value.
+
+```cyrus
+if (condition) {
+    // executes if condition is true
+} else {
+    // executes if condition is false
+}
+```
+
+```cyrus
+if (condition1) {
+    // executes if condition1 is true
+} else if (condition2) {
+    // executes if condition1 is false but condition2 is true
+} else {
+    // executes if all previous conditions are false
+}
+```
+
+<br />
+
+## Looping Constructs
+
+A for loop allows repeating a block of code multiple times. It usually consists of three optional parts inside the loop header:
+
+- Initializer - runs once before the loop begins (often used to declare and initialize a counter).
+- Condition - checked before each iteration; if false, the loop exits.
+- Increment/Update - executed after each iteration.
+
+```cyrus
+for (initializer; condition; increment) {
+    // body
+}
+```
+
+<br />
+
+### Classic Counter Loop
+
+```cyrus
+for (#i = 0; i < 10; i++) {
+    // executes 10 times: i = 0..9
+}
+```
+
+<br />
+
+### Manual Increment Loop
+
+```cyrus
+for (#i = 0; i < 10;) {
+    // executes while i < 10
+    // you must manually increment i inside the body
+    i++;
+}
+```
+
+Here, the increment part is omitted. The loop continues until the condition becomes false, but you control when i is updated.
+
+<br />
+
+### Conditionless Loop with Initializer
+
+```cyrus
+for (#i = 0;) {
+    // infinite unless you break manually
+    // no condition, no increment
+    if (i > 5) {
+        break; // stop after 6 iterations
+    }
+    i++;
+}
+```
+
+Only the initializer is given. Since there’s no condition, the loop is infinite unless explicitly terminated with break or return.
+
+<br />
+
+### Pure Infinite loop
+
+```cyrus
+for {
+    // infinite loop with no initializer, no condition, no increment
+    // must be exited with break or return
+}
+```
+
+<br />
+
+### While Statement
+
+A while loop repeatedly executes a block of code as long as a condition evaluates to true. The condition is checked before each iteration. If the condition is false at the start, the loop body never runs.
+
+```cyrus
+while (condition) {
+    // body
+}
+```
+
+```cyrus
+#i = 0;
+
+while (true) {
+    printf("v: %d\n", i);
+    i++;
+
+    if (i == 10) {
+        break; // exit when i reaches 10.
+    }
+}
+```
+
+<br />
+
+## Switch Statement
+
+A switch statement allows execution to branch based on the value of an expression. It provides a concise way to compare against multiple possibilities without writing a long chain of if–else if statements.
+
+⚠️ Note: This is not pattern matching. Cases in Cyrus are always compared against raw values, not structural patterns or conditions.
+
+<br />
+
+### Basic Form
+
+```cyrus
+#i: int = 0;
+
+switch (i) {
+    case 0:
+        // This block runs if i is equal to 0.
+        break;
+
+    case 1:
+        // This block runs if i is equal to 1.
+        break;
+
+    default:
+        // This block runs if none of the above cases match.
+        break;
+}
+```
+
+<br />
+
+### Multiple values per case
+
+A single case can match multiple values, separated by commas. If the expression matches any of the values, that case runs.
+
+```cyrus
+#i: int = 4;
+
+switch (i) {
+    case 2, 4, 6, 8:
+        // Matches even numbers.
+        break;
+    case 1, 3, 5, 7:
+        // Matches odd numbers.
+        break;
+
+    default:
+        // This block runs if none of the above cases match.
+        break;
+}
+```
+
+<br />
+
+### Fallthrough behavior
+
+In Cyrus, switch statements automatically fall through to the next case unless you explicitly use break.
+This is the same behavior as in C and C++, and unlike languages such as Go or Rust where each case ends automatically.
+
+```cyrus
+#i: int = 2;
+
+switch (i) {
+    case 2:
+        // Runs when i == 2
+        // Execution continues into the next case unless we break.
+    case 3:
+        // This also runs, because there was no break after case 2.
+        break;
+}
+```
+
+<br />
+
+### Enum Variants
+
+Switch statements can also match enum variants, but that will be explained in detail in the future on the Enums page.

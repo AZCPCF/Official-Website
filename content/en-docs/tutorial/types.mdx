@@ -1,0 +1,226 @@
+---
+title: Types
+weight: 2
+---
+
+# Type System
+
+Cyrus features a **strong and expressive type system**. The compiler performs **implicit type conversions** when it is safe, and requires **explicit casts** when conversions could be unsafe or lossy.
+
+<br />
+
+## Safe Implicit Casting
+
+If a type can be safely converted to another type without losing information, Cyrus will perform the conversion automatically.  
+
+```cyrus
+#a: int32 = 42;
+#b: int64 = a; // Implicit cast from int32 to int64
+```
+
+- `int32` (32-bit signed integer) can always fit into `int64` (64-bit signed integer).  
+- The compiler handles this **implicitly**, so no special syntax is required.  
+- Safe casts also apply to numeric literals, e.g., `#x: float64 = 10.0` is allowed.
+
+<br />
+
+## Unsafe / Explicit Casting
+
+If a conversion **could be unsafe**, the compiler requires an **explicit cast** using the `cast` keyword.
+
+```cyrus
+#u: uint32 = 10;
+#i: int64 = cast(int64, u); // Explicit unsafe cast from uint32 to int64
+```
+
+<br />
+
+# Basic Types
+
+Cyrus provides a set of built-in types for numbers, characters, booleans, and special-purpose values. These are the fundamental building blocks of your programs.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead className="w-[160px]">Type</TableHead>
+      <TableHead>Category</TableHead>
+      <TableHead>Bit Width</TableHead>
+      <TableHead className="text-right">Signedness</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">int</TableCell>
+      <TableCell>Signed Integer (default)</TableCell>
+      <TableCell>Target-dependent (usually 32 or 64)</TableCell>
+      <TableCell className="text-right">Signed</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">int8</TableCell>
+      <TableCell>Signed Integer</TableCell>
+      <TableCell>8</TableCell>
+      <TableCell className="text-right">Signed</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">int16</TableCell>
+      <TableCell>Signed Integer</TableCell>
+      <TableCell>16</TableCell>
+      <TableCell className="text-right">Signed</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">int32</TableCell>
+      <TableCell>Signed Integer</TableCell>
+      <TableCell>32</TableCell>
+      <TableCell className="text-right">Signed</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">int64</TableCell>
+      <TableCell>Signed Integer</TableCell>
+      <TableCell>64</TableCell>
+      <TableCell className="text-right">Signed</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">int128</TableCell>
+      <TableCell>Signed Integer</TableCell>
+      <TableCell>128</TableCell>
+      <TableCell className="text-right">Signed</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">uint</TableCell>
+      <TableCell>Unsigned Integer (default)</TableCell>
+      <TableCell>Target-dependent (usually 32 or 64)</TableCell>
+      <TableCell className="text-right">Unsigned</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">uint8</TableCell>
+      <TableCell>Unsigned Integer</TableCell>
+      <TableCell>8</TableCell>
+      <TableCell className="text-right">Unsigned</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">uint16</TableCell>
+      <TableCell>Unsigned Integer</TableCell>
+      <TableCell>16</TableCell>
+      <TableCell className="text-right">Unsigned</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">uint32</TableCell>
+      <TableCell>Unsigned Integer</TableCell>
+      <TableCell>32</TableCell>
+      <TableCell className="text-right">Unsigned</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">uint64</TableCell>
+      <TableCell>Unsigned Integer</TableCell>
+      <TableCell>64</TableCell>
+      <TableCell className="text-right">Unsigned</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">uint128</TableCell>
+      <TableCell>Unsigned Integer</TableCell>
+      <TableCell>128</TableCell>
+      <TableCell className="text-right">Unsigned</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">intptr</TableCell>
+      <TableCell>Pointer-sized Integer</TableCell>
+      <TableCell>Pointer width (32 or 64)</TableCell>
+      <TableCell className="text-right">Signed</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">uintptr</TableCell>
+      <TableCell>Pointer-sized Integer</TableCell>
+      <TableCell>Pointer width (32 or 64)</TableCell>
+      <TableCell className="text-right">Unsigned</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">size_t</TableCell>
+      <TableCell>Size / Index Type</TableCell>
+      <TableCell>Pointer width (32 or 64)</TableCell>
+      <TableCell className="text-right">Unsigned</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+<br />
+
+### Floating-Point Types
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead className="w-[150px]">Type</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead className="text-right">Precision</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">float16</TableCell>
+      <TableCell>16-bit floating-point number (half precision)</TableCell>
+      <TableCell className="text-right">~3 decimal digits</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">float32</TableCell>
+      <TableCell>32-bit floating-point number (single precision)</TableCell>
+      <TableCell className="text-right">~7 decimal digits</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">float64</TableCell>
+      <TableCell>64-bit floating-point number (double precision)</TableCell>
+      <TableCell className="text-right">~15–16 decimal digits</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">float128</TableCell>
+      <TableCell>128-bit floating-point number (quadruple precision)</TableCell>
+      <TableCell className="text-right">~34 decimal digits</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+<br />
+
+### Character and Boolean Types
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead className="w-[150px]">Type</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead className="text-right">Notes</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">char</TableCell>
+      <TableCell>A single character unit (one code unit; multi-byte Unicode not allowed in `'...'`).</TableCell>
+      <TableCell className="text-right">Represents ASCII/byte chars only</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">bool</TableCell>
+      <TableCell>Boolean values, either <code>true</code> or <code>false</code>.</TableCell>
+      <TableCell className="text-right">1-bit storage (typically padded to 8 bits)</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+<br />
+
+### Special Types
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead className="w-[150px]">Type</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead className="text-right">Notes</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+     <TableRow>
+      <TableCell className="font-medium">void</TableCell>
+      <TableCell>Represents no value, commonly used for functions that do not return anything.</TableCell>
+      <TableCell className="text-right">Return type only</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>

@@ -12,6 +12,17 @@ import { CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import CodeBlock from "@/components/CodeBlock";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+} from "@/components/ui/table";
+
 
 export function ErrorAlert({
   title,
@@ -160,7 +171,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
       return (
         <code
-          className="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm text-left"
+          className="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 text-sm text-left rounded-xl"
           dir="ltr"
           {...props}
         >
@@ -177,6 +188,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     CardTitle,
     Link,
     CodeBlock,
+    Table,
+    TableHeader,
+    TableBody,
+    TableFooter,
+    TableHead,
+    TableRow,
+    TableCell,
+    TableCaption,
     ...components,
   };
 }
