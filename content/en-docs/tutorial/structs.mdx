@@ -135,3 +135,74 @@ ptr->age; // Output: 2500
 ```
 
 Note: Using **ptr->name** or **ptr->age** is equivalent to **{"(*ptr).name"}** and **{"(*ptr).age"}**.
+
+<br />
+
+## Local Structs
+
+In Cyrus, structs can also be declared **locally inside functions**. This is useful when the type is only relevant to that function and should not pollute the global scope.
+
+```cyrus
+func main() {
+    struct User {
+        name: char*;
+        age: uint;
+    }
+
+    #user = User { name: "Cyrus", age: 2500 }; 
+    libc::printf("%s is %d years old.\n", user.name, user.age);
+}
+```
+
+<br />
+
+## Unnamed Structs
+
+Unnamed structs are struct values declared inline without defining a named type. They are useful for quick, one-off configurations or temporary data holders.
+
+```cyrus
+func main() {
+    #state = struct {
+        name = "Cyrus",
+        counter = 0,
+    };
+
+    config.name; 
+    state.counter += 1;
+}
+```
+
+Field types are inferred automatically.
+
+<br />
+
+## Typed Unnamed Struct
+
+You can also specify field types explicitly:
+
+```cyrus
+#state = struct {
+    name: char* = "Cyrus",
+    counter: int = 0,
+};
+```
+
+Note: Unnamed structs cannot define methods.
+
+<br />
+
+## Global Unnamed Structs
+
+Unnamed structs are not limited to local scope. They can also be declared globally and accessed across functions (if marked public).
+
+```cyrus
+public config = const struct {
+    host = "127.0.0.1",
+    port = 8080
+};
+
+func main() {
+    printf("host: %s\n", config.host);
+    printf("port: %d\n", config.port);
+}
+```
