@@ -14,6 +14,7 @@ import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import MobileSidebar from "./docs/mobile/mobile_sidebar";
 import { DocNavItem } from "@/app/types/doc_nav_item";
+import SearchBar from "./search-bar";
 
 export function Logo() {
   const t = useTranslations("Header.logo");
@@ -103,6 +104,7 @@ export default function Header({ className, navigationItems }: { className?: str
           </div>
 
           <div className="flex items-center gap-4">
+            <SearchBar />
             <LanguageToggle />
             <ThemeToggle />
             <Link href="/docs" className="hidden xl:inline-flex">
@@ -186,6 +188,7 @@ export default function Header({ className, navigationItems }: { className?: str
                   </nav>
                   <div className="mt-auto flex flex-col gap-2">
                     <div className="flex gap-2 mb-4">
+                      <SearchBar />
                       <LanguageToggle />
                       <ThemeToggle />
                     </div>
