@@ -49,5 +49,13 @@
     "picture": "https://avatars.githubusercontent.com/imMrPi",
     "github": "https://github.com/imMrPi",
     "telegram": "https://t.me/imMrPi"
+  },
+  {
+    "id": 6,
+    "name": "HyprBytes",
+    "nameFa": "هایپربایتز",
+    "title": "Contributor",
+    "picture": "https://avatars.githubusercontent.com/hyprbytes",
+    "github": "https://github.com/hyprbytes"
   }
 ]
