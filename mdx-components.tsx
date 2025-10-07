@@ -23,7 +23,7 @@ import {
   TableCaption,
 } from "@/components/ui/table";
 import { ErrorAlert, WarningAlert, InfoAlert } from "@/components/ui/alert"
-import UnderDevelopmentAlert from "@/components/under_development_alert"
+import UnderDevelopmentAlert from "@/components/under-development-alert"
 
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
