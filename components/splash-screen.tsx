@@ -1,10 +1,11 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { useEffect, useState, ReactNode } from "react";
 
 interface SplashScreenProps {
   logo: ReactNode;
-  duration?: number;        // ms for progress bar
+  duration?: number; // ms for progress bar
   fadeOutDuration?: number; // ms for fade-out
 }
 
@@ -34,14 +35,13 @@ export default function SplashScreen({
 
   return (
     <div
-      className="fixed inset-0 flex flex-col items-center justify-center transition-opacity"
-      style={{
-        zIndex: 999999,
-        background: "hsl(var(--background))",
-        opacity: fadeOut ? 0 : 1,
-        transition: `opacity ${fadeOutDuration}ms`,
-        pointerEvents: fadeOut ? "none" : "auto",
-      }}
+      className={cn(
+        "fixed inset-0 flex flex-col items-center justify-center transition-opacity !z-[999999] bg-background",
+        fadeOut
+          ? "opacity-0 pointer-events-none"
+          : "opacity-100 pointer-events-auto splash-screen",
+        `[transition-duration:${fadeOutDuration}ms]`
+      )}
     >
       <div className="mb-4">{logo}</div>
       <div className="w-32 h-1 bg-gray-400 rounded overflow-hidden">
