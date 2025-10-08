@@ -54,8 +54,7 @@ export default function Header({
   const t = useTranslations("Header");
   const { fontFamily } = useLocaleInfo();
   const pathname = usePathname();
-  const isDocsRoute = /^\/[a-z]{2}\/docs(\/.*)?$/.test(pathname);
-
+  const isDocsRoute = pathname.startsWith("/docs");
   return (
     <>
       <header
