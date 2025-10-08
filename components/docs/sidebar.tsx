@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { DocNavItem } from "@/app/types/doc_nav_item";
-import { cn } from "@/lib/utils";
-import { useTranslations, useLocale } from "next-intl";
 import { useLocaleInfo } from "@/hooks/use-locale";
 import { Link, usePathname } from "@/i18n/navigation";
+import { cn } from "@/lib/utils";
+import { useLocale, useTranslations } from "next-intl";
+import { useState } from "react";
 
 export interface SidebarProps {
   navigationItems: DocNavItem[];
@@ -86,7 +86,12 @@ const CollapsibleNavItem = ({
       {isOpen && item.children && item.children.length > 0 && (
         <div id={`sidebar-group-content-${item.slug}`} className="ml-2">
           {/* Mimics SidebarGroupContent */}
-          <ul className={cn("space-y-1", isRTL ? "text-right mr-5" : "text-left ml-5")}>
+          <ul
+            className={cn(
+              "space-y-1",
+              isRTL ? "text-right mr-5" : "text-left ml-5"
+            )}
+          >
             {/* Mimics SidebarMenu */}
             {renderChildren(item.children)}{" "}
             {/* Call renderChildren with only the items */}
@@ -98,19 +103,20 @@ const CollapsibleNavItem = ({
 };
 
 // Main Sidebar component
-export function Sidebar({ navigationItems }: SidebarProps) {
+export function Sidebar({
+  navigationItems,
+  clickTrigger,
+}: SidebarProps & { clickTrigger?: () => void }) {
   const pathname = usePathname(); // Get current pathname once
   const t = useTranslations("Docs");
   const locale = useLocale();
-
   // Helper function to render nested navigation items
   const renderNavItems = (items: DocNavItem[]) => {
     // Removed currentBasePath parameter
     return items.map((item) => {
       // Construct the full href for any item (file or directory's main page)
       // item.slug already contains the full path from /docs/
-      const itemHref =
-        item.slug === "" ? `/docs` : `/docs/${item.slug}`;
+      const itemHref = item.slug === "" ? `/docs` : `/docs/${item.slug}`;
 
       if (item.type === "directory") {
         return (
@@ -138,6 +144,7 @@ export function Sidebar({ navigationItems }: SidebarProps) {
                   ? "text-white font-medium bg-primary" // Active state background
                   : "text-muted-foreground hover:bg-gray-100 dark:hover:bg-muted"
               )}
+              onClick={clickTrigger}
             >
               {item.title}
             </Link>
@@ -150,9 +157,9 @@ export function Sidebar({ navigationItems }: SidebarProps) {
   return (
     <div className="bg-background md:bg-inherit dark:bg-background md:dark:bg-inherit py-4 px-2">
       <div className="flex flex-col h-full overflow-hidden">
-          <nav className="px-2" aria-label={t("sidebar.navigation")}>
-            {renderNavItems(navigationItems)}{" "}
-          </nav>
+        <nav className="px-2" aria-label={t("sidebar.navigation")}>
+          {renderNavItems(navigationItems)}{" "}
+        </nav>
       </div>
     </div>
   );
