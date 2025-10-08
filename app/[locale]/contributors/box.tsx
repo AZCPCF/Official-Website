@@ -27,7 +27,7 @@ export default function Box({ participant }: { participant: Participant }) {
   };
 
   return (
-    <div className="border-1 border-gray-100 rounded-sm flex flex-col gap-2">
+    <div className="rounded-sm flex flex-col gap-2">
       <div className="flex flex-col items-start w-full">
         <div className="text-center text-xl font-bold">{getDisplayName()}</div>
         <div className="text-center text-sm text-muted-foreground mt-1">

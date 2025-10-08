@@ -27,7 +27,7 @@ export default function MobileSidebar({ navigationItems }: SidebarProps) {
   }, [open]);
 
   return (
-    <div>
+    <div className="md:hidden block">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
           <Breadcrumb onClick={() => setOpen(true)} />

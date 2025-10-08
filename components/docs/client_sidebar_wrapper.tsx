@@ -1,25 +1,28 @@
-'use client';
+"use client";
 
-import { usePathname } from '@/i18n/navigation';
-import MobileSidebar from './mobile/mobile_sidebar';
-import { Sidebar } from './sidebar';
-import { DocNavItem } from '@/app/types/doc_nav_item';
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { DocNavItem } from "@/app/types/doc_nav_item";
+import { usePathname } from "@/i18n/navigation";
+import MobileSidebar from "./mobile/mobile_sidebar";
+import { Sidebar } from "./sidebar";
 
 interface ClientSideMobileSidebarWrapperProps {
-    navigationItems: DocNavItem[];
+  navigationItems: DocNavItem[];
 }
 
-export default function ClientSidebarWrapper({ navigationItems }: ClientSideMobileSidebarWrapperProps) {
-    const pathname = usePathname();
+export default function ClientSidebarWrapper({
+  navigationItems,
+}: ClientSideMobileSidebarWrapperProps) {
+  const pathname = usePathname();
 
-    return (
-        <>
-            {pathname.startsWith("/docs") && <MobileSidebar navigationItems={navigationItems} />}
+  return (
+    <>
+      {pathname.startsWith("/docs") && (
+        <MobileSidebar navigationItems={navigationItems} />
+      )}
 
-            <ScrollArea className="w-full h-full flex-none">
-                <Sidebar navigationItems={navigationItems} />
-            </ScrollArea>
-        </>
-    );
+      <div className="[&::-webkit-scrollbar]:[width:6px] [&::-webkit-scrollbar-thumb]:bg-gray-400 overflow-y-auto [&::-webkit-scrollbar-thumb]:[border-radius:3px] max-h-[100svh] pb-14">
+        <Sidebar navigationItems={navigationItems} />
+      </div>
+    </>
+  );
 }

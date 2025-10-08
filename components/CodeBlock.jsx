@@ -46,7 +46,7 @@ export default function CodeBlock({
         </Button>
       </div>
       <pre
-        className={`!mt-0 !mb-0 rounded-lg text-left ${
+        className={`mt-0! mb-0! rounded-lg text-left ${
           disableBorder ? "" : "border"
         }`}
         dir="ltr"
