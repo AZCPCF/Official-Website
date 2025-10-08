@@ -11,6 +11,7 @@ type Frontmatter = {
   title?: string;
   description?: string;
   date?: string;
+  weight?: number;
   // add more fields as needed
 };
 

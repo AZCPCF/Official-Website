@@ -39,8 +39,8 @@ async function lookupDocumentContent(
     await fs.access(directPath); // Check if file exists and is accessible
     return directPath;
   } catch (error) {
-    console.log(error);
     // File doesn't exist or isn't accessible, continue to next check
+    console.error(error);
   }
 
   // 2. Check for an index.mdx within a directory (e.g., content/en-docs/tutorial/introduction/index.mdx)
@@ -49,8 +49,8 @@ async function lookupDocumentContent(
     await fs.access(indexPath);
     return indexPath;
   } catch (error) {
-    console.log(error);
     // Not found in either location
+    console.error(error);
   }
 
   return null; // Document not found
