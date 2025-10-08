@@ -50,7 +50,7 @@ function InnerApp({ children, showLoadingBar, setShowLoadingBar }: InnerAppProps
     }, splashTotalTime);
 
     return () => clearTimeout(timeout);
-  }, []);
+  }, [setShowLoadingBar]);
 
   useEffect(() => {
     if (!showLoadingBar) return; 

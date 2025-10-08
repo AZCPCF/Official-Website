@@ -39,8 +39,6 @@ interface CollapsibleNavItemProps {
 
 const CollapsibleNavItem = ({
   item,
-  pathname,
-  locale,
   renderChildren,
 }: CollapsibleNavItemProps) => {
   const [isOpen, setIsOpen] = useState(true);

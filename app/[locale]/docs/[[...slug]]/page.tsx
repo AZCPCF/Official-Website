@@ -1,9 +1,8 @@
+import MDXContent from "@/components/mdx-content";
 import { redirect } from "@/i18n/navigation";
 import fs from "fs/promises";
 import { getLocale, getTranslations } from "next-intl/server";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import path from "path";
-import { useMDXComponents } from "../../../../mdx-components";
 import { getContentBasePath } from "../base_path";
 import { getMdxData } from "../mdx";
 
@@ -40,6 +39,7 @@ async function lookupDocumentContent(
     await fs.access(directPath); // Check if file exists and is accessible
     return directPath;
   } catch (error) {
+    console.log(error);
     // File doesn't exist or isn't accessible, continue to next check
   }
 
@@ -49,6 +49,7 @@ async function lookupDocumentContent(
     await fs.access(indexPath);
     return indexPath;
   } catch (error) {
+    console.log(error);
     // Not found in either location
   }
 
@@ -85,8 +86,8 @@ export default async function ShowDocumentPage({
   }
 
   return (
-    <div className="prose lg:prose-xl sm:container mx-auto sm:px-0 px-1 py-5 pt-8 text-xl   ">
-      <MDXRemote source={mdxSource} components={useMDXComponents({})} />
+    <div className="prose lg:prose-xl sm:container mx-auto sm:px-0 px-1 py-5 pt-8 text-xl">
+      <MDXContent source={mdxSource} />
     </div>
   );
 }
