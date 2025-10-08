@@ -70,6 +70,7 @@ export default async function ShowDocumentPage({
   }
 
   let mdxSource;
+  const relativeContentPath = filePath.replace(process.cwd() + "/", "");
 
   try {
     const { content } = await getMdxData(filePath);
@@ -82,6 +83,16 @@ export default async function ShowDocumentPage({
   return (
     <div className="prose lg:prose-xl sm:container mx-auto sm:px-0 px-1 py-5 pt-8 text-xl">
       <MDXContent source={mdxSource} />
+      <div className="mt-8 flex justify-end">
+        <a
+          className="text-sm text-primary hover:underline"
+          href={`https://github.com/cyrus-lang/Official-Website/edit/v2/${relativeContentPath}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Edit this page on GitHub
+        </a>
+      </div>
     </div>
   );
 }
