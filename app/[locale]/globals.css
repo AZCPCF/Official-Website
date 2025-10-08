@@ -52,6 +52,7 @@
   --color-border: hsl(240 5.9% 90%);
   --color-input: hsl(240 5.9% 90%);
   --color-ring: hsl(252 59% 48%);
+  --header-height: 70px;
 }
 .dark {
   --color-background: hsl(240 10% 3.9%);
@@ -74,7 +75,6 @@
   --color-input: hsl(240 3.7% 15.9%);
   --color-ring: hsl(252 59% 54%);
 }
-
 
 @layer base {
   * {

@@ -1,20 +1,21 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
-import { ThemeToggle } from "./theme-toggle";
-import { LanguageToggle } from "./language-toggle";
-import { Button } from "./ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import Image from "next/image";
 import LogoDark from "@/app/assets/logo-dark.png";
 import LogoLight from "@/app/assets/logo-light.png";
-import { useLocaleInfo } from "@/hooks/use-locale";
-import { useTranslations } from "next-intl";
-import MobileSidebar from "./docs/mobile/mobile_sidebar";
 import { DocNavItem } from "@/app/types/doc_nav_item";
-import SearchBar from "./search-bar";
-import { cn } from "@/lib/utils";
+import { useLocaleInfo } from "@/hooks/use-locale";
 import { Link, usePathname } from "@/i18n/navigation";
+import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import { useRef } from "react";
+import MobileSidebar from "./docs/mobile/mobile_sidebar";
+import { LanguageToggle } from "./language-toggle";
+import SearchBar from "./search-bar";
+import { ThemeToggle } from "./theme-toggle";
+import { Button } from "./ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 export function Logo() {
   const t = useTranslations("Header.logo");
@@ -53,17 +54,15 @@ export default function Header({
 }) {
   const t = useTranslations("Header");
   const { fontFamily } = useLocaleInfo();
+  const sheetTriggerRef = useRef<HTMLButtonElement | null>(null);
   const pathname = usePathname();
   const isDocsRoute = pathname.startsWith("/docs");
   return (
     <>
       <header
-        className={`py-3 max-md:py-0 select-none border-b sticky top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60 header-fa ${fontFamily} ${className}`}
+        className={`select-none border-b sticky top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60 header-fa ${fontFamily} ${className}`}
       >
-        <div
-          className="px-4 flex items-center justify-between"
-          style={{ height: "var(--header-height)" }}
-        >
+        <div className="px-4 flex items-center justify-between h-[var(--header-height)] ">
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-2">
               <Logo />
@@ -100,7 +99,7 @@ export default function Header({
               <Button>{t("buttons.getStarted")}</Button>
             </Link>
             <Sheet>
-              <SheetTrigger asChild>
+              <SheetTrigger ref={sheetTriggerRef} asChild>
                 <Button variant="outline" size="icon" className="xl:hidden">
                   <Menu className="h-6 w-6" />
                   <span className="sr-only">{t("buttons.toggleMenu")}</span>
@@ -151,11 +150,18 @@ export default function Header({
                       <ThemeToggle />
                     </div>
                     <Link href="/docs" className="w-full">
-                      <Button className="w-full">
+                      <Button
+                        className="w-full"
+                        onClick={() => sheetTriggerRef.current?.click()}
+                      >
                         {t("buttons.getStarted")}
                       </Button>
                     </Link>
-                    <Link href="/docs" className="w-full">
+                    <Link
+                      href="/docs"
+                      className="w-full"
+                      onClick={() => sheetTriggerRef.current?.click()}
+                    >
                       <Button variant="outline" className="w-full">
                         {t("buttons.documentation")}
                       </Button>
