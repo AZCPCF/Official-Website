@@ -54,12 +54,11 @@ export default function Header({
   const t = useTranslations("Header");
   const { fontFamily } = useLocaleInfo();
   const pathname = usePathname();
-  const isDocsRoute = /^\/[a-z]{2}\/docs(\/.*)?$/.test(pathname);
-
+  const isDocsRoute = pathname.startsWith("/docs");
   return (
     <>
       <header
-        className={` select-none border-b sticky top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 header-fa ${fontFamily} ${className}`}
+        className={`py-3 max-md:py-0 select-none border-b sticky top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60 header-fa ${fontFamily} ${className}`}
       >
         <div
           className="px-4 flex items-center justify-between"

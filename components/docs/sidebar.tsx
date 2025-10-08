@@ -59,7 +59,7 @@ const CollapsibleNavItem = ({
           {/* Link for directory title */}
           <a
             className={cn(
-              "text-muted-foreground flex-grow py-2 rounded-md px-2 my-1"
+              "text-muted-foreground grow py-2 rounded-md px-2 my-1"
             )}
             onClick={() => {
               setIsOpen((prev) => !prev);

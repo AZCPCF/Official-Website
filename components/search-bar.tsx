@@ -120,7 +120,7 @@ export default function SearchBar() {
                 <li
                   key={result.id}
                   dir={locale === "fa" ? "rtl" : "ltr"}
-                  className="p-4 bg-card rounded-lg border border-border shadow-sm 
+                  className="p-4 bg-card rounded-lg border border-border shadow-xs 
             transition-all duration-200 cursor-pointer group
             hover:shadow-md hover:-translate-y-[2px] 
             hover:bg-accent/40 dark:hover:bg-accent/30"

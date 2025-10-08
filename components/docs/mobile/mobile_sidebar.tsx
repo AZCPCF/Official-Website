@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { X } from "lucide-react";
 import Breadcrumb from "./breadcrumb";
@@ -27,7 +27,7 @@ export default function MobileSidebar({ navigationItems }: SidebarProps) {
   }, [open]);
 
   return (
-    <div>
+    <div className="md:hidden block">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
           <Breadcrumb onClick={() => setOpen(true)} />
@@ -37,7 +37,9 @@ export default function MobileSidebar({ navigationItems }: SidebarProps) {
           <div className="flex items-center justify-between mb-0 p-4 pb-1">
             <Link href="/" className="flex items-center gap-2">
               <Logo />
-              <span className="text-xl font-bold">Cyrus</span>
+              <span className="text-md font-bold brand-text text-black dark:text-white pt-1">
+                {t("title")}
+              </span>
             </Link>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon">
