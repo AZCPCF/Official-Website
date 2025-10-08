@@ -1,14 +1,13 @@
 "use client";
 
-import { Button } from "./ui/button";
+import { usePathname, useRouter } from "@/i18n/navigation";
 import { Languages } from "lucide-react";
-import { useTranslations, useLocale } from "next-intl";
-import { useState, useEffect } from "react";
-import { useRouter, usePathname } from "@/i18n/navigation";
+import { useLocale } from "next-intl";
+import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
 
 export function LanguageToggle() {
   const [mounted, setMounted] = useState(false);
-  const t = useTranslations("Header");
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();

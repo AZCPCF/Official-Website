@@ -84,9 +84,12 @@
   }
 }
 
-@media (width <= 48rem) { 
+@media (width <= 48rem) {
   .docs-header {
     --header-height: 70px;
   }
 }
 
+body:has(.splash-screen) {
+  overflow: hidden;
+}

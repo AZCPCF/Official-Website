@@ -1,12 +1,10 @@
+import MDXContent from "@/components/mdx-content";
+import { redirect } from "@/i18n/navigation";
 import fs from "fs/promises";
+import { getLocale, getTranslations } from "next-intl/server";
 import path from "path";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { getContentBasePath } from "../base_path";
 import { getMdxData } from "../mdx";
-import { useMDXComponents } from "../../../../mdx-components";
-import { redirect } from "next/navigation";
-import { getTranslations } from "next-intl/server";
-import { getLocale } from "next-intl/server";
 
 const DOCS_DEFAULT_PAGE = "/docs/getting-started/introduction";
 
@@ -33,27 +31,23 @@ async function lookupDocumentContent(
   locale: string
 ): Promise<string | null> {
   const contentBasePath = getContentBasePath(locale);
-  const joinedSlug = slugArray.join(path.sep); // Use path.sep for cross-platform compatibility
-
-  // 1. Check for a direct MDX file (e.g., content/en-docs/tutorial/introduction.mdx)
+  const joinedSlug = slugArray.join(path.sep);
   const directPath = path.join(contentBasePath, `${joinedSlug}.mdx`);
   try {
-    await fs.access(directPath); // Check if file exists and is accessible
+    await fs.access(directPath);
     return directPath;
   } catch (error) {
-    // File doesn't exist or isn't accessible, continue to next check
+    console.error(error);
   }
-
-  // 2. Check for an index.mdx within a directory (e.g., content/en-docs/tutorial/introduction/index.mdx)
   const indexPath = path.join(contentBasePath, joinedSlug, "index.mdx");
   try {
     await fs.access(indexPath);
     return indexPath;
   } catch (error) {
-    // Not found in either location
+    console.error(error);
   }
 
-  return null; // Document not found
+  return null;
 }
 
 export default async function ShowDocumentPage({
@@ -66,7 +60,7 @@ export default async function ShowDocumentPage({
 
   let filePath: string | null = null;
   if (slug.length === 0) {
-    redirect(`/${locale}${DOCS_DEFAULT_PAGE}`);
+    redirect({ href: `/${DOCS_DEFAULT_PAGE}`, locale });
   } else {
     filePath = await lookupDocumentContent(slug, locale);
   }
@@ -86,8 +80,8 @@ export default async function ShowDocumentPage({
   }
 
   return (
-    <div className="prose lg:prose-xl sm:container mx-auto sm:px-0 px-1 py-5 pt-8 text-xl   ">
-      <MDXRemote source={mdxSource} components={useMDXComponents({})} />
+    <div className="prose lg:prose-xl sm:container mx-auto sm:px-0 px-1 py-5 pt-8 text-xl">
+      <MDXContent source={mdxSource} />
     </div>
   );
 }
