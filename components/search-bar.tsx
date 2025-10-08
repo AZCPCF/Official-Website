@@ -115,7 +115,7 @@ export default function SearchBar() {
 
         <ScrollArea className="h-[calc(39vh-72px)] sm:h-[calc(36vh-72px)] px-4 pb-4">
           {results.length > 0 ? (
-            <ul className="space-y-3">
+            <ul className="space-y-3 mt-2">
               {results.map((result) => (
                 <li
                   key={result.id}
