@@ -80,14 +80,14 @@ export default function SearchBar() {
       </DialogTrigger>
 
       <DialogContent
-        className="max-w-[90vw] sm:max-w-[600px] max-h-[80vh] p-0 rounded-lg"
+        className="max-w-[90vw] sm:max-w-[600px] max-h-[80vh] sm:max-h-[60vh] p-0 rounded-lg"
         dir={locale === "fa" ? "rtl" : "ltr"}
         closeButton={false}
       >
-        <div className="relative flex-1">
+        <div className="relative flex-1 px-4 pt-4">
           <Search
-            className={`h-5 w-5 text-muted-foreground absolute top-1/2 transform -translate-y-1/2
-      ${locale === "fa" ? "right-3" : "left-3"}`}
+            className={`h-5 w-5 text-muted-foreground absolute top-[calc(50%+8px)] transform -translate-y-1/2
+      ${locale === "fa" ? "right-7" : "left-7"}`}
           />
 
           <Input
@@ -105,15 +105,15 @@ export default function SearchBar() {
                 setQuery("");
                 setResults([]);
               }}
-              className={`absolute top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors
-        ${locale === "fa" ? "left-3" : "right-3"}`}
+              className={`absolute top-[calc(50%+8px)] transform -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors
+        ${locale === "fa" ? "left-7" : "right-7"}`}
             >
               <X className="h-5 w-5" />
             </button>
           )}
         </div>
 
-        <ScrollArea className="h-[calc(38vh-72px)] px-4 pb-4">
+        <ScrollArea className="h-[calc(39vh-72px)] sm:h-[calc(36vh-72px)] px-4 pb-4">
           {results.length > 0 ? (
             <ul className="space-y-3">
               {results.map((result) => (
@@ -181,7 +181,6 @@ export default function SearchBar() {
             </p>
           )}
         </ScrollArea>
-      
       </DialogContent>
     </Dialog>
   );
