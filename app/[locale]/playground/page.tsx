@@ -78,8 +78,7 @@ export default function PlaygroundPage() {
 
             {/* Code Editor */}
             <textarea
-              className="w-full h-80 p-4 border rounded-lg font-mono text-sm text-black dark:text-white bg-white border-gray-300 dark:border-gray-700 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
-              style={{ backgroundColor: "#121212" }}
+              className="w-full min-h-40 h-80 p-4 border rounded-lg font-mono text-sm bg-gray-200   dark:text-white  text-neutral-800 border-gray-300 dark:border-gray-700 focus:outline-hidden focus:ring-2 focus:ring-blue-500 dark:bg-[#121212]"
               placeholder={t("codeEditor.placeholder")}
               value={code}
               onChange={(e) => setCode(e.target.value)}
@@ -108,8 +107,7 @@ export default function PlaygroundPage() {
                 {t("output.title")}
               </h3>
               <div
-                className="w-full h-40 p-4 border rounded-lg font-mono text-sm text-black dark:text-white bg-white border-gray-300 dark:border-gray-700"
-                style={{ backgroundColor: "#121212" }}
+                className="w-full h-52 overflow-scroll p-4 border rounded-lg font-mono text-sm  bg-gray-200   dark:text-white/60 text-neutral-800/60  dark:bg-[#121212] border-gray-300 dark:border-gray-700"
               >
                 {output || t("output.placeholder")}
               </div>
