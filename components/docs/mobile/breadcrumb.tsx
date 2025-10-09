@@ -21,7 +21,7 @@ const Breadcrumb = forwardRef<HTMLButtonElement, BreadcrumbProps>(
       >
         <div className="flex flex-row items-center">
           <Button
-            className="bg-background hover:bg-transparent"
+            className="bg-background/60 hover:bg-transparent"
             variant="outline"
             onClick={onClick}
             ref={ref} 
