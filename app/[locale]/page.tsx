@@ -191,8 +191,8 @@ fn greet(name: string): string {
 
 // Using the function
 fn example() {
-  #message = greet("Developer");
-  io::println(message); // Outputs: Hello, Developer!
+  var message = greet("Cyrus");
+  io::println(message); // Outputs: Hello, Cyrus!
 }`}</CodeBlock>
                     </pre>
                   </div>

@@ -125,7 +125,7 @@ fn sum_all(nums: int...) int {
 }
 
 fn main() {
-    #s: int = sum_all(1, 2, 3, 4, 5);
+    var s: int = sum_all(1, 2, 3, 4, 5);
     printf("%d\n", s); // Output: 15
 }
 ```
@@ -186,7 +186,7 @@ You can store lambdas in variables:
 
 ```cyrus
 fn main() {
-    #add = fn(x: int, y: int) int {
+    var add = fn(x: int, y: int) int {
         return x + y;
     };
 
@@ -203,10 +203,10 @@ That means they cannot capture variables from their surrounding scope. For examp
 
 ```cyrus
 fn main() {
-    #base = 10;
+    var base = 10;
 
-    #adder = fn(x: int) int {
-        return x + base; // ❌ `base` is not accessible here
+    var adder = fn(x: int) int {
+        return x + base; // ❌ base is not accessible here
     };
 }
 ```

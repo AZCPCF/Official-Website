@@ -20,7 +20,7 @@ They're useful for explaining code, leaving notes, or temporarily disabling part
 
 ```cyrus
 // This is a single-line comment
-#msg: char* = "Hello, Cyrus!"; // You can also place it after code
+var msg: char* = "Hello, Cyrus!"; // You can also place it after code
 ```
 
 - Multi-line Comments
@@ -46,8 +46,8 @@ Both forms represent sequences of Unicode characters, but they differ in intent 
 - Character literals produce values of type **char**, which always represent exactly one Unicode scalar value.
 
 ```cyrus
-#greeting: char* = "Hello, Cyrus!";
-#letter: char = 'A';
+var greeting: char* = "Hello, Cyrus!";
+var letter: char = 'A';
 ```
 
 ### Escapes
@@ -70,11 +70,11 @@ Common escapes include:
 Example:
 
 ```cyrus
-#poem: char* = "Line one\nLine two\nLine three";
-#quote: char* = "She said: \"Cyrus is great!\"";
-#backslash: char = '\\';
+var poem: char* = "Line one\nLine two\nLine three";
+var quote: char* = "She said: \"Cyrus is great!\"";
+var backslash: char = '\\';
 
-#paragraph: char* = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+var paragraph: char* = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
 when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
 ```
@@ -86,12 +86,12 @@ when an unknown printer took a galley of type and scrambled it to make a type sp
 Cyrus supports Unicode characters directly in string and character literals. You can type emojis, accented letters, or any other Unicode characters inside quotes:
 
 ```cyrus
-#letter: char = 'A';                     // ✅ Works
-#smile: char* = "😇";                    // ✅ Works in a string
-#rocket: string = "Let's go! \u{1F680}"; // ✅ Works, 🚀
-#greek_alpha: char* = "\u03B1";          // ✅ Works, α
-#emoji_char: char = '😇';                // ❌ Does NOT work
-#multibyte_char: char = '\u263A';        // ❌ Does NOT work
+var letter: char = 'A';                     // ✅ Works
+var smile: char* = "😇";                    // ✅ Works in a string
+var rocket: string = "Let's go! \u{1F680}"; // ✅ Works, 🚀
+var greek_alpha: char* = "\u03B1";          // ✅ Works, α
+var emoji_char: char = '😇';                // ❌ Does NOT work
+var multibyte_char: char = '\u263A';        // ❌ Does NOT work
 ```
 
 <br />
@@ -103,26 +103,26 @@ Numeric constants in Cyrus can be written in **decimal**, **hexadecimal**, **oct
 - Decimal (Base 10):
 
 ```cyrus
-#a = 1234;
+var a = 1234;
 ```
 
 - Hexadecimal (Base 16, prefix with 0x or 0X):
 
 ```cyrus
-#b = 0x42EDAA02;
+var b = 0x42EDAA02;
 ```
 
 - Binary (Base 2, prefix with 0b or 0B):
 
 ```cyrus
-#b = 0x42EDAA02;
+var c = 0x42EDAA02;
 ```
 
 Numeric literals may include underscores **\_** between digits for readability; these are ignored by the compiler:
 
 ```cyrus
-#million = 1_000_000;
-#hex_val = 0xDE_AD_BE_EF;
+var million = 1_000_000;
+var hex_val = 0xDE_AD_BE_EF;
 ```
 
 <br />
@@ -162,8 +162,8 @@ Valid float suffixes include:
 Example:
 
 ```cyrus
-#a = 1234int64;
-#b = 3.14float64;
+var a = 1234int64;
+var b = 3.14float64;
 ```
 
 <br />
@@ -181,14 +181,14 @@ Type suffixes can be used to explicitly control the size and signedness of an in
 Arrays in Cyrus are fixed-size sequences of elements. Their size must be known at compile time, similar to C arrays.
 
 ```cyrus
-#name = Type[capacity]{element1, element2, ..., elementN};
+var name = Type[capacity]{element1, element2, ..., elementN};
 ```
 
 Example:
 
 ```cyrus
-#a = int[3]{1, 2, 3};
-#b = const float64[4]{3.14, 2.71, 1.618, 0.577};
+var a = int[3]{1, 2, 3};
+var b = const float64[4]{3.14, 2.71, 1.618, 0.577};
 ```
 
 - The array size cannot change at runtime.
@@ -205,7 +205,7 @@ printf("%d\n", a[0]);
 Pointers in Cyrus behave like C pointers. They store the memory address of another variable.
 
 ```cyrus
-#ptr: Type* = &variable;
+var ptr: Type* = &variable;
 ```
 
 - Type\* - pointer to a value of Type
@@ -214,8 +214,8 @@ Pointers in Cyrus behave like C pointers. They store the memory address of anoth
 Example:
 
 ```cyrus
-#a: int = 10;
-#b: int* = &a;
+var a: int = 10;
+var b: int* = &a;
 
 printf("%d\n", *b); // prints 10
 ```
