@@ -1,41 +1,19 @@
 "use client";
 
-import { X } from "lucide-react";
-import Breadcrumb from "./breadcrumb";
 import { Logo } from "@/components/header";
-import { useState, useEffect, useRef } from "react";
-import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
-import { Sidebar, SidebarProps } from "../sidebar";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "@/i18n/navigation";
+import { X } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useRef, useState } from "react";
+import { Sidebar, SidebarProps } from "../sidebar";
+import Breadcrumb from "./breadcrumb";
 export default function MobileSidebar({ navigationItems }: SidebarProps) {
   const [open, setOpen] = useState(false);
   const t = useTranslations("Docs");
   const sheetTriggerRef = useRef<HTMLButtonElement | null>(null);
-  useEffect(() => {
-    if (open) {
-      const scrollY = window.scrollY;
-      document.documentElement.style.position = "fixed";
-      document.documentElement.style.top = `-${scrollY}px`;
-      document.documentElement.style.width = "100%";
-    } else {
-      const scrollY = -parseInt(document.documentElement.style.top || "0");
-      document.documentElement.style.position = "";
-      document.documentElement.style.top = "";
-      document.documentElement.style.width = "";
-      window.scrollTo(0, scrollY);
-    }
-
-    return () => {
-      const scrollY = -parseInt(document.documentElement.style.top || "0");
-      document.documentElement.style.position = "";
-      document.documentElement.style.top = "";
-      document.documentElement.style.width = "";
-      window.scrollTo(0, scrollY);
-    };
-  }, [open]);
 
   return (
     <div className="md:hidden block">
