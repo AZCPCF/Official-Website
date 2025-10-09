@@ -1,0 +1,84 @@
+---
+title: Tuples
+weight: 9
+---
+
+# Tuples
+
+A tuple is an ordered grouping of values. Tuples are useful for returning or destructuring multiple values without defining a struct.
+
+<br />
+
+## Tuple Literal
+
+Tuples are written using parentheses:
+
+```cyrus
+var t = (10, 20);
+```
+
+<br />
+
+You can access tuple members using numeric indices:
+
+```cyrus
+printf("%d\n", t.0); // 10
+printf("%d\n", t.1); // 20
+```
+
+<br />
+
+## Returning Tuples from Functions
+
+Functions can return multiple values by specifying a tuple type in the return position:
+
+```cyrus
+fn pair(x: int, y: int) (int, int) {
+    return (x, y);
+}
+```
+
+<br />
+
+## Tuple Destructuring
+
+Tuples can be destructured into variables directly:
+
+```cyrus
+fn main() {
+    var (x, y) = pair(10, 20);
+    printf("(%d, %d)\n", x, y);
+}
+```
+
+<br />
+
+## Const Tuple Destructuring
+
+Using `var` makes all destructured elements mutable.  
+Using `const` makes all of them immutable.
+
+```cyrus
+fn main() {
+    const (x, y) = (5, 6); // both x and y are immutable
+}
+```
+
+<br />
+
+## Mixing Declaration Forms
+
+Tuple destructuring respects normal variable declaration rules. Global destructuring is not allowed — tuples can only be destructured inside functions or local scopes.
+
+<br />
+
+## Nested Tuples
+
+Tuples can be nested:
+
+```cyrus
+fn main() {
+    var (x, (y, z)) = (1, (2, 3));
+    printf("%d %d %d\n", x, y, z); // 1 2 3
+}
+```
