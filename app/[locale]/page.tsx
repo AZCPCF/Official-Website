@@ -17,6 +17,7 @@ import {
   Shield,
 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
+import { Motion } from "@/components/motion";
 
 export default async function LandingPage() {
   const t = await getTranslations("HomePage");
@@ -84,108 +85,52 @@ export default async function LandingPage() {
                 {t("features.subtitle")}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">          
-              {/* Feature 1 */}
-              <div
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                className="bg-background rounded-lg p-6 shadow-xs border hover:shadow-md transition-shadow"
-              >
-                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Code className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">
-                  {t("features.cleanSyntax.title")}
-                </h3>
-                <p className="text-muted-foreground">
-                  {t("features.cleanSyntax.description")}
-                </p>
-              </div>
-
-              {/* Feature 2 */}
-              <div
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                className="bg-background rounded-lg p-6 shadow-xs border hover:shadow-md transition-shadow"
-              >
-                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Shield className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">
-                  {t("features.typeSystem.title")}
-                </h3>
-                <p className="text-muted-foreground">
-                  {t("features.typeSystem.description")}
-                </p>
-              </div>
-
-              {/* Feature 3 */}
-              <div
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                className="bg-background rounded-lg p-6 shadow-xs border hover:shadow-md transition-shadow"
-              >
-                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Globe className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">
-                  {t("features.crossPlatform.title")}
-                </h3>
-                <p className="text-muted-foreground">
-                  {t("features.crossPlatform.description")}
-                </p>
-              </div>
-
-              {/* Feature 4 */}
-              <div
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                className="bg-background rounded-lg p-6 shadow-xs border hover:shadow-md transition-shadow"
-              >
-                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Cpu className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">
-                  {t("features.concurrency.title")}
-                </h3>
-                <p className="text-muted-foreground">
-                  {t("features.concurrency.description")}
-                </p>
-              </div>
-
-              {/* Feature 5 */}
-              <div
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                className="bg-background rounded-lg p-6 shadow-xs border hover:shadow-md transition-shadow"
-              >
-                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Layers className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">
-                  {t("features.standardLibrary.title")}
-                </h3>
-                <p className="text-muted-foreground">
-                  {t("features.standardLibrary.description")}
-                </p>
-              </div>
-
-              {/* Feature 6 */}
-              <div
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                className="bg-background rounded-lg p-6 shadow-xs border hover:shadow-md transition-shadow"
-              >
-                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Github className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">
-                  {t("features.openSource.title")}
-                </h3>
-                <p className="text-muted-foreground">
-                  {t("features.openSource.description")}
-                </p>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: Code,
+                  key: "cleanSyntax",
+                },
+                {
+                  icon: Shield,
+                  key: "typeSystem",
+                },
+                {
+                  icon: Globe,
+                  key: "crossPlatform",
+                },
+                {
+                  icon: Cpu,
+                  key: "concurrency",
+                },
+                {
+                  icon: Layers,
+                  key: "standardLibrary",
+                },
+                {
+                  icon: Github,
+                  key: "openSource",
+                },
+              ].map(({ icon: Icon, key }, i) => (
+                <Motion
+                  initial={{ opacity: 0, y: 100 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 1, y: 100 }}
+                  viewport={{ once: true, amount: 0.8 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  className="bg-background rounded-lg p-6 shadow-xs border hover:shadow-lg transition-transform hover:scale-[107%]"
+                >
+                  <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                    <Icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">
+                    {t(`features.${key}.title`)}
+                  </h3>
+                  <p className="text-muted-foreground">
+                    {t(`features.${key}.description`)}
+                  </p>
+                </Motion>
+              ))}
             </div>
           </div>
         </section>
