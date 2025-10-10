@@ -22,6 +22,81 @@ import { Motion } from "@/components/motion";
 export default async function LandingPage() {
   const t = await getTranslations("HomePage");
 
+  const features = [
+    {
+      icon: <Code className="h-6 w-6 text-primary" />,
+      title: t("features.cleanSyntax.title"),
+      desc: t("features.cleanSyntax.description"),
+    },
+    {
+      icon: <Shield className="h-6 w-6 text-primary" />,
+      title: t("features.typeSystem.title"),
+      desc: t("features.typeSystem.description"),
+    },
+    {
+      icon: <Globe className="h-6 w-6 text-primary" />,
+      title: t("features.crossPlatform.title"),
+      desc: t("features.crossPlatform.description"),
+    },
+    {
+      icon: <Cpu className="h-6 w-6 text-primary" />,
+      title: t("features.concurrency.title"),
+      desc: t("features.concurrency.description"),
+    },
+    {
+      icon: <Layers className="h-6 w-6 text-primary" />,
+      title: t("features.standardLibrary.title"),
+      desc: t("features.standardLibrary.description"),
+    },
+    {
+      icon: <Github className="h-6 w-6 text-primary" />,
+      title: t("features.openSource.title"),
+      desc: t("features.openSource.description"),
+    },
+  ];
+
+  const community = [
+    {
+      icon: <Github className="h-12 w-12 mx-auto mb-4 text-primary" />,
+      title: t("community.github.title"),
+      desc: t("community.github.description"),
+      link: socialMedia.github,
+      button: t("community.github.button"),
+    },
+    {
+      icon: <MessageSquare className="h-12 w-12 mx-auto mb-4 text-primary" />,
+      title: t("community.discord.title"),
+      desc: t("community.discord.description"),
+      link: socialMedia.discord,
+      button: t("community.discord.button"),
+    },
+    {
+      icon: <Send className="h-12 w-12 mx-auto mb-4 text-primary" />,
+      title: t("community.telegram.title"),
+      desc: t("community.telegram.description"),
+      link: "https://t.me/cyrus_lang",
+      button: t("community.telegram.button"),
+    },
+  ];
+
+  const getStartedSteps = [
+    {
+      number: 1,
+      title: t("getStarted.steps.download.title"),
+      desc: t("getStarted.steps.download.description"),
+    },
+    {
+      number: 2,
+      title: t("getStarted.steps.install.title"),
+      desc: t("getStarted.steps.install.description"),
+    },
+    {
+      number: 3,
+      title: t("getStarted.steps.code.title"),
+      desc: t("getStarted.steps.code.description"),
+    },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -86,49 +161,20 @@ export default async function LandingPage() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: Code,
-                  key: "cleanSyntax",
-                },
-                {
-                  icon: Shield,
-                  key: "typeSystem",
-                },
-                {
-                  icon: Globe,
-                  key: "crossPlatform",
-                },
-                {
-                  icon: Cpu,
-                  key: "concurrency",
-                },
-                {
-                  icon: Layers,
-                  key: "standardLibrary",
-                },
-                {
-                  icon: Github,
-                  key: "openSource",
-                },
-              ].map(({ icon: Icon, key }, i) => (
+              {features.map((feature, index) => (
                 <Motion
-                  initial={{ opacity: 0, y: 100 }}
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 1, y: 100 }}
-                  viewport={{ once: true, amount: 0.8 }}
-                  transition={{ duration: 0.2, ease: "easeInOut" }}
-                  className="bg-background rounded-lg p-6 shadow-xs border hover:shadow-lg transition-transform hover:scale-[107%]"
+                  viewport={ {once: false, amount: 0.5 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="bg-background rounded-lg p-6 shadow-xs border hover:shadow-md transition-shadow"
                 >
                   <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    <Icon className="h-6 w-6 text-primary" />
+                    {feature.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-2">
-                    {t(`features.${key}.title`)}
-                  </h3>
-                  <p className="text-muted-foreground">
-                    {t(`features.${key}.description`)}
-                  </p>
+                  <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+                  <p className="text-muted-foreground">{feature.desc}</p>
                 </Motion>
               ))}
             </div>
@@ -159,49 +205,38 @@ export default async function LandingPage() {
                     {t("examples.tabs.httpServer")}
                   </TabsTrigger>
                 </TabsList>
-                <TabsContent value="hello" className="mt-6">
-                  <div>
-                    <pre className="font-mono text-sm">
-                      <CodeBlock
-                        disableBorder
-                        language="typescript"
-                      >{`import std::io;
+
+                {["hello", "concurrency", "data"].map((tab, idx) => (
+                  <TabsContent value={tab} key={tab} className="mt-6">
+                    <Motion
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={ {once: false, amount: 0.5 }}
+                      transition={{ duration: 0.3, delay: idx * 0.1 }}
+                    >
+                      <pre className="font-mono text-sm">
+                        <CodeBlock disableBorder language="typescript">
+                          {tab === "hello"
+                            ? `import std::io;
 
 fn main() {
   io::println("Hello, World!");
 }
 
-// A simple function
 fn greet(name: string): string {
   return io::format("Hello, {}", name);
 }
 
-// Using the function
 fn example() {
   var message = greet("Cyrus");
-  io::println(message); // Outputs: Hello, Cyrus!
-}`}</CodeBlock>
-                    </pre>
-                  </div>
-                </TabsContent>
-                <TabsContent value="concurrency" className="mt-6">
-                  <div>
-                    <pre className="font-mono text-sm">
-                      <CodeBlock disableBorder language="typescript">
-                        {t("examples.comingSoon")}
-                      </CodeBlock>
-                    </pre>
-                  </div>
-                </TabsContent>
-                <TabsContent value="data" className="mt-6">
-                  <div>
-                    <pre className="font-mono text-sm">
-                      <CodeBlock disableBorder language="typescript">
-                        {t("examples.comingSoon")}
-                      </CodeBlock>
-                    </pre>
-                  </div>
-                </TabsContent>
+  io::println(message);
+}`
+                            : t("examples.comingSoon")}
+                        </CodeBlock>
+                      </pre>
+                    </Motion>
+                  </TabsContent>
+                ))}
               </Tabs>
             </div>
           </div>
@@ -216,11 +251,17 @@ fn example() {
                   {t("why.title")}
                 </h2>
               </div>
-              <div className="bg-background rounded-lg p-8 shadow-xs border">
+              <Motion
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={ {once: false, amount: 0.5 }}
+                transition={{ duration: 0.4 }}
+                className="bg-background rounded-lg p-8 shadow-xs border"
+              >
                 <p className="text-lg mb-6">{t("why.paragraph1")}</p>
                 <p className="text-lg mb-6">{t("why.paragraph2")}</p>
                 <p className="text-lg">{t("why.paragraph3")}</p>
-              </div>
+              </Motion>
             </div>
           </div>
         </section>
@@ -239,39 +280,26 @@ fn example() {
             <div className="max-w-3xl mx-auto">
               <div className="bg-background rounded-lg p-8 shadow-xs border">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  <div className="text-center">
-                    <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                      <span className="font-bold text-primary">1</span>
-                    </div>
-                    <h3 className="font-bold mb-2">
-                      {t("getStarted.steps.download.title")}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {t("getStarted.steps.download.description")}
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                      <span className="font-bold text-primary">2</span>
-                    </div>
-                    <h3 className="font-bold mb-2">
-                      {t("getStarted.steps.install.title")}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {t("getStarted.steps.install.description")}
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                      <span className="font-bold text-primary">3</span>
-                    </div>
-                    <h3 className="font-bold mb-2">
-                      {t("getStarted.steps.code.title")}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {t("getStarted.steps.code.description")}
-                    </p>
-                  </div>
+                  {getStartedSteps.map((step, idx) => (
+                    <Motion
+                      key={step.number}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={ {once: false, amount: 0.5 }}
+                      transition={{ duration: 0.3, delay: idx * 0.1 }}
+                      className="text-center"
+                    >
+                      <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                        <span className="font-bold text-primary">
+                          {step.number}
+                        </span>
+                      </div>
+                      <h3 className="font-bold mb-2">{step.title}</h3>
+                      <p className="text-sm text-muted-foreground">
+                        {step.desc}
+                      </p>
+                    </Motion>
+                  ))}
                 </div>
                 <div className="mt-8 text-center">
                   <Link href="/docs/getting-started/install-compiler-binary">
@@ -279,7 +307,6 @@ fn example() {
                       {t("getStarted.installButton")}
                     </Button>
                   </Link>
-
                   <p className="mt-4 text-sm text-muted-foreground">
                     {t("getStarted.availability")}
                   </p>
@@ -301,66 +328,27 @@ fn example() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                className="bg-background rounded-lg p-6 shadow-xs border text-center hover:shadow-md transition-shadow"
-              >
-                <Github className="h-12 w-12 mx-auto mb-4 text-primary" />
-                <h3 className="text-xl font-bold mb-2">
-                  {t("community.github.title")}
-                </h3>
-                <p className="text-muted-foreground mb-4">
-                  {t("community.github.description")}
-                </p>
-                <Link href={socialMedia.github} passHref legacyBehavior>
-                  <Button variant="outline" className="w-full" asChild>
-                    <a target="_blank" rel="noopener noreferrer">
-                      {t("community.github.button")}
-                    </a>
-                  </Button>
-                </Link>
-              </div>
-              <div
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                className="bg-background rounded-lg p-6 shadow-xs border text-center hover:shadow-md transition-shadow"
-              >
-                <MessageSquare className="h-12 w-12 mx-auto mb-4 text-primary" />
-                <h3 className="text-xl font-bold mb-2">
-                  {t("community.discord.title")}
-                </h3>
-                <p className="text-muted-foreground mb-4">
-                  {t("community.discord.description")}
-                </p>
-                <Link href={socialMedia.discord} passHref legacyBehavior>
-                  <Button variant="outline" className="w-full" asChild>
-                    <a target="_blank" rel="noopener noreferrer">
-                      {t("community.discord.button")}
-                    </a>
-                  </Button>
-                </Link>
-              </div>
-              <div
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                className="bg-background rounded-lg p-6 shadow-xs border text-center hover:shadow-md transition-shadow"
-              >
-                <Send className="h-12 w-12 mx-auto mb-4 text-primary" />
-                <h3 className="text-xl font-bold mb-2">
-                  {t("community.telegram.title")}
-                </h3>
-                <p className="text-muted-foreground mb-4">
-                  {t("community.telegram.description")}
-                </p>
-                <Link href="https://t.me/cyrus_lang" passHref legacyBehavior>
-                  <Button variant="outline" className="w-full" asChild>
-                    <a target="_blank" rel="noopener noreferrer">
-                      {t("community.telegram.button")}
-                    </a>
-                  </Button>
-                </Link>
-              </div>
+              {community.map((item, idx) => (
+                <Motion
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={ {once: false, amount: 0.5 }}
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  className="bg-background rounded-lg p-6 shadow-xs border text-center hover:shadow-md transition-shadow"
+                >
+                  {item.icon}
+                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                  <p className="text-muted-foreground mb-4">{item.desc}</p>
+                  <Link href={item.link} passHref legacyBehavior>
+                    <Button variant="outline" className="w-full" asChild>
+                      <a target="_blank" rel="noopener noreferrer">
+                        {item.button}
+                      </a>
+                    </Button>
+                  </Link>
+                </Motion>
+              ))}
             </div>
           </div>
         </section>
@@ -368,7 +356,13 @@ fn example() {
         {/* Newsletter Section */}
         <section className="py-20">
           <div className="container">
-            <div className="max-w-3xl mx-auto bg-primary/5 rounded-lg p-8 border border-primary/20">
+            <Motion
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={ {once: false, amount: 0.5 }}
+              transition={{ duration: 0.4 }}
+              className="max-w-3xl mx-auto bg-primary/5 rounded-lg p-8 border border-primary/20"
+            >
               <div className="text-center mb-8">
                 <h2 className="text-2xl md:text-3xl font-bold mb-2">
                   {t("newsletter.title")}
@@ -385,7 +379,7 @@ fn example() {
                 />
                 <Button className="sm:w-auto">{t("newsletter.button")}</Button>
               </form>
-            </div>
+            </Motion>
           </div>
         </section>
       </main>
