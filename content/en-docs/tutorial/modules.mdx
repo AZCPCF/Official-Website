@@ -16,11 +16,11 @@ In Cyrus, **files are considered modules**.
 Module files must:
 
 - Use **snake_case** names
-- Have the `.cyr` extension
+- Have the `.cyrus` extension
 
-Example: `user_utils.cyr` defines a module named `user_utils`.
+Example: `user_utils.cyrus` defines a module named `user_utils`.
 
-Inside user_utils.cyr:
+Inside `user_utils.cyrus`:
 
 ```cyrus
 pub fn greet(name: str) {
@@ -74,7 +74,7 @@ import (
 );
 
 fn main() {
-  #sum = math_ops::add(3, 5);
+  var sum = math_ops::add(3, 5);
   greet("Bob");
 }
 ```
@@ -101,6 +101,6 @@ fn main() {
 import math_ops as my_math;
 
 fn main() {
-  #result = my_math::mul(4, 6);
+  var result = my_math::mul(4, 6);
 }
 ```

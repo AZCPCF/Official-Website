@@ -46,7 +46,7 @@ for (initializer; condition; increment) {
 ### Classic Counter Loop
 
 ```cyrus
-for (#i = 0; i < 10; i++) {
+for (var i = 0; i < 10; i++) {
     // executes 10 times: i = 0..9
 }
 ```
@@ -56,7 +56,7 @@ for (#i = 0; i < 10; i++) {
 ### Manual Increment Loop
 
 ```cyrus
-for (#i = 0; i < 10;) {
+for (var i = 0; i < 10;) {
     // executes while i < 10
     // you must manually increment i inside the body
     i++;
@@ -70,7 +70,7 @@ Here, the increment part is omitted. The loop continues until the condition beco
 ### Conditionless Loop with Initializer
 
 ```cyrus
-for (#i = 0;) {
+for (var i = 0;) {
     // infinite unless you break manually
     // no condition, no increment
     if (i > 5) {
@@ -80,7 +80,7 @@ for (#i = 0;) {
 }
 ```
 
-Only the initializer is given. Since there’s no condition, the loop is infinite unless explicitly terminated with break or return.
+Only the initializer is given. Since there's no condition, the loop is infinite unless explicitly terminated with break or return.
 
 <br />
 

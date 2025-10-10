@@ -28,7 +28,7 @@ struct User {
 Structs can be initialized using **struct literals**:
 
 ```cyrus
-#user = User {
+var user = User {
     name: "Cyrus",
     age: 2500,
     king: true
@@ -127,8 +127,8 @@ Note: Attempting to get a reference (&self) from a const-lvalue is not allowed. 
 In Cyrus, you can have pointers to structs. When accessing fields or calling methods through a pointer, you can use **fat pointers** (fat arrows) which **automatically dereference** the pointer.
 
 ```cyrus
-#user = User { name: "Cyrus", age: 2500 }; 
-#ptr = &user;
+var user = User { name: "Cyrus", age: 2500 }; 
+var ptr = &user;
 
 ptr->name; // Output: Cyrus
 ptr->age; // Output: 2500
@@ -149,7 +149,7 @@ fn main() {
         age: uint;
     }
 
-    #user = User { name: "Cyrus", age: 2500 }; 
+    var user = User { name: "Cyrus", age: 2500 }; 
     libc::printf("%s is %d years old.\n", user.name, user.age);
 }
 ```
@@ -162,7 +162,7 @@ Unnamed structs are struct values declared inline without defining a named type.
 
 ```cyrus
 fn main() {
-    #state = struct {
+    var state = struct {
         name = "Cyrus",
         counter = 0,
     };
@@ -181,7 +181,7 @@ Field types are inferred automatically.
 You can also specify field types explicitly:
 
 ```cyrus
-#state = struct {
+var state = struct {
     name: char* = "Cyrus",
     counter: int = 0,
 };
@@ -196,13 +196,13 @@ Note: Unnamed structs cannot define methods.
 Unnamed structs are not limited to local scope. They can also be declared globally and accessed across functions (if marked public).
 
 ```cyrus
-pub config = const struct {
+pub const CONFIG = struct {
     host = "127.0.0.1",
     port = 8080
 };
 
 fn main() {
-    printf("host: %s\n", config.host);
-    printf("port: %d\n", config.port);
+    printf("host: %s\n", CONFIG.host);
+    printf("port: %d\n", CONFIG.port);
 }
 ```

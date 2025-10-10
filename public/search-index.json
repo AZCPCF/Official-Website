@@ -7,7 +7,7 @@
     "searchable": "project configuration coming soon...... coming soon...",
     "language": "en",
     "category": "tutorial",
-    "weight": 18
+    "weight": 19
   },
   {
     "id": "en-tutorial-inline_assembly",
@@ -17,7 +17,7 @@
     "searchable": "inline assembly coming soon...... coming soon...",
     "language": "en",
     "category": "tutorial",
-    "weight": 17
+    "weight": 18
   },
   {
     "id": "en-tutorial-FFI",
@@ -27,7 +27,7 @@
     "searchable": "ffi coming soon...... coming soon...",
     "language": "en",
     "category": "tutorial",
-    "weight": 16
+    "weight": 17
   },
   {
     "id": "en-tutorial-macros",
@@ -37,7 +37,7 @@
     "searchable": "macros coming soon...... coming soon...",
     "language": "en",
     "category": "tutorial",
-    "weight": 15
+    "weight": 16
   },
   {
     "id": "en-tutorial-reflection",
@@ -47,7 +47,7 @@
     "searchable": "reflection coming soon...... coming soon...",
     "language": "en",
     "category": "tutorial",
-    "weight": 14
+    "weight": 15
   },
   {
     "id": "en-tutorial-memory_management",
@@ -57,7 +57,7 @@
     "searchable": "memory management coming soon...... coming soon...",
     "language": "en",
     "category": "tutorial",
-    "weight": 13
+    "weight": 14
   },
   {
     "id": "en-tutorial-error_handling",
@@ -67,7 +67,7 @@
     "searchable": "error handling coming soon...... coming soon...",
     "language": "en",
     "category": "tutorial",
-    "weight": 12
+    "weight": 13
   },
   {
     "id": "en-tutorial-modules",
@@ -77,7 +77,7 @@
     "searchable": "modules cyrus features a powerful module system with incremental compilation and a strong module cache. modules allow code organization, reusability, and proper scoping. # modules cyrus features a **powerful module system** with **incremental compilation** and a **strong module cache**. modules allow code organization, reusability, and proper scoping. <br /> ## module files in cyrus, **files are considered modules**. module files must: - use **snake_case** names\n- have the .cyr extension example: user_utils.cyr defines a module named user_utils. inside user_utils.cyr: <br /> ## importing modules to use a module in another file, you import it. notes: - the entry file (the one you compile as main) cannot import other modules; it is considered the root.\n- only publicly exported symbols (declared with pub) are visible outside their module. <br /> ## importing single symbols you can import only a single symbol instead of the whole module: <br /> ## importing multiple modules for convenience, cyrus supports grouped imports: <br /> ## renaming imported symbols renaming avoids conflicts or makes names clearer.    - renaming a symbol - renaming a module",
     "language": "en",
     "category": "tutorial",
-    "weight": 11
+    "weight": 12
   },
   {
     "id": "en-tutorial-generic_types",
@@ -85,6 +85,16 @@
     "path": "/en/docs/tutorial/generic_types",
     "content": "Coming soon......",
     "searchable": "generic types coming soon...... coming soon...",
+    "language": "en",
+    "category": "tutorial",
+    "weight": 11
+  },
+  {
+    "id": "en-tutorial-tuples",
+    "title": "Tuples",
+    "path": "/en/docs/tutorial/tuples",
+    "content": "A tuple is an ordered grouping of values. Tuples are useful for returning or destructuring multiple values without defining a struct.",
+    "searchable": "tuples a tuple is an ordered grouping of values. tuples are useful for returning or destructuring multiple values without defining a struct. # tuples a tuple is an ordered grouping of values. tuples are useful for returning or destructuring multiple values without defining a struct. <br /> ## tuple literal tuples are written using parentheses: <br /> you can access tuple members using numeric indices: <br /> ## returning tuples from functions functions can return multiple values by specifying a tuple type in the return position: <br /> ## tuple destructuring tuples can be destructured into variables directly: <br /> ## const tuple destructuring using var makes all destructured elements mutable.  \nusing const makes all of them immutable. <br /> ## mixing declaration forms tuple destructuring respects normal variable declaration rules. global destructuring is not allowed — tuples can only be destructured inside functions or local scopes. <br /> ## nested tuples tuples can be nested:",
     "language": "en",
     "category": "tutorial",
     "weight": 10
@@ -294,7 +304,7 @@
     "title": "Variables",
     "path": "/en/docs/tutorial/variables",
     "content": "Global variables are declared at top-level. They may be private (no pub) or public (pub). Use var for mutable globals, const for immutable globals, and extern to declare symbols provided externally (no initializer).",
-    "searchable": "variables global variables are declared at top-level. they may be private (no pub) or public (pub). use var for mutable globals, const for immutable globals, and extern to declare symbols provided externally (no initializer). # global variables global variables are declared at top-level. they may be **private** (no pub) or **public** (pub). use var for mutable globals, const for immutable globals, and extern to declare symbols provided externally (no initializer). * var — mutable global (initializer optional; omitted ⇒ zero-initialized).\n* const — immutable global (must be initialized at declaration).\n* extern — declares a symbol provided by the runtime/linker; no initializer is allowed. can be combined with pub.\n* optionaltype — type annotation (optional if the compiler can infer the type). examples: reassignment rules: --- ## local variables local variables inside functions are declared using var or const. examples: --- ## zero initialization variables (both globals and locals) declared without an initializer are automatically zero-initialized: --- if you want, i can also add a short migration note clarifying the old #name syntax versus the new top-level forms.",
+    "searchable": "variables global variables are declared at top-level. they may be private (no pub) or public (pub). use var for mutable globals, const for immutable globals, and extern to declare symbols provided externally (no initializer). # global variables global variables are declared at top-level. they may be **private** (no pub) or **public** (pub). use var for mutable globals, const for immutable globals, and extern to declare symbols provided externally (no initializer). * **var**: mutable global (initializer optional; zero-initialized if omitted).\n* **const**: immutable global (must be initialized at declaration).\n* **extern**: declares a symbol provided by the runtime/linker. examples: reassignment rules: --- ## local variables local variables inside functions are declared using var or const. examples: --- ## zero initialization variables (both globals and locals) declared without an initializer are automatically zero-initialized:",
     "language": "en",
     "category": "tutorial",
     "weight": 4

@@ -14,8 +14,8 @@ Cyrus features a **strong and expressive type system**. The compiler performs **
 If a type can be safely converted to another type without losing information, Cyrus will perform the conversion automatically.  
 
 ```cyrus
-#a: int32 = 42;
-#b: int64 = a; // Implicit cast from int32 to int64
+var a: int32 = 42;
+var b: int64 = a; // Implicit cast from int32 to int64
 ```
 
 - `int32` (32-bit signed integer) can always fit into `int64` (64-bit signed integer).  
@@ -29,8 +29,8 @@ If a type can be safely converted to another type without losing information, Cy
 If a conversion **could be unsafe**, the compiler requires an **explicit cast** using the `cast` keyword.
 
 ```cyrus
-#u: uint32 = 10;
-#i: int64 = cast(int64, u); // Explicit unsafe cast from uint32 to int64
+var u: uint32 = 10;
+var i: int64 = cast(int64, u); // Explicit unsafe cast from uint32 to int64
 ```
 
 <br />
