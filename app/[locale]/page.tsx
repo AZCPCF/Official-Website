@@ -254,7 +254,7 @@ fn example() {
               <Motion
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={ {once: false, amount: 0.8 }}
+                viewport={ {once: false, amount: 0.5 }}
                 transition={{ duration: 0.4 }}
                 className="bg-background rounded-lg p-8 shadow-xs border"
               >
