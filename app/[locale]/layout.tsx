@@ -7,7 +7,6 @@ import { routing } from "@/i18n/routing";
 import { getMessages } from "next-intl/server";
 import dynamic from "next/dynamic";
 import "./globals.css";
-import { ToastProvider } from "@/components/ui/toast";
 import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -45,11 +44,9 @@ export default async function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextIntlClientProvider messages={messages}>
-            <ToastProvider>
               <Toaster />
               {/* Client-side wrapper handles both splash + top loading bar */}
               <ClientAppWrapper>{children}</ClientAppWrapper>
-            </ToastProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
