@@ -6,6 +6,10 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import { useTheme } from "next-themes";
 
+// ✅ Import both themes statically
+import "@/styles/panda-syntax-dark.css";
+import "@/styles/panda-syntax-light.css";
+
 interface CodeBlockProps {
   children: string;
   language?: string;
@@ -19,30 +23,13 @@ export default function CodeBlock({
 }: CodeBlockProps) {
   const codeRef = useRef<HTMLElement | null>(null);
   const [isCopying, setIsCopying] = useState(false);
-  const { theme } = useTheme();
+  const { theme } = useTheme(); // "light" | "dark"
+
   useEffect(() => {
-    const lightHref = "/css/hljs/panda-syntax-light.min.css";
-    const darkHref = "/css/hljs/panda-syntax-dark.min.css";
-    const linkId = "hljs-theme";
-
-    let link = document.getElementById(linkId) as HTMLLinkElement | null;
-
-    if (!link) {
-      link = document.createElement("link");
-      link.id = linkId;
-      link.rel = "stylesheet";
-      document.head.appendChild(link);
-    }
-
-    link.href = theme === "light" ? lightHref : darkHref;
-
     hljs.highlightAll();
   }, [theme, children]);
 
-  const getLanguage = (lang: string) => {
-    if (lang === "cyrus") return "typescript";
-    return lang;
-  };
+  const getLanguage = (lang: string) => (lang === "cyrus" ? "typescript" : lang);
 
   const handleCopy = async () => {
     if (!codeRef.current) return;
@@ -64,18 +51,20 @@ export default function CodeBlock({
           {isCopying ? "Copying..." : "Copy"}
         </Button>
       </div>
-      <pre
-        className={`mt-0! mb-0! rounded-lg text-left ${disableBorder ? "" : "border"}`}
-        dir="ltr"
-      >
-        <code
-          ref={codeRef}
-          className={`language-${getLanguage(language)} text-sm md:text-base text-left rounded-lg`}
+      <div className={`${theme === "light" ? "hljs-light" : "hljs-dark"}`}>
+        <pre
+          className={`mt-0! mb-0! rounded-lg text-left ${disableBorder ? "" : "border"}`}
           dir="ltr"
         >
-          {children}
-        </code>
-      </pre>
+          <code
+            ref={codeRef}
+            className={`language-${getLanguage(language)} text-sm md:text-base text-left rounded-lg`}
+            dir="ltr"
+          >
+            {children}
+          </code>
+        </pre>
+      </div>
     </div>
   );
 }
