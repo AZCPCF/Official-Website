@@ -2,26 +2,45 @@
 
 import { useEffect, useRef, useState } from "react";
 import hljs from "highlight.js";
-import "highlight.js/styles/base16/bright.css";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
+import { useTheme } from "next-themes";
+
+interface CodeBlockProps {
+  children: string;
+  language?: string;
+  disableBorder?: boolean;
+}
 
 export default function CodeBlock({
   children,
   language = "typescript",
   disableBorder = false,
-}) {
-  const codeRef = useRef(null);
+}: CodeBlockProps) {
+  const codeRef = useRef<HTMLElement | null>(null);
   const [isCopying, setIsCopying] = useState(false);
-
+  const { theme } = useTheme();
   useEffect(() => {
-    hljs.highlightAll();
-  }, []);
+    const lightHref = "/css/hljs/panda-syntax-light.min.css";
+    const darkHref = "/css/hljs/panda-syntax-dark.min.css";
+    const linkId = "hljs-theme";
 
-  const getLanguage = (lang) => {
-    if (lang === "cyrus") {
-      return "typescript";
+    let link = document.getElementById(linkId) as HTMLLinkElement | null;
+
+    if (!link) {
+      link = document.createElement("link");
+      link.id = linkId;
+      link.rel = "stylesheet";
+      document.head.appendChild(link);
     }
+
+    link.href = theme === "light" ? lightHref : darkHref;
+
+    hljs.highlightAll();
+  }, [theme, children]);
+
+  const getLanguage = (lang: string) => {
+    if (lang === "cyrus") return "typescript";
     return lang;
   };
 
@@ -31,7 +50,7 @@ export default function CodeBlock({
       setIsCopying(true);
       await navigator.clipboard.writeText(codeRef.current.innerText || "");
       toast({ title: "Copied", description: "Code copied to clipboard." });
-    } catch (e) {
+    } catch {
       toast({ title: "Copy failed", description: "Could not copy code." });
     } finally {
       setIsCopying(false);
@@ -46,16 +65,12 @@ export default function CodeBlock({
         </Button>
       </div>
       <pre
-        className={`mt-0! mb-0! rounded-lg text-left ${
-          disableBorder ? "" : "border"
-        }`}
+        className={`mt-0! mb-0! rounded-lg text-left ${disableBorder ? "" : "border"}`}
         dir="ltr"
       >
         <code
           ref={codeRef}
-          className={`language-${getLanguage(
-            language
-          )} text-sm md:text-base text-left rounded-lg`}
+          className={`language-${getLanguage(language)} text-sm md:text-base text-left rounded-lg`}
           dir="ltr"
         >
           {children}
