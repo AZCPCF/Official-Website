@@ -1,16 +1,32 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useEffect, useState, ReactNode } from "react";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+
+import LogoDark from "@/app/assets/logo-dark.png";
+import LogoLight from "@/app/assets/logo-light.png";
 
 interface SplashScreenProps {
-  logo: ReactNode;
-  duration?: number; // ms for progress bar
-  fadeOutDuration?: number; // ms for fade-out
+  duration?: number;
+  fadeOutDuration?: number;
 }
+export function Logo() {
+  const t = useTranslations("Header.logo");
 
+  return (
+    <>
+      <Image src={LogoDark} className="dark:block hidden w-24" alt={t("alt")} />
+      <Image
+        src={LogoLight}
+        className="dark:hidden block w-24"
+        alt={t("altLight")}
+      />
+    </>
+  );
+}
 export default function SplashScreen({
-  logo,
   duration = 2000,
   fadeOutDuration = 500,
 }: SplashScreenProps) {
@@ -43,7 +59,9 @@ export default function SplashScreen({
         `[transition-duration:${fadeOutDuration}ms]`
       )}
     >
-      <div className="mb-4">{logo}</div>
+      <div className="mb-4">
+        <Logo />
+      </div>
       <div className="w-32 h-1 bg-gray-400 rounded overflow-hidden">
         <div
           className="h-full bg-gray-100 transition-all duration-150 ease-linear"

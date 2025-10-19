@@ -1,10 +1,10 @@
-import { Code, Github } from "lucide-react";
-import socialMedia from "@/content/social_media.json";
-import { useTranslations } from "next-intl";
+import socialMedia from "@/content/social-media";
 import { Link } from "@/i18n/navigation";
+import { Code, Github } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
-export default function Footer() {
-  const t = useTranslations("Footer");
+export default async function Footer() {
+  const t = await getTranslations("Footer");
 
   return (
     <footer className="bg-muted py-12 border-t">

@@ -8,9 +8,13 @@ import { Link } from "@/i18n/navigation";
 import { X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRef, useState } from "react";
-import { Sidebar, SidebarProps } from "../sidebar";
 import Breadcrumb from "./breadcrumb";
-export default function MobileSidebar({ navigationItems }: SidebarProps) {
+import { Sidebar, SidebarProps } from "../sidebar";
+export default function MobileSidebar({
+  navigationItems,
+  title,
+  pathname,
+}: SidebarProps) {
   const [open, setOpen] = useState(false);
   const t = useTranslations("Docs");
   const sheetTriggerRef = useRef<HTMLButtonElement | null>(null);
@@ -19,7 +23,7 @@ export default function MobileSidebar({ navigationItems }: SidebarProps) {
     <div className="md:hidden block">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <Breadcrumb onClick={() => setOpen(true)} />
+          <Breadcrumb onOpenSidebar={() => setOpen(true)} title={title!!} />
         </SheetTrigger>
         <SheetContent
           side="left"
@@ -50,6 +54,7 @@ export default function MobileSidebar({ navigationItems }: SidebarProps) {
           <ScrollArea className="flex-1">
             {/* Pass close callback to Sidebar */}
             <Sidebar
+              pathname={pathname}
               navigationItems={navigationItems}
               clickTrigger={() => {
                 sheetTriggerRef.current?.click();

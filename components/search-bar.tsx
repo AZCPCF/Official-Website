@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useTranslations, useLocale } from "next-intl";
 import Fuse from "fuse.js";
+import { Link } from "@/i18n/navigation";
 
 interface SearchResult {
   id: string;
@@ -125,12 +126,14 @@ export default function SearchBar() {
             hover:shadow-md hover:-translate-y-[2px] 
             hover:bg-accent/40 dark:hover:bg-accent/30"
                 >
-                  <a
-                    href={result.path}
+                  <Link
+                    href={result.path.replace(/^\/(en|fa)(\/|$)/, "/")}
                     className="block no-underline hover:no-underline focus:no-underline"
                   >
                     <div
-                      className={`flex items-center justify-between ${locale === "fa" ? "flex-row-reverse text-right" : ""}`}
+                      className={`flex items-center justify-between ${
+                        locale === "fa" ? "flex-row-reverse text-right" : ""
+                      }`}
                     >
                       {locale === "fa" ? (
                         <>
@@ -154,7 +157,9 @@ export default function SearchBar() {
                     </div>
 
                     <p
-                      className={`text-sm text-muted-foreground mt-2 line-clamp-2 ${locale === "fa" ? "text-right" : ""}`}
+                      className={`text-sm text-muted-foreground mt-2 line-clamp-2 ${
+                        locale === "fa" ? "text-right" : ""
+                      }`}
                     >
                       {result.content}
                     </p>
@@ -162,12 +167,16 @@ export default function SearchBar() {
                     <div
                       className={`flex items-center gap-2 mt-3 text-sm text-primary/80 
                           group-hover:text-primary transition-colors duration-200
-                          ${locale === "fa" ? "flex-row-reverse justify-end" : ""}`}
+                          ${
+                            locale === "fa"
+                              ? "flex-row-reverse justify-end"
+                              : ""
+                          }`}
                     >
                       <ExternalLink className="h-4 w-4" />
                       {t("search.goToPage") || "Go to page"}
                     </div>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

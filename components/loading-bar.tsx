@@ -4,15 +4,8 @@ import { usePathname } from "next/navigation";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { LoadingBarContainer, useLoadingBar } from "react-top-loading-bar";
 import { Motion } from "./motion";
-import ClientSplashWrapper from "./splash-screen-client-wrapper";
 
-interface AppLoadingWrapperProps {
-  children: ReactNode;
-}
-
-export default function AppLoadingWrapper({
-  children,
-}: AppLoadingWrapperProps) {
+export default function AppLoadingWrapper() {
   const [showLoadingBar, setShowLoadingBar] = useState(false);
 
   return (
@@ -20,24 +13,17 @@ export default function AppLoadingWrapper({
       <InnerApp
         showLoadingBar={showLoadingBar}
         setShowLoadingBar={setShowLoadingBar}
-      >
-        {children}
-      </InnerApp>
+      />
     </LoadingBarContainer>
   );
 }
 
 interface InnerAppProps {
-  children: ReactNode;
   showLoadingBar: boolean;
   setShowLoadingBar: (val: boolean) => void;
 }
 
-function InnerApp({
-  children,
-  showLoadingBar,
-  setShowLoadingBar,
-}: InnerAppProps) {
+function InnerApp({ showLoadingBar, setShowLoadingBar }: InnerAppProps) {
   const { start, complete } = useLoadingBar();
   const pathname = usePathname();
   const firstLoad = useRef(true);
@@ -62,14 +48,10 @@ function InnerApp({
   }, [pathname, showLoadingBar, start, complete]);
 
   return (
-    <ClientSplashWrapper>
-      <Motion
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        {children}
-      </Motion>
-    </ClientSplashWrapper>
+    <Motion
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    />
   );
 }
