@@ -1,59 +1,40 @@
-import Image from "next/image";
-import { Participant } from "@/app/types/participant";
-import { useTranslations } from "next-intl";
-import { useLocale } from "next-intl";
+import { TranslationProps } from "@/types/translation";
+import { contributorsSocialIconsArray } from "@/content/contributors/contributors-social-icons";
+import { Contributor } from "@/content/contributors/type";
 import { Link } from "@/i18n/navigation";
+import { getLocale } from "next-intl/server";
+import Image from "next/image";
 
-export default function Box({ participant }: { participant: Participant }) {
-  const t = useTranslations("Contributors.roles");
-  const locale = useLocale();
-
+export const ContributorCard = async ({
+  contributor,
+  t,
+}: TranslationProps & {
+  contributor: Contributor;
+}) => {
   const getTranslatedTitle = (title: string) => {
-    if (title === "Creator") return t("creator");
-    if (title === "Contributor") return t("contributor");
+    if (title === "Creator") return t("roles.creator");
+    if (title === "Contributor") return t("roles.contributor");
     return title;
   };
+  const locale = await getLocale();
 
   const getDisplayName = () =>
-    locale === "fa" && participant.nameFa
-      ? participant.nameFa
-      : participant.name;
-
-  const socialIcons = [
-    {
-      key: "github",
-      url: participant.github,
-      icon: "/participants/github.svg",
-    },
-    {
-      key: "mastodon",
-      url: participant.mastodon,
-      icon: "/participants/mastodon.svg",
-    },
-    {
-      key: "daramet",
-      url: participant.daramet,
-      icon: "/participants/daramet.svg",
-    },
-    {
-      key: "telegram",
-      url: participant.telegram,
-      icon: "/participants/telegram.svg",
-    },
-  ];
+    locale === "fa" && contributor.nameFa
+      ? contributor.nameFa
+      : contributor.name;
 
   return (
     <div className="rounded-2xl pt-5 px-3 border hover:scale-105 duration-300 shadow-sm hover:shadow-md transition-all">
       <div className="flex flex-col items-center w-full gap-2 mb-4">
         <div className="text-xl font-bold">{getDisplayName()}</div>
         <div className="text-sm text-muted-foreground">
-          {getTranslatedTitle(participant.title)}
+          {getTranslatedTitle(contributor.title)}
         </div>
       </div>
 
       <div className="flex justify-center items-center w-full h-[400px] sm:h-[300px] relative overflow-hidden rounded-lg">
         <Image
-          src={participant.picture}
+          src={contributor.picture}
           alt={getDisplayName()}
           fill
           className="object-cover object-center transition-transform duration-300 hover:scale-105"
@@ -61,7 +42,7 @@ export default function Box({ participant }: { participant: Participant }) {
       </div>
 
       <div className="flex flex-row justify-evenly items-center gap-2 mt-3 pb-2">
-        {socialIcons.map(
+        {contributorsSocialIconsArray(contributor).map(
           (item) =>
             item.url && (
               <Link
@@ -82,4 +63,4 @@ export default function Box({ participant }: { participant: Participant }) {
       </div>
     </div>
   );
-}
+};

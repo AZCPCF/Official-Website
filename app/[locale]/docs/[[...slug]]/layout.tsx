@@ -1,12 +1,13 @@
-import { DocNavItem } from "@/app/types/doc_nav_item";
 import ClientSidebarWrapper from "@/components/docs/client_sidebar_wrapper";
-import Header from "@/components/header";
+import Layout from "@/components/layout";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { isLocaleRTL } from "@/hooks/use-locale";
+import { getBreadcrumbTitle } from "@/lib/get-breadcrumb-title";
+import { getServerPathname } from "@/lib/get-server-pathname";
+// import { getServerPathname } from "@/lib/get-server-pathname";
 import { cn } from "@/lib/utils";
 import { getLocale } from "next-intl/server";
 import type React from "react";
-import { getDocsNavigation } from "./collector";
 
 export default async function DocsLayout({
   children,
@@ -15,17 +16,14 @@ export default async function DocsLayout({
 }) {
   const locale = await getLocale();
   const isRTL = isLocaleRTL(locale);
-
-  const navigationItems: DocNavItem[] = await getDocsNavigation(
-    undefined,
-    undefined,
-    locale
-  );
-
+  
+  const pathname = getServerPathname();
+  const { navigationItems } = await getBreadcrumbTitle(pathname);
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header className="docs-header" navigationItems={navigationItems} />
-
+    <Layout
+      className="flex flex-col min-h-screen"
+      header={{ className: "docs-header", pathname }}
+    >
       <SidebarProvider>
         <div className="flex flex-1 rtl">
           <div
@@ -50,6 +48,6 @@ export default async function DocsLayout({
       >
         {children}
       </div>
-    </div>
+    </Layout>
   );
 }

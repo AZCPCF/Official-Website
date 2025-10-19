@@ -1,13 +1,14 @@
-import type React from "react";
-import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { notFound } from "next/navigation";
-import { routing } from "@/i18n/routing";
-import { getMessages } from "next-intl/server";
-import dynamic from "next/dynamic";
-import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { routing } from "@/i18n/routing";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { Inter } from "next/font/google";
+import { notFound } from "next/navigation";
+import type React from "react";
+import "./globals.css";
+// import SplashScreen from "@/components/splash-bar";
+// import AppLoadingWrapper from "@/components/loading-bar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,12 +16,6 @@ export const metadata = {
   title: "Cyrus Programming Language",
   description: "A programming language for Aliens.",
 };
-
-// dynamically import client wrapper for splash + top loading bar
-const ClientAppWrapper = dynamic(
-  () => import("@/components/app-loading-wrapper"),
-  { ssr: false }
-);
 
 export default async function RootLayout({
   children,
@@ -44,9 +39,11 @@ export default async function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextIntlClientProvider messages={messages}>
-              <Toaster />
-              {/* Client-side wrapper handles both splash + top loading bar */}
-              <ClientAppWrapper>{children}</ClientAppWrapper>
+            {/* <SplashScreen /> */}
+            {/* <AppLoadingWrapper /> */}
+            <Toaster />
+            {/* Client-side wrapper handles both splash + top loading bar */}
+            {children}
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
