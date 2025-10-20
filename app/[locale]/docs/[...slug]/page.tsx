@@ -1,15 +1,15 @@
-import MDXContent from "@/components/mdx-content";
-import { getMdxData } from "@/lib/get-mdx-data";
-import { getAllDocPaths, getDocPath } from "@/lib/get-docs-path";
-import { redirect } from "next/navigation";
-import { locales } from "@/i18n/routing";
-
-export const DOCS_DEFAULT_PAGE = "/docs/getting-started/introduction";
+import MDXContent from '@/components/mdx-content';
+import { locales } from '@/i18n/routing';
+import { getAllDocPaths, getDocPath } from '@/lib/get-docs-path';
+import { getMdxData } from '@/lib/get-mdx-data';
 
 interface ShowDocumentPageProps {
   params: { slug?: string[] };
   searchParams?: { locale?: string };
 }
+
+export const dynamic = 'force-static';
+
 export async function generateStaticParams() {
   const allPaths: Array<{ slug: string[] }> = [];
 
@@ -23,15 +23,9 @@ export async function generateStaticParams() {
   return allPaths;
 }
 
-export default async function ShowDocumentPage({
-  params,
-  searchParams,
-}: ShowDocumentPageProps) {
+export default async function ShowDocumentPage({ params, searchParams }: ShowDocumentPageProps) {
   const slug = params.slug ?? [];
-  const locale = searchParams?.locale ?? "en";
-  if (slug.length === 0) {
-    redirect(DOCS_DEFAULT_PAGE);
-  }
+  const locale = searchParams?.locale ?? 'en';
 
   const filePath = await getDocPath(slug, locale);
   if (!filePath) {
@@ -40,14 +34,14 @@ export default async function ShowDocumentPage({
 
   try {
     const { content } = await getMdxData(filePath);
-    const relativePath = filePath.replace(`${process.cwd()}/`, "");
+    const relativePath = filePath.replace(`${process.cwd()}/`, '');
 
     return (
-      <div className="prose lg:prose-xl sm:container mx-auto sm:px-0 px-1 py-5 pt-8 text-xl">
+      <div className="prose lg:prose-xl mx-auto px-1 py-5 pt-8 text-xl sm:container sm:px-0">
         <MDXContent source={content} />
         <div className="mt-8 flex justify-end">
           <a
-            className="text-sm text-primary hover:underline"
+            className="text-primary text-sm hover:underline"
             href={`https://github.com/cyrus-lang/Official-Website/edit/v2/${relativePath}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -63,4 +57,3 @@ export default async function ShowDocumentPage({
   }
 }
 
-export const dynamic = "force-static";
