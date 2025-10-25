@@ -1,9 +1,7 @@
-"use client";
-
-import { useMDXComponents } from "@/mdx-components";
+import { getMDXComponents } from "@/lib/get-mdx";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
-export default function MDXContent({ source }: { source: string }) {
-  const components = useMDXComponents({});
+export default async function MDXContent({ source }: { source: string }) {
+  const components = await getMDXComponents();
   return <MDXRemote source={source} components={components} />;
 }

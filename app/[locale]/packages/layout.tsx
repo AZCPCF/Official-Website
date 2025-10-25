@@ -1,18 +1,20 @@
-"use client";
+import { ReactNode } from "react";
+import Layout from "@/components/layout";
+import { setRequestLocale } from "next-intl/server";
 
-import Header from "@/components/header";
-import type React from "react";
-
-export default function PackagesLayout({
+export default async function PacakgesLayout({
   children,
+  params,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
-  return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
+  const { locale } = await params;
 
+  setRequestLocale(locale);
+  return (
+    <Layout locale={locale} className="flex flex-col min-h-screen">
       {children}
-    </div>
+    </Layout>
   );
 }
