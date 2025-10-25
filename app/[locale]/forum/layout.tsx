@@ -1,18 +1,20 @@
-"use client";
-import Header from "@/components/header";
-import type React from "react";
+import { ReactNode } from "react";
+import Layout from "@/components/layout";
+import { setRequestLocale } from "next-intl/server";
 
-export default function ForumLayout({
+export default async function ForumLayout({
   children,
+  params,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
 
+  setRequestLocale(locale);
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-
+    <Layout locale={locale} className="flex flex-col min-h-screen">
       {children}
-    </div>
+    </Layout>
   );
 }

@@ -1,0 +1,22 @@
+import { Motion } from "@/components/motion";
+import { HomeFeatureType } from "@/content/home/type";
+
+export const HomeFeaturesCard = ({
+  index,
+  ...item
+}: HomeFeatureType & { index: number }) => (
+  <Motion
+    key={index}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.8 }}
+    transition={{ duration: 0.4, delay: index * 0.1 }}
+    className="bg-background rounded-lg p-6 shadow-xs border hover:scale-[107.5%] transition-transform"
+  >
+    <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+      {item.icon}
+    </div>
+    <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+    <p className="text-muted-foreground">{item.desc}</p>
+  </Motion>
+);

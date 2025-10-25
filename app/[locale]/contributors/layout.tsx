@@ -1,19 +1,17 @@
-"use client";
+import { ReactNode } from "react";
+import Layout from "@/components/layout";
 
-import type React from "react";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
-
-export default function ContributorsLayout({
+export default async function ContributorsLayout({
   children,
+  params,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
+    <Layout locale={locale} footer>
       {children}
-      <Footer />
-    </div>
+    </Layout>
   );
 }
