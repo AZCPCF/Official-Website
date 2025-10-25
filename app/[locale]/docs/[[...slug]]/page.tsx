@@ -1,4 +1,5 @@
 import MDXContent from "@/components/mdx-content";
+import { ScrollToElement } from "@/components/scroll-to-element";
 import { redirect } from "@/i18n/navigation";
 import { locales } from "@/i18n/routing";
 import { getAllDocPaths, getDocPath } from "@/lib/get-docs-path";
@@ -47,6 +48,7 @@ export default async function ShowDocumentPage({
     return (
       <div className="prose lg:prose-xl mx-auto px-1 py-5 pt-8 text-xl sm:container sm:px-0">
         <MDXContent source={content} />
+        <ScrollToElement />
         <div className="mt-8 flex justify-end">
           <a
             className="text-primary text-sm hover:underline"
