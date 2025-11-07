@@ -5,21 +5,20 @@ weight: 9
 
 # Tuples
 
-A tuple is an ordered grouping of values. Tuples are useful for returning or destructuring multiple values without defining a struct.
+A **tuple** is an ordered, fixed-size collection of values of possibly different types.  
+They are lightweight and useful for grouping, returning, or destructuring multiple values without defining a struct.
 
 <br />
 
-## Tuple Literal
+## Tuple Literals
 
-Tuples are written using parentheses:
+Tuples are written using parentheses, with elements separated by commas:
 
 ```cyrus
 var t = (10, 20);
 ```
 
-<br />
-
-You can access tuple members using numeric indices:
+You can access tuple elements using numeric indices starting from `0`:
 
 ```cyrus
 printf("%d\n", t.0); // 10
@@ -30,11 +29,16 @@ printf("%d\n", t.1); // 20
 
 ## Returning Tuples from Functions
 
-Functions can return multiple values by specifying a tuple type in the return position:
+Functions can return multiple values by specifying a tuple type as the return type:
 
 ```cyrus
 fn pair(x: int, y: int) (int, int) {
     return (x, y);
+}
+
+fn main() {
+    var (a, b) = pair(10, 20);
+    printf("%d %d\n", a, b);
 }
 ```
 
@@ -42,39 +46,22 @@ fn pair(x: int, y: int) (int, int) {
 
 ## Tuple Destructuring
 
-Tuples can be destructured into variables directly:
+Tuples can be **destructured** into individual variables in a single declaration.
+Each element in the tuple pattern receives the corresponding element from the right-hand side.
 
 ```cyrus
 fn main() {
-    var (x, y) = pair(10, 20);
-    printf("(%d, %d)\n", x, y);
+    var (x, y) = (10, 20);
+    printf("%d %d\n", x, y); // 10 20
 }
 ```
-
-<br />
-
-## Const Tuple Destructuring
-
-Using `var` makes all destructured elements mutable.  
-Using `const` makes all of them immutable.
-
-```cyrus
-fn main() {
-    const (x, y) = (5, 6); // both x and y are immutable
-}
-```
-
-<br />
-
-## Mixing Declaration Forms
-
-Tuple destructuring respects normal variable declaration rules. Global destructuring is not allowed — tuples can only be destructured inside functions or local scopes.
 
 <br />
 
 ## Nested Tuples
 
-Tuples can be nested:
+Tuples can contain other tuples.
+Destructuring works recursively and matches the shape of the right-hand side:
 
 ```cyrus
 fn main() {
@@ -82,3 +69,51 @@ fn main() {
     printf("%d %d %d\n", x, y, z); // 1 2 3
 }
 ```
+
+This form can be arbitrarily nested and follows the same destructuring logic for all levels.
+
+<br />
+
+## Explicit Tuple Types
+
+You can explicitly annotate tuple types to make destructuring clearer or enforce type constraints:
+
+```cyrus
+var (a, (b, c)): (int, (int, char*)) = (10, (20, "Cyrus"));
+
+printf("%d\n", a); // 10
+printf("%d\n", b); // 20
+printf("%s\n", c); // Cyrus
+```
+
+Type annotations ensure the tuple on the right-hand side matches the declared structure.
+
+<br />
+
+## Mutability
+
+The `var` keyword makes all destructured elements mutable,
+while `const` makes all of them immutable:
+
+```cyrus
+const (x, y) = (5, 6); // both immutable
+var (p, q) = (7, 8);   // both mutable
+```
+
+<br />
+
+## Restrictions
+
+- Tuple destructuring is only allowed inside **functions** or **local scopes**.
+- Destructuring without a right-hand side (e.g., `var (a, b);`) is **not allowed**,
+  because tuple exports without initialization are meaningless in Cyrus.
+
+Example of invalid code:
+
+```cyrus
+// Tuple export without RHS is not allowed.
+var (a, (b, c));
+```
+
+Tuples in Cyrus are designed to be type-safe, efficient, and compiler-optimized.
+Especially when destructuring nested or function-returned tuples.
