@@ -11,6 +11,10 @@
       "getStarted": "Get Started",
       "seeExamples": "See Examples"
     },
+    "sponsors": {
+      "title": "Our Sponsors",
+      "subtitle": "We deeply appreciate the valuable support of our sponsors. Their partnership empowers us to deliver a better experience for our users and continue our journey of growth and innovation. Having you by our side inspires us to build a brighter future."
+    },
     "features": {
       "title": "Key Features",
       "subtitle": "Cyrus Lang combines the best aspects of modern programming languages with innovative features designed for today's development challenges.",
