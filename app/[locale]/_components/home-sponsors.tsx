@@ -13,8 +13,9 @@ export const HomeSponsors = ({ t }: TranslationProps) => (
           {t("sponsors.subtitle")}
         </p>
       </div>
+
       <div className="mx-auto">
-        <div className="grid md:grid-cols-3 grid-cols-2  lg:grid-cols-4 gap-3">
+        <div className="flex flex-wrap justify-center gap-4">
           {homeSponsorsArray.map((item) => (
             <HomeSponsorCard {...item} key={item.imageName} />
           ))}

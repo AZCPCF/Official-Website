@@ -5,9 +5,9 @@ import { HomeCommunityCards } from "./_components/home-community";
 import { HomeFeaturesCards } from "./_components/home-features";
 import { HomeGetStartedCards } from "./_components/home-get-started";
 import { HomeHero } from "./_components/home-hero";
-import { HomeNewsLetter } from "./_components/home-news-letter";
 import { HomeWhyCyrus } from "./_components/home-why-cyrus";
 import { HomeSponsors } from "./_components/home-sponsors";
+// import { HomeNewsLetter } from "./_components/home-news-letter";
 
 export default async function HomePage({
   params,
@@ -19,16 +19,17 @@ export default async function HomePage({
   setRequestLocale(locale);
 
   const t = await getTranslations("HomePage");
+
   return (
     <Layout footer locale={locale}>
       <HomeHero t={t} />
-      <HomeSponsors t={t} />
       <HomeFeaturesCards t={t} />
       <HomeCodeExamples t={t} />
       <HomeWhyCyrus t={t} />
       <HomeGetStartedCards t={t} />
       <HomeCommunityCards t={t} />
-      <HomeNewsLetter t={t} />
+      <HomeSponsors t={t} />
+      {/* <HomeNewsLetter t={t} /> */}
     </Layout>
   );
 }
