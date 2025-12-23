@@ -1,4 +1,4 @@
-import ClientSidebarWrapper from "@/components/docs/client_sidebar_wrapper";
+import ClientSidebarWrapper from "@/components/docs/client-sidebar-wrapper";
 import Layout from "@/components/layout";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { isLocaleRTL } from "@/hooks/use-locale";
