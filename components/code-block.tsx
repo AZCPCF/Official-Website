@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import { useTheme } from "next-themes";
 
-// ✅ Import both themes statically
 import "@/styles/panda-syntax-dark.css";
 import "@/styles/panda-syntax-light.css";
 

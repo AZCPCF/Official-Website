@@ -26,11 +26,11 @@ Cyrus is designed for developers who want the power of low-level control without
 Here's a glimpse of what Cyrus code looks like:
 
 ```cyrus
-import std::io;
+import std::libc;
 
-fn main() {
-  var msg: char* = "Hello, Cyrus!";
-  io::printfn(msg);
+pub fn main() {
+  const msg: char* = "Hello, Cyrus!";
+  libc::printf("%s\n", msg);
 }
 ```
 

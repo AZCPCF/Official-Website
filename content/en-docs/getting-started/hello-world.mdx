@@ -8,10 +8,10 @@ weight: 6
 Let's start with the first program:
 
 ```cyrus 
-import std::io;
+import std::libc;
 
-fn main() {
-    io::printfn("Hello, Cyrus\n");
+pub fn main() {
+    libc::printf("Hello, Cyrus\n");
 }
 ```
 
@@ -27,4 +27,4 @@ We can then run it with:
 cyrus run hello_world.cyrus
 ```
 
-It should print Hello, World! and return back to the command line prompt.
+It should print `Hello, Cyrus!` and return back to the command line prompt.
