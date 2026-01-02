@@ -284,3 +284,40 @@ In this form:
 - Each case compares the switch expression against a concrete value
 - Default is executed when no case matches
 - Matching is value-based, not pattern-based
+
+# Jump Blocks
+
+Cyrus supports jump blocks using the goto statement. Jump blocks allow you to transfer control to a labeled point in the current function. While goto should be used sparingly, it can simplify certain low-level control flows or state-machine-like logic.
+
+A label is an identifier followed by a colon and the goto statement transfers execution to that label:
+
+```cyrus
+pub fn main() {
+label_name:
+    // code
+
+goto label_name; // jumps to the labeled block
+}
+```
+
+Labels must be defined within the same function.    
+You cannot jump into another function or across different scopes.   
+
+```cyrus
+import std::libc{printf, exit};
+
+pub fn main() {
+    var x = 0;
+
+increment: // label for incrementing
+    x++;
+
+check: // label for condition check
+    if (x < 5) {
+        goto increment; // jump back to increment
+    } else {
+        printf("%d\n", x);
+        exit(0);
+    }
+}
+```
