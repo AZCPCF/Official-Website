@@ -149,6 +149,8 @@ The switch statement provides structured control flow based on the value of an e
 
 The general form is:
 
+<br />
+
 ### Basic Form
 
 ```cyrus
@@ -196,6 +198,8 @@ pub fn main() {
 }
 ```
 
+<br />
+
 The switch is exhaustive: all possible variants of Color are handled.
 
 ### Switch Enum Without Payloads
@@ -226,6 +230,8 @@ pub fn main() {
 
 Each case matches a concrete enum variant. Since all variants are covered, no default branch is required.
 
+<br />
+
 ### Destructuring Tagged Values
 
 Enums are commonly used as tagged unions. The switch statement allows safe extraction of the stored value based on the active variant.
@@ -251,6 +257,8 @@ pub fn main() {
 ```
 
 Here, the bound variable (number, text) is available only within its corresponding case block.
+
+<br />
 
 ### Switching On Non-enum Values
 

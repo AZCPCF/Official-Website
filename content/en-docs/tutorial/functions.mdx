@@ -5,13 +5,13 @@ weight: 5
 
 # Functions
 
-Functions in Cyrus are defined using the `fn` keyword, followed by the function name, parameters, and return type.
+Functions in Cyrus are defined using the fn keyword, followed by the function name, parameter list, and return type. Functions are private by default and may be annotated with access specifiers to control visibility, linkage, and optimization behavior.
 
 <br />
 
-## Basic Function Example
+## Basic Function Definition
 
-Here's a simple example of a function that adds two integers:
+A simple function that adds two integers:
 
 ```cyrus
 fn sum(x: int, y: int) int {
@@ -19,76 +19,191 @@ fn sum(x: int, y: int) int {
 }
 ```
 
+Parameters are explicitly typed.  
+The return type appears after the parameter list.  
+return is required for non-void functions.
+
 <br />
 
 ## Recursion
 
-```cyrus
-fn main() {
-    fibonacci(10); // expected value: 55
-}
+Functions may call themselves recursively.
 
+```cyrus
 fn fibonacci(n: int) int {
     if (n == 0) {
         return 0;
-    }
-    else if (n == 1) {
+    } else if (n == 1) {
         return 1;
-    }
-    else {
+    } else {
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
 }
+
+pub fn main() {
+    fibonacci(10); // evaluates to 55
+}
 ```
+
+Recursion follows normal call semantics and stack behavior.
 
 <br />
 
-# Function Access Specifiers
+# Function Modifiers
 
-In Cyrus, functions can be declared with **access specifiers** that control their visibility and behavior.  
-These specifiers are placed **before** the `fn` keyword.
+After defining a function's visibility and linkage (such as with extern), Cyrus allows functions to be further refined using function modifiers.
 
-- **extern** - Declares that the function is defined outside the current module (e.g., in a C library). Useful for interoperability.
+Function modifiers control how a function is:
 
-```cyrus
-extern fn printf(format: const char*, ...) int32;
-```
+- linked
+- inlined
+- called at the ABI level
+- placed in the binary
+- optimized or constrained by the compiler
 
-Only valid for declarations.
+Cyrus classifies function modifiers into distinct semantic groups. This separation is intentional: it keeps the language orthogonal and prevents ambiguous combinations.
 
-- **pub** Makes the function visible outside the current module. Without `pub`, a function is private by default and can only be used within the same module.
+<br />
 
-```cyrus
-pub fn sum(a: int, b: int) int {
-    return a + b;
-}
-```
+### Visibility
 
-- **inline** Hints to the compiler that the function body should be expanded inline at call sites (for performance). This is most effective with **small utility functions**.
+{/* TODO Mention that why main function must be public. */}
 
-```cyrus
-inline fn square(x: int) int {
-    return x * x;
-}
-```
-
-- **pub inline** A combination: visible outside the module and a candidate for inlining.
+Controls where the function can be referenced from.
 
 ```cyrus
-pub inline fn abs(x: int) int {
-    if (x < 0) {
-        return -x;
-    } else {
-        return x;
-    }
-}
+pub fn compute() int { ... }
 ```
 
-- **pub extern** Declares an **external function** that is also exported from the current module. This is commonly used when exposing bindings or APIs.
+If no visibility modifier is specified, the function is private to its module.
+
+<br />
+
+### Linkage
+
+Controls how the function symbol is resolved by the linker.
 
 ```cyrus
-pub extern fn sin(x: float64) float64;
+extern fn printf(fmt: const char*, ...) int32;
 ```
+
+Additional linkage forms exist for advanced use cases:
+
+- `extern`: symbol defined outside the module
+- `weak`: weak linkage
+- `linkonce`: link-once semantics (typically for deduplicated code)
+
+Only one linkage modifier may be specified per function.
+
+<br />
+
+### Inlining
+
+Hints how the compiler should treat calls to the function.
+
+```cyrus
+inline fn add(a: int, b: int) int { ... }
+```
+
+Supported inlining modifiers:
+
+- `inline`: prefer inlining
+- `noinline`: forbid inlining
+- `alwaysinline`: force inlining when possible
+
+Inlining modifiers affect optimization but do not change semantics.
+
+<br />
+
+### Prologue Control
+
+Controls whether the compiler emits a function prologue and epilogue.
+
+```cyrus
+naked fn interrupt_handler() void { ... }
+```
+
+Naked emits no stack setup or teardown. 
+This is intended for low-level code such as interrupt handlers or hand-written assembly bridges.
+
+### Export Modifiers
+
+Control how the function is exported across binary boundaries.
+
+```cyrus
+pub dllexport fn api_entry() void { ... }
+```
+
+Supported export kinds:
+
+- dllimport
+- dllexport
+
+These modifiers are platform-specific and primarily used when producing shared libraries.
+
+<br />
+
+### Calling Convention
+
+Specifies the ABI calling convention used when invoking the function.
+
+```cyrus
+callconv(fastcall) fn memcpy(dst: void*, src: void*, n: uint) void;
+```
+
+Supported calling conventions include:
+
+- c
+- system
+- sysv64
+- win64
+- stdcall
+- fastcall
+- thiscall
+- vectorcall
+- interrupt
+- naked
+- aapcs
+- cold
+- fast
+
+Only one calling convention may be specified per function.
+
+<br />
+
+### Optional Function Flags
+
+Optional flags provide additional semantic or optimization hints.   
+Multiple optional flags may be applied to the same function.    
+
+```cyrus
+noreturn cold fn fatal_error(msg: char*) void { ... }
+```
+
+Supported optional flags include:
+
+- `noreturn`: function never returns
+- `nounwind`: function does not unwind the stack
+- `cold`: unlikely to be executed
+- `hot`: performance-critical path
+- `optsize`: optimize for size
+- `optnone`: disable optimizations
+- `nosanitize(name)`: disable a specific sanitizer
+
+The compiler validates combinations to prevent contradictory flags.
+
+<br />
+
+### Section Placement
+
+Functions may be placed into specific binary sections.
+
+```cyrus
+section(".init") fn early_init() void { ... }
+```
+
+Multiple placement attributes may be specified when supported by the target.    
+This is typically used for kernel code, embedded systems, or fine-grained linker control.   
 
 <br />
 
@@ -110,7 +225,7 @@ fn main() {
 }
 ```
 
-- Use this style primarily for compatibility with C and low-level APIs.  
+- Use this style primarily for compatibility with C and low-level APIs.
 - Inside the function body, such arguments are accessed with platform-specific varargs handling (similar to C's `va_list`).
 
 <br />
@@ -129,11 +244,12 @@ fn main() {
     printf("%d\n", s); // Output: 15
 }
 ```
+
 <br />
 
-## Function ABI Name 
+## Function ABI Name Mangler (Not completed yet.)
 
-Cyrus allows you to specify a **different ABI-level (linker) name** for a function than its Cyrus name. This is done using the `as` keyword after the declaration.  
+Cyrus allows you to specify a **different ABI-level (linker) name** for a function than its Cyrus name. This is done using the `as` keyword after the declaration.
 
 ```cyrus
 extern fn printf(fmt: string, ...) int as my_printf;
@@ -173,8 +289,12 @@ type HandlerFn = fn(int, int) void;
 The syntax is straightforward:
 
 ```cyrus
-fn(x: int, y: int) int {
-    return x + y;
+pub fn main() {
+    const handler = fn(x: int, y: int) int {
+        return x + y;
+    };
+
+    printf("%d\n", handler(5, 7));
 }
 ```
 
@@ -185,7 +305,7 @@ fn(x: int, y: int) int {
 You can store lambdas in variables:
 
 ```cyrus
-fn main() {
+pub fn main() {
     var add = fn(x: int, y: int) int {
         return x + y;
     };
@@ -206,7 +326,7 @@ fn main() {
     var base = 10;
 
     var adder = fn(x: int) int {
-        return x + base; // ❌ base is not accessible here
+        return x + base; // base is not accessible here
     };
 }
 ```
