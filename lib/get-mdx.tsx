@@ -143,13 +143,13 @@ export async function getMDXComponents(
       }
 
       return (
-        <code
-          className="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 text-sm text-left rounded-xl"
+        <span
+          className="!bg-neutral-200 dark:!bg-neutral-800 p-1 mr-1 text-sm text-left rounded-sm"
           dir="ltr"
           {...props}
         >
           {children}
-        </code>
+        </span>
       );
     },
     UnderDevelopmentAlert,
