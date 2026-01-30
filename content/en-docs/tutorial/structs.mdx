@@ -126,8 +126,8 @@ pub fn print_name(&self) {
     printf("%s\n", self->name);
 }
 
-pub fn take_ownership(mut self) {
-    self.name = "Changed";
+pub fn take_copy(self) {
+    self.name = "applied locally";
 }
 ```
 
@@ -148,7 +148,7 @@ ptr->name;
 ptr->age;
 ```
 
-Using **ptr->name** or **ptr->age** is equivalent to **{"(*ptr).name"}** and **{"(*ptr).age"}**.
+Using `ptr->name` or `ptr->age` is equivalent to `{"(*ptr).name"}` and `{"(*ptr).age"}`.
 
 <br />
 
@@ -187,10 +187,6 @@ fn main() {
 ```
 
 Field types are inferred automatically.
-
-<br />
-
-## Typed Unnamed Struct
 
 You can also specify field types explicitly:
 

@@ -17,7 +17,7 @@ Arithmetic operators perform mathematical calculations between numeric operands.
 <Table>
   <TableHeader>
     <TableRow>
-      <TableHead className="w-[100px]">Operator</TableHead>
+      <TableHead className="w-25">Operator</TableHead>
       <TableHead>Meaning</TableHead>
       <TableHead>Example</TableHead>
       <TableHead className="text-right">Result</TableHead>
@@ -104,7 +104,7 @@ Comparison operators evaluate the relationship between two operands and return a
 <Table>
   <TableHeader>
     <TableRow>
-      <TableHead className="w-[100px]">Operator</TableHead>
+      <TableHead className="w-25">Operator</TableHead>
       <TableHead>Meaning</TableHead>
       <TableHead>Example</TableHead>
       <TableHead className="text-right">Result</TableHead>
@@ -159,7 +159,7 @@ Logical operators are used to combine or invert boolean values. They always oper
 <Table>
   <TableHeader>
     <TableRow>
-      <TableHead className="w-[100px]">Operator</TableHead>
+      <TableHead className="w-25">Operator</TableHead>
       <TableHead>Meaning</TableHead>
       <TableHead>Example</TableHead>
       <TableHead className="text-right">Result</TableHead>
@@ -197,7 +197,7 @@ The simplest form is **=**, but there are also compound assignments that perform
 <Table>
   <TableHeader>
     <TableRow>
-      <TableHead className="w-[100px]">Operator</TableHead>
+      <TableHead className="w-25">Operator</TableHead>
       <TableHead>Meaning</TableHead>
       <TableHead>Example</TableHead>
       <TableHead className="text-right">Result</TableHead>
@@ -278,7 +278,6 @@ The simplest form is **=**, but there are also compound assignments that perform
 ## Operator Precedence & Associativity
 
 Associativity determines how operators of the same precedence are grouped: left-to-right or right-to-left.
-Parentheses () can be used to explicitly control evaluation order.
 
 <Table>
   <TableHeader>
@@ -359,6 +358,15 @@ Parentheses () can be used to explicitly control evaluation order.
       </TableCell>
     </TableRow>
     <TableRow>
+      <TableCell>&amp;</TableCell>
+      <TableCell>
+        Address-of operator. Returns the memory address of its operand.
+      </TableCell>
+      <TableCell style={{ textAlign: "right" }}>
+        Lower than member access / Right-to-left
+      </TableCell>
+    </TableRow>
+    <TableRow>
       <TableCell>+, -</TableCell>
       <TableCell>Addition and subtraction operators.</TableCell>
       <TableCell style={{ textAlign: "right" }}>
@@ -392,15 +400,6 @@ Parentheses () can be used to explicitly control evaluation order.
       <TableCell style={{ textAlign: "right" }}>Low / Left-to-right</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell>&amp;</TableCell>
-      <TableCell>
-        Address-of operator. Returns the memory address of its operand.
-      </TableCell>
-      <TableCell style={{ textAlign: "right" }}>
-        Lower than member access / Right-to-left
-      </TableCell>
-    </TableRow>
-    <TableRow>
       <TableCell>Lowest</TableCell>
       <TableCell>
         Represents the lowest precedence. Used internally as a default when no
@@ -416,13 +415,14 @@ Parentheses () can be used to explicitly control evaluation order.
 ## Unary Operators
 
 Unary operators operate on a single operand and modify its value by **1**.  
-**Prefix** (`++i`, `--i`) updates the variable **before** it’s used in an expression.  
-**Postfix** (`i++`, `i--`) updates the variable **after** it’s used in an expression.
+
+**Prefix** (`++i`, `--i`) updates the variable **before** it's used in an expression.  
+**Postfix** (`i++`, `i--`) updates the variable **after** it's used in an expression.
 
 <Table>
   <TableHeader>
     <TableRow>
-      <TableHead className="w-[140px]">Operator</TableHead>
+      <TableHead className="w-35">Operator</TableHead>
       <TableHead>Meaning</TableHead>
       <TableHead>Example</TableHead>
       <TableHead className="text-right">Result</TableHead>
@@ -464,16 +464,14 @@ Unary operators operate on a single operand and modify its value by **1**.
   </TableBody>
 </Table>
 
-Notes:
-
-> - Works only on mutable lvalues; using on constants or rvalues should be a compile error.
-> - Avoid relying on multiple increments of the same variable within a single expression if your language disallows/diagnoses unspecified order of evaluation.
+- Works only on mutable lvalues; using on constants or rvalues should be a compile error.
+- Avoid relying on multiple increments of the same variable within a single expression if your language disallows/diagnoses unspecified order of evaluation.
 
 <br />
 
 ## Null-Coalescing Operator
 
-The null-coalescing operator (||) is used with pointers to select the first non-null value from a chain of operands.  
+The null-coalescing operator `||` is used with pointers to select the first non-null value from a chain of operands.  
 It evaluates operands from left to right and returns the first pointer that is not null.  
 If all operands are null, the result is null.
 

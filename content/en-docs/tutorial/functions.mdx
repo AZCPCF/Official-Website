@@ -226,24 +226,8 @@ fn main() {
 ```
 
 - Use this style primarily for compatibility with C and low-level APIs.
-- Inside the function body, such arguments are accessed with platform-specific varargs handling (similar to C's `va_list`).
 
-<br />
-
-### Typed Variadic Arguments (Not implemented yet.)
-
-Typed variadic functions allow specifying **one type** that repeats for an arbitrary number of arguments. This gives type safety and better compiler optimizations.
-
-```cyrus
-fn sum_all(nums: int...) int {
-    // Coming soon.
-}
-
-fn main() {
-    var s: int = sum_all(1, 2, 3, 4, 5);
-    printf("%d\n", s); // Output: 15
-}
-```
+To access and iterate over the variable arguments from within your function, see the Builtins section in the documentation for details on `@va_list`, `@va_start`, `@va_arg`, and `@va_end`.
 
 <br />
 
@@ -276,7 +260,8 @@ Unlike closures in some other languages, Cyrus lambdas do not capture the surrou
 ### Function Types
 
 Every lambda has a function type, which describes its parameters and return type.
-For example:
+
+Example:
 
 ```cyrus
 type HandlerFn = fn(int, int) void;

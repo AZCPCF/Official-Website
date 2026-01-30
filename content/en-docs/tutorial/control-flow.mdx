@@ -198,9 +198,9 @@ pub fn main() {
 }
 ```
 
-<br />
-
 The switch is exhaustive: all possible variants of Color are handled.
+
+<br />
 
 ### Switch Enum Without Payloads
 
@@ -285,6 +285,8 @@ In this form:
 - Default is executed when no case matches
 - Matching is value-based, not pattern-based
 
+<br />
+
 # Jump Blocks
 
 Cyrus supports jump blocks using the goto statement. Jump blocks allow you to transfer control to a labeled point in the current function. While goto should be used sparingly, it can simplify certain low-level control flows or state-machine-like logic.
@@ -301,7 +303,6 @@ goto label_name; // jumps to the labeled block
 ```
 
 Labels must be defined within the same function.    
-You cannot jump into another function or across different scopes.   
 
 ```cyrus
 import std::libc{printf, exit};

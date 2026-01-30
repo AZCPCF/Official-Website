@@ -15,12 +15,11 @@ If a type can be safely converted to another type without losing information, Cy
 
 ```cyrus
 var a: int32 = 42;
-var b: int64 = a; // Implicit cast from int32 to int64
+var b: int64 = a; // implicit cast from int32 to int64
 ```
 
 - `int32` (32-bit signed integer) can always fit into `int64` (64-bit signed integer).  
 - The compiler handles this **implicitly**, so no special syntax is required.  
-- Safe casts also apply to numeric literals, e.g., `var x: float64 = 10.0` is allowed.
 
 <br />
 
@@ -30,7 +29,7 @@ If a conversion **could be unsafe**, the compiler requires an **explicit cast** 
 
 ```cyrus
 var u: uint32 = 10;
-var i: int64 = cast(int64, u); // Explicit unsafe cast from uint32 to int64
+var i: int64 = cast(int64, u); // explicit unsafe cast from uint32 to int64
 ```
 
 <br />
@@ -134,10 +133,16 @@ Cyrus provides a set of built-in types for numbers, characters, booleans, and sp
       <TableCell className="text-right">Unsigned</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell className="font-medium">size_t</TableCell>
+      <TableCell className="font-medium">usize</TableCell>
       <TableCell>Size / Index Type</TableCell>
       <TableCell>Pointer width (32 or 64)</TableCell>
       <TableCell className="text-right">Unsigned</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">isize</TableCell>
+      <TableCell>Size / Index Type</TableCell>
+      <TableCell>Pointer width (32 or 64)</TableCell>
+      <TableCell className="text-right">Signed</TableCell>
     </TableRow>
   </TableBody>
 </Table>
