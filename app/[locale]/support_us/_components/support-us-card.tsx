@@ -1,4 +1,6 @@
-import { Motion } from "@/components/motion";
+"use client"; // Required for framer-motion interactions
+
+import { motion } from "framer-motion";
 import {
   Card,
   CardContent,
@@ -13,15 +15,16 @@ export const SupportUsCard = ({
   ...item
 }: SupportUsCardType & { index: number }) => {
   return (
-    <Motion
+    <motion.div
       key={"support-us-card-" + index}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
       whileHover={{ scale: 1.03, transition: { duration: 0.15 } }}
+      className="h-full" // Ensure the motion container fills the grid height
     >
-      <Card className="shadow-lg border rounded-2xl transition-all duration-200">
+      <Card className="shadow-lg border rounded-2xl transition-all duration-200 h-full flex flex-col">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             {item.icon}
@@ -29,8 +32,11 @@ export const SupportUsCard = ({
           </CardTitle>
           <CardDescription>{item.desc}</CardDescription>
         </CardHeader>
-        <CardContent>{item.content}</CardContent>
+        {/* flex-1 makes the content area expand to fill the card */}
+        <CardContent className="flex-1 flex flex-col">
+          {item.content}
+        </CardContent>
       </Card>
-    </Motion>
+    </motion.div>
   );
 };

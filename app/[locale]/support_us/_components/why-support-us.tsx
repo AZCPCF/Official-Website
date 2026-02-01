@@ -19,7 +19,7 @@ export const WhySupportUs = ({ t }: TranslationProps) => {
         <CardContent>
           <div className="grid gap-6 md:grid-cols-3 mt-2">
             {whySupportUsItemsArray(t).map((item, index) => (
-              <WhySupportUsItem {...item} index={index} />
+              <WhySupportUsItem {...item} index={index} key={index} />
             ))}
           </div>
         </CardContent>
