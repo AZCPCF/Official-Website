@@ -12,5 +12,5 @@ export default async function BlogLayout({
   const { locale } = await params;
 
   setRequestLocale(locale);
-  return <Layout locale={locale}>{children}</Layout>;
+  return <Layout locale={locale} footer>{children}</Layout>;
 }
