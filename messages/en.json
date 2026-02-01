@@ -305,5 +305,14 @@
       "title": "Output",
       "placeholder": "Output will appear here after running the code..."
     }
+  },
+  "Blog": {
+    "title": "Our Blog",
+    "titleSecondary": "Blog",
+    "subtitle": "Insights, tutorials, and updates from the team.",
+    "searchPlaceholder": "Search posts...",
+    "readTime": "min read",
+    "readButton": "Read",
+    "emptyState": "No posts found. Check back later!"
   }
 }

@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import Layout from "@/components/layout";
-import { setRequestLocale } from "next-intl/server";
 
 export default async function BlogLayout({
   children,
@@ -11,6 +10,9 @@ export default async function BlogLayout({
 }) {
   const { locale } = await params;
 
-  setRequestLocale(locale);
-  return <Layout locale={locale} footer>{children}</Layout>;
+  return (
+    <Layout locale={locale} footer>
+      {children}
+    </Layout>
+  );
 }

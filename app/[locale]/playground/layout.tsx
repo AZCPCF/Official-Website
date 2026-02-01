@@ -9,6 +9,7 @@ export default async function PlaygroundLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  
   return (
     <Layout locale={locale} footer>
       {children}
