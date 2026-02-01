@@ -182,3 +182,12 @@ button:hover {
     )
     transparent;
 }
+
+.alert-parent .code-block {
+  & code {
+    @apply dark:bg-[var(--code-block-color)]/10 bg-white/50 !px-0;
+  }
+  & pre {
+    @apply dark:!border-0;
+  }
+}

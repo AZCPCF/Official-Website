@@ -48,7 +48,7 @@ export default function CodeBlock({
   };
 
   return (
-    <div className="my-6 overflow-x-auto relative group">
+    <div className="my-6 overflow-x-auto relative group code-block">
       <div className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity">
         <Button
           size="sm"
