@@ -21,7 +21,7 @@ function BaseAlert({ title, children, color, icon, defaultTitle }: AlertProps) {
 
   return (
     <div
-      className={`${bgColors[color]} border-t-4 p-3 md:p-4 mb-4 rounded-md`}
+      className={`${bgColors[color]} border-t-4 p-3 md:p-4 mb-4 rounded-md alert-parent`}
       role="alert"
     >
       <div className="flex flex-col sm:flex-row">

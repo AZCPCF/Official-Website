@@ -182,3 +182,8 @@ button:hover {
     )
     transparent;
 }
+
+
+.alert-parent .code-block code {
+  @apply border-2 dark:border-neutral-700 border-neutral-200 bg-transparent !px-0;
+}
